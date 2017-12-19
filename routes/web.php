@@ -43,4 +43,27 @@ Route::prefix('articles')->group(function(){
     
     });
 
-/*------------------------------------------------------------------------- */
+/*-----------------------------Backoffice admin -------------------------------------------- */
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('listes-evenements',['as' => 'show.event', 'uses' => 'EventsController@showevents']);
+    Route::get('ajout-evenement',['as' => 'add.event', 'uses' => 'EventsController@addevents']);
+    Route::get('insertion-equipe',['as' => 'add.team', 'uses' => 'EventsController@addteams']);
+    Route::post('formaddevents',['as' => 'method.addevent', 'uses' => 'EventsController@ajoutevenement']);
+    Route::post('formaddteams',['as' => 'method.addteam', 'uses' => 'EventsController@ajoutequipevent']);
+    Route::get('update-event/{id}',['as' => 'event.showupdate', 'uses' => 'EventsController@showupdate'])->where('id','[0-9]+')->middleware('verifyid');
+    Route::post('form-update',['as' => 'form.update.event', 'uses' => 'EventsController@formupdatevent']);
+    Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
+    Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
+
+    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch']);
+
+    Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
+    Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
+
+    Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
+    Route::get('update-match',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch']); 
+    Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');    
+        
+});
