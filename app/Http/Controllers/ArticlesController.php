@@ -63,8 +63,7 @@ public function uploadSubmit(Request $request)
             'nomfoto' => $filename
         ]);
     }
-    return redirect()->route('uploadimage')
-    ->with('success','Image enregistré avec succés!');
+
 }
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -106,22 +105,31 @@ public function uploadSubmit(Request $request)
     public function store(Request $request)
     {
 
-         /*------------------Selection d'image---------------------*/
+         /*------------------insertion d'image---------------------*/
          
-         
-         
-         /*------------------Fin selection----------------------- */
-      $insert=$this->validate($request,[
+         $produit = Image::create($request->all());
+         foreach ($request->photos as $photo) {
+             $filename = $photo->store('photos');
+             ProduitsPhoto::create([
+                 'photo_id' => $produit->id,
+                 'nomfoto' => $filename
+             ]);
+         }    
+         /*------------------Fin insertion----------------------- */
+     
+         $insert=$this->validate($request,[
             'titre'=>'required',
             'contenu'=>'required',
             'tag'=>'required',
             'slug'=>'required',
             'seo'=>'required',
             
-            'administrateurs_id'=>'required',
-            'images_id'=>'required',
+            'administrateurs_id'=>'required'
         ]);
         
+        $insert["images_id"] = $produit->id ;
+        
+
         Article::create($insert);  
         return redirect()->route('index')
         ->with('success','article créer avec succes');
