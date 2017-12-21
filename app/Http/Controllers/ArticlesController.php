@@ -67,12 +67,32 @@ public function uploadSubmit(Request $request)
 }
 
 /*---------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------PUBLICATION--------------------------------------------------*/
+
+public function publication(Request $request,$id)
+{
+    //dd($id);
+    $article = Article::find($id);
+    $article->statut = true;
+    $article->save();
+    
+    return redirect()->route('index')->with('success','L\'article est publié');
+}
+
+
+/*------------------------------------------FIN PUBLICATION------------------------------------------------*/
+
+
+
+
     
      public function index()
     {
         $articles = Article::paginate(5);
-        return view('articles.index',compact('articles'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        
+        return view('articles.index',compact('articles'))->with('i', (request()->input('page', 1) - 1) * 5);
+
     }
 
     
@@ -177,7 +197,13 @@ public function uploadSubmit(Request $request)
      public function edit($id)
     {
         $article = Article::find($id);
-        return view('articles.edit',compact('article','id'));
+
+        $image = DB::table('images')->select('produits_photos.nomfoto')->join('produits_photos','images.id','=','produits_photos.photo_id')->where('images.id',$article->images_id)->get();
+
+        $img = DB::table('images')->select('urlimage')->where('images.id',$article->images_id)->get();
+        $images = Image::find($article->images_id);
+
+        return view('articles.edit',compact('article','image','images','img','id'));
     }
 
     
@@ -192,25 +218,61 @@ public function uploadSubmit(Request $request)
      */
     
     
-    
+
+     
+
      public function update(Request $request, $id)
     {
 
         $article = Article::find($id);
-        
+
+        $image = DB::table('images')
+            ->select('produits_photos.nomfoto')
+            ->join('produits_photos','images.id','=','produits_photos.photo_id')
+            ->where('images.id',$article->images_id)->get();
+
+/**--------------------debut update image--------------------------- */
+
+            $photo = Image::find($article->images_id);
+            $photo->urlimage = $request->urlimage;
+            $photo->save();
+
+
+            $nbr=count($image);
+            $articleim=count($article->photos);
+            if($nbr < $articleim)
+            {
+
+                $produit = Image::create($request->all());
+                foreach ($request->photos as $photo) {
+                    $filename = $photo->store('photos');
+                    ProduitsPhoto::create([
+                        'photo_id' => $produit->id,
+                        'nomfoto' => $filename
+                    ]);
+                }
+
+
+            }
+
+/**--------------------fin update image-------------------- */
+
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         $article->tag = $request->tag;
         $article->slug = $request->slug;
         $article->seo = $request->seo;
         
-        $article->images_id = $request->images_id;
+        $photo->id = $request->images_id;
+
         $article->save();
         
-        return redirect()->route('index')
-        ->with('success','Article modifié avec succes');
+        return redirect()->route('index')->with('success','Article modifié avec succes');
+        
     }
 
+    
+    
     
     
     /**
@@ -225,8 +287,8 @@ public function uploadSubmit(Request $request)
      public function destroy($id)
     {
         Article::destroy($id);
-        return redirect()->route('index')
-        ->with('success','Article supprimé');
+        return redirect()->route('index')->with('success','Article supprimé');
+        
     }
 
 

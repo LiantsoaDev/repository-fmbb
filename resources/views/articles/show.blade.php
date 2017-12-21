@@ -26,21 +26,19 @@
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
             </ol>
             <!-- Wrapper for slides -->
-            @foreach($image as $images)
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                
-                    <img src="../../app/{{$images->nomfoto}}" alt="...">
-                    <div class="carousel-caption">
-                        <h3>MyAdmin is an Awesome Dashboard</h3>
-                        <p>Awesome admin template</p>
-                        <p class="text-extra-small">Based on Latest Bootstrap 3.1.0</p>
+            <div class="carousel-inner" role="listbox" style="height:400px;">
+            
+                    @foreach($image as $key => $images)
+                    
+                        <div class="item{{$key == 0 ? ' active' : ''}}">
+                        
+                            <img src="../../app/{{$images->nomfoto}}" alt="...">
+                        
+                        </div>
+                    
+                    @endforeach                
+            
                     </div>
-                
-                </div>
-                
-            </div>
-            @endforeach
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
             <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>

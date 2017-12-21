@@ -50,18 +50,28 @@
             </div>
             
             <div class="form-group">
-                <label class="col-sm-2 control-label"> Images : </label>
-                <div class="col-sm-6">
-                    <select name="images_id" id="images_id" class="selectpicker" data-style="select-with-trasition" title="{{$article->images_id}}">
-                                                            
-                        @foreach($classname_array as $data)
-                            <option>{{ $data->id }}</option>
-                        @endforeach
-                                                            
-                    </select>
-                </div>
+            <label class="col-sm-2 control-label"> Images : </label>
+            <div class="col-sm-6">
 
+                        <div class="form-group">
+
+                            <input type="text" name="urlimage" value="{{$images->urlimage}}" /></br></br>
+                                        
+                           
+                                <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
+                            
+                        </div>
+                        
+                        <div class="row" id="image_preview">
+                        @foreach($image as $images)
+                            <img src="../../app/{{$images->nomfoto}}" alt="...">
+                            @endforeach
+                        </div>
+                        
+
+                </div>
             </div>
+
 
 
             <div class="form-group">

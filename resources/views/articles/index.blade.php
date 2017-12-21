@@ -9,7 +9,7 @@
             <a class="btn btn-primary btn-labeled fa fa-plus-circle" href="{{ route('create') }}">Ajouter Article</a>
             </div>
             <div class="btn-group">
-            <a class="btn btn-info btn-labeled fa fa-plus-circle" href="{{ route('uploadimage') }}">Ajouter Fichier</a>
+            <a class="btn btn-info btn-labeled fa fa-plus-circle" href="{{ route('uploadimage') }}">Ajouter Publicité</a>
             </div>
         </div>
     </div>
@@ -53,9 +53,10 @@
             <th>Réference</th>
             <th>Titre</th>
             <th>tag</th>
-            <th>Date d'insertion</th>
             <th>Seo</th>
-            <th>Status</th>
+            <th>Date d'insertion</th>
+            <th>Statuts</th>
+            <th>Publication</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -63,21 +64,42 @@
     @foreach($articles as $article)
         <tr>
             <td>{{ $article->id }}</td>
+            
             <td> {{ $article->titre }} </td>
+            
             <td>{{ $article->tag }}</td>
-            <td><span class="text-muted"><i class="fa fa-clock-o"></i>{{ $article->created_at }}</span></td>
+            
             <td>{{ $article->seo }}</td>
+            
+            <td><span class="text-muted"><i class="fa fa-clock-o"> </i>  {{ $article->created_at->format('d-m-Y') }}</span></td>
+            
             <td>
-                <div class="label label-table label-success">{{ $article->statut }}</div>
+                
+                <div>
+                    @if($article->statut == 1)
+                    <span class="label label-table label-mint">Publié</span>
+                    @elseif($article->statut == 0)
+                    <span class="label label-table label-dark">En cours..</span>
+                    @endif
+                </div>
+
             </td>
+            
+            <td>
+                @if($article->statut == 0)
+                    <a class="label label-table label-success" href="{{ route('publication',$article->id) }}">Publier</a>
+                @elseif($article->statut == 1)
+                <span class="label label-table label-default">Publier</span>
+                @endif
+            </td>
+
             <td>
                 <a class="btn btn-info btn-icon icon-lg fa fa-pencil"  href="{{ route('edit',$article->id) }}"></a>
                 <a class="btn btn-mint btn-icon icon-lg fa fa-eye" href="{{ route('show',$article->id) }}"></a>
-                <a class="btn btn-danger btn-icon icon-lg fa fa-trash" href="{{ route('delete',$article->id) }}"></a>            
-                
-                
+                <a class="btn btn-danger btn-icon icon-lg fa fa-trash" href="{{ route('delete',$article->id) }}"></a>                    
              </td>
-             </tr>
+             
+        </tr>
 @endforeach
 
          </tbody>

@@ -40,8 +40,19 @@ Route::prefix('articles')->group(function(){
 /*----------------------------route images----------------------------------*/
         Route::get('/uploadimage', array('as'=>'uploadimage','uses'=>'ArticlesController@uploadForm'));
         Route::post('/upload', array('as'=>'upload','uses'=>'ArticlesController@uploadSubmit'));
+/*-------------------------------------------------------------------------*/
+
+/*----------------------------route publication---------------------------*/
+
+        //Route::get('/publication/{id}', array('as'=>'index','uses'=>'ArticlesController@publication'));
+        Route::get('/publication/{id}', array('as'=>'publication','uses'=>'ArticlesController@publication'));
+
+/*-------------------------------------------------------------------------*/
     
     });
+
+/*-----------------------------Fin articles-------------------------------------------- */
+
 
 /*-----------------------------Backoffice admin -------------------------------------------- */
 
