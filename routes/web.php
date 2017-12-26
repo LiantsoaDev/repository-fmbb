@@ -43,7 +43,7 @@ Route::prefix('articles')->group(function(){
     
     });
 
-/*-----------------------------Backoffice admin -------------------------------------------- */
+/*-----------------------------Backoffice admin lints-------------------------------------------- */
 
 Route::prefix('admin')->group(function () {
 
@@ -57,7 +57,7 @@ Route::prefix('admin')->group(function () {
     Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
     Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
 
-    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch']);
+    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch'])->middleware('verifyequipe');
 
     Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
     Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
