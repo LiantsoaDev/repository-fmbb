@@ -23,6 +23,16 @@ class Equipe extends Model
     		return null;
     }
 
+    /** 
+    * fonction findequipe 
+    * @param integer idequipe
+    * @return Collection Object
+    */
+    public function findequipe($id)
+    {
+        return self::where('idequipe',$id)->first();
+    }
+
     /**
     * Fonction listes equipes by IN()
     * @param string IN()

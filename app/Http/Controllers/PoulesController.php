@@ -27,9 +27,12 @@ class PoulesController extends Controller
     	 $verifyequipe = $this->poule->verifyequipepoule( $request->get('equipe_id1') , $request->get('equipe_id2') );
     	 if( !empty($verifyequipe) && count($verifyequipe) == 1 )
     	 {
-    	 	return false;
+    	 	return $verifyequipe->IDPOULE;
     	 }
     	 else
-    	 	return true;
+    	 {
+    	 	return false;
+    	 }
+    	 	
     }
 }

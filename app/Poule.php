@@ -45,7 +45,7 @@ class Poule extends Model
     {
         return DB::table('equipe_poules')
                 ->Where('idequipes','like', '%' . $equipe1 . '%')
-                ->where('idequipes','like', '%' . $equipe2 . '%' )->get();
+                ->where('idequipes','like', '%' . $equipe2 . '%' )->first();
     }
 
 }

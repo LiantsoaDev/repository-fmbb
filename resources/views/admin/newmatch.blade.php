@@ -85,27 +85,27 @@
                                     <div class="panel-body">
                                         @if($hidden == true)
                                         <div class="form-group">
-                                                <label class="control-label col-md-4"> Evénements </label>
+                                                <label class="control-label col-md-4"> Type de jeu </label>
                                                 <div class="col-md-8">
-                                                    <!-- Bootstrap Select : Pink -->
+                                                    <!-- Bootstrap Select : Info -->
                                                     <!--===================================================-->
-                                                    <select class="form-control selectpicker" data-style="btn-pink">
-                                                        <option>HTML</option>
-                                                        <option>CSS</option>
-                                                        <option>jQuery</option>
-                                                        <option>Javascript</option>
+                                                    <select name="phase" class="form-control" data-style="btn-info">
+                                                        <option value="Match Amical">Match Amical</option>
+                                                        <option value="Match caritatif">Match caritatif</option>
+                                                        <option value="Match de préparation">Match de préparation</option>
+                                                        <option value="Autres">Autres...</option>
                                                     </select>
                                                     <!--===================================================-->
                                                 </div>
                                         </div><br><br>
-                                        @endif
+                                        @else
                                         <div class="form-group">
                                                 <label class="control-label col-md-4"> Phase </label>
                                                 <div class="col-md-8">
                                                     <!-- Bootstrap Select : Info -->
                                                     <!--===================================================-->
                                                     <select name="phase" class="form-control" data-style="btn-info">
-                                                        <option value="phase de final">Phase de groupe</option>
+                                                        <option value="phase de groupe">Phase de groupe</option>
                                                         <option value="quart de final">Quart de final</option>
                                                         <option value="demi final">Demi final</option>
                                                         <option value="final">Final</option>
@@ -113,6 +113,7 @@
                                                     <!--===================================================-->
                                                 </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
         					</div>
@@ -208,7 +209,11 @@
                                         <!--===================================================-->
                                         <button type="submit" class="btn btn-info btn-rounded btn-labeled fa fa-floppy-o">Sauvegarder</button>
                                         <button type="reset" class="btn btn-danger btn-labeled fa fa-times">Annuler</button>
-                                        <a href="javascript:history.back()" class="btn btn-warning btn-labeled fa fa-exclamation-triangle pull-right">Retour</a>
+                                        @if($hidden == true)
+                                         <a href="{{route('show.event')}}" class="btn btn-warning btn-labeled fa fa-exclamation-triangle pull-right">Retour</a>
+                                        @else
+                                        <a href="{{route('admin.calendrier',Session::get('idevent'))}}" class="btn btn-warning btn-labeled fa fa-exclamation-triangle pull-right">Retour</a>
+                                        @endif
                                         <!--===================================================-->
                                     </div>
                                 </div>
