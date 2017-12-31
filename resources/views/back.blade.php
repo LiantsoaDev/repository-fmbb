@@ -25,11 +25,12 @@
         <!--Demo [ DEMONSTRATION ]-->
         <link href="../../back/css/demo/jasmine.css" rel="stylesheet">
         <!--SCRIPT-->
-        <!--=================================================-->
+        <!--========================http://www.expertphp.in/js/jquery.form.js=========================-->
         <!--Page Load Progress Bar [ OPTIONAL ]-->
         <link href="../../back/plugins/pace/pace.min.css" rel="stylesheet">
         <script src="../../back/plugins/pace/pace.min.js"></script>
-        <script type="text/javascript" src="http://www.expertphp.in/js/jquery.form.js"></script>
+        <script src="../../back/js/dropzone.js"></script>
+        <script type="text/javascript" src="../../back/js/jquery.form.js"></script>
     </head>
 
     <style>
@@ -337,9 +338,13 @@
 
 
 
+
+
                                             <!--==================================Commencement du contenue===================================================-->
                                                 
                                                 @yield('content')
+
+
                                             <!--==================================Fin du contenue===================================================-->
 
 
@@ -389,14 +394,14 @@
                                         <li>
                                             <a href="javascript:void(0)">
                                             <i class="fa fa-home"></i>
-                                            <span class="menu-title">Dashboard</span>
+                                            <span class="menu-title">Pages d'accès</span>
                                             <i class="arrow"></i>
                                             </a>
                                             <!--Submenu-->
                                             <ul class="collapse">
-                                                <li><a href="index.html"><i class="fa fa-caret-right"></i> Homepage V1</a></li>
-                                                <li><a href="dashboard-v2.html"><i class="fa fa-caret-right"></i> Homepage V2</a></li>
-                                                <li><a href="dashboard-v3.html"><i class="fa fa-caret-right"></i> Homepage V3</a></li>
+                                                <li><a href="{{ route('index') }}"><i class="fa fa-caret-right"></i>Articles</a></li>
+                                                <li><a href="{{ route('uploadimage') }}"><i class="fa fa-caret-right"></i>Publicités</a></li>
+                                                <li><a href="{{ route('fond') }}"><i class="fa fa-caret-right"></i>Fonds du site</a></li>
                                             </ul>
                                         </li>
                                         <!--Category name-->
@@ -758,7 +763,7 @@ $('#add_more').click(function() {
 
 </script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
 
         <script src="../../back/js/jquery-2.1.1.min.js"></script>
         <!--BootstrapJS [ RECOMMENDED ]-->

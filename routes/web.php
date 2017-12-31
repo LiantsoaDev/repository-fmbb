@@ -39,7 +39,12 @@ Route::prefix('articles')->group(function(){
 
 /*----------------------------route images----------------------------------*/
         Route::get('/uploadimage', array('as'=>'uploadimage','uses'=>'ArticlesController@uploadForm'));
-        Route::post('/upload', array('as'=>'upload','uses'=>'ArticlesController@uploadSubmit'));
+        Route::post('/uploades', array('as'=>'uploades','uses'=>'ArticlesController@uploadSubmit'));
+/*----------------------------route image-fond----------------------------------*/
+
+        Route::get('/fond',array('as'=>'fond','uses'=>'ImagePubController@fond'));
+        Route::post('/insertimgpub',array('as'=>'insertimgpub','uses'=>'ImagePubController@insertimages'));
+
 /*-------------------------------------------------------------------------*/
 
 /*----------------------------route publication---------------------------*/
@@ -78,3 +83,14 @@ Route::prefix('admin')->group(function () {
     Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');    
         
 });
+
+
+/**----------------------------------------------Front-end jersam---------------------------------------------------- */
+
+Route::prefix('front')->group(function(){
+    
+        Route::get('/accueil',array('as'=>'accueil','uses'=>'FrontController@index')); 
+       
+    });
+
+/**--------------------------------------------------------------------------------------------------------------------*/

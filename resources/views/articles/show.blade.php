@@ -5,10 +5,26 @@
 
 <div class="col-md-6">
     <div class="alert alert-dark" role="alert">
-        <h2 class="alert-heading">{{$article->titre}}</h2>
+        
 
-        <p>{{$article->contenu}}.</p>
+        
     </div>
+
+
+    <div class="userWidget-1">
+        <div class="avatar bg-info">
+            <div class="name osLight"> <h2 class="alert-heading">{{$article->titre}}</h2> </div>
+        </div>
+        <div class="title"> <p>{{$article->contenu}}.</p> </div>
+        
+        <ul class="fullstats">
+            <li> <span>Tag</span> {{$article->tag}}</li>
+            <li> <span>Slug</span> {{$article->slug}}</li>
+            <li> <span>Seo</span> {{$article->seo}}</li>
+        </ul>
+        <div class="clearfix"> </div>
+    </div>
+
 </div>
 
 
@@ -26,13 +42,13 @@
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
             </ol>
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" style="height:400px;">
+            <div class="carousel-inner" role="listbox" style="height:300px;">
             
-                    @foreach($image as $key => $images)
+                    @foreach(explode('|',$images->urlimage) as $key => $url)
                     
                         <div class="item{{$key == 0 ? ' active' : ''}}">
                         
-                            <img src="../../app/{{$images->nomfoto}}" alt="...">
+                            <img src="../../../app/photos/{{$url}}" alt="...">
                         
                         </div>
                     

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Article;
 use App\Image;
-use App\ProduitsPhoto;
-//use DB;
+
+use File;
 
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests;
@@ -55,24 +55,39 @@ public function uploadForm()
 
 public function uploadSubmit(Request $request)
 {
-    $produit = Image::create($request->all());
-    foreach ($request->photos as $photo) {
-        $filename = $photo->store('photos');
-        ProduitsPhoto::create([
-            'photo_id' => $produit->id,
-            'nomfoto' => $filename
-        ]);
+    
+/*
+    $this->validate($request, ['photos' => 'image|mines:jpeg,png,jpg,gif,svg|max:10000|nullable']);
+  */
+
+  $input=$request->all();
+  $images=array();
+  
+  if($files=$request->file('photos')){
+    $i = 0; 
+    foreach($files as $file){ 
+        $name=$file->getClientOriginalName(); 
+        $file->move('app/photos',$name); 
+        $images[$i++]=$name; 
     }
+  }
 
+  DB::table('images')->insert(array(
+    'urlimage'=>  implode("|",$images),
+    'urlvideo'=>$request->urlvideo,
+    'updated_at' => date('Y-m-d H:i:s'),
+    'created_at' => date('Y-m-d H:i:s')
+  ));
 }
-
+/*    'updated_at' => date('Y-m-d H:i:s')
+    'created_at' => date('Y-m-d H:i:s') */
 /*---------------------------------------------------------------------------------------------------------*/
 
 /*---------------------------------------------PUBLICATION--------------------------------------------------*/
 
 public function publication(Request $request,$id)
 {
-    //dd($id);
+
     $article = Article::find($id);
     $article->statut = true;
     $article->save();
@@ -126,33 +141,51 @@ public function publication(Request $request,$id)
     {
 
          /*------------------insertion d'image---------------------*/
+
+         $input=$request->all();
+         $images=array();
          
-         $produit = Image::create($request->all());
-         foreach ($request->photos as $photo) {
-             $filename = $photo->store('photos');
-             ProduitsPhoto::create([
-                 'photo_id' => $produit->id,
-                 'nomfoto' => $filename
-             ]);
-         }    
+         if($files=$request->file('photos')){
+           $i = 0; 
+           foreach($files as $file){ 
+               $name=$file->getClientOriginalName(); 
+               $file->move('app/photos',$name); 
+               $images[$i++]=$name; 
+           }
+         }
+       
+         DB::table('images')->insert(array(
+            'urlimage'=>  implode("|",$images),
+           'urlvideo'=>$request->urlvideo,
+           'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s')
+         ));
+
+         
+         $img = Image::where('urlimage',implode("|",$images))->first();
+         
+    
          /*------------------Fin insertion----------------------- */
-     
+
          $insert=$this->validate($request,[
             'titre'=>'required',
             'contenu'=>'required',
             'tag'=>'required',
             'slug'=>'required',
             'seo'=>'required',
-            
             'administrateurs_id'=>'required'
         ]);
-        
-        $insert["images_id"] = $produit->id ;
+
         
 
+        $insert["images_id"] = $img->id;
+        $insert["statut"] = false;
+        $insert["archive"] = false;
+
         Article::create($insert);  
-        return redirect()->route('index')
-        ->with('success','article créer avec succes');
+        
+        return redirect()->route('index')->with('success','article créer avec succes');
+        
     }
 
     
@@ -169,16 +202,12 @@ public function publication(Request $request,$id)
     
      public function show($id)
     {
+        
         $article = Article::find($id);
-        
-        $image = DB::table('images')
-                    ->select('produits_photos.nomfoto')
-                    ->join('produits_photos','images.id','=','produits_photos.photo_id')
-                    ->where('images.id',$article->images_id)->get();
 
-       
-        
-        return view('articles.show',compact('article','image'));
+        $images = Image::where('id',$article->images_id)->first();
+
+        return view('articles.show',compact('article','images','id'));
 
     }
 
@@ -196,14 +225,13 @@ public function publication(Request $request,$id)
     
      public function edit($id)
     {
+
         $article = Article::find($id);
 
-        $image = DB::table('images')->select('produits_photos.nomfoto')->join('produits_photos','images.id','=','produits_photos.photo_id')->where('images.id',$article->images_id)->get();
+        $images = Image::where('id',$article->images_id)->first();
 
-        $img = DB::table('images')->select('urlimage')->where('images.id',$article->images_id)->get();
-        $images = Image::find($article->images_id);
+        return view('articles.edit',compact('article','images','id'));
 
-        return view('articles.edit',compact('article','image','images','img','id'));
     }
 
     
@@ -227,33 +255,29 @@ public function publication(Request $request,$id)
         $article = Article::find($id);
 
         $image = DB::table('images')
-            ->select('produits_photos.nomfoto')
-            ->join('produits_photos','images.id','=','produits_photos.photo_id')
+            ->select('images.urlimage')
             ->where('images.id',$article->images_id)->get();
 
 /**--------------------debut update image--------------------------- */
 
+                $input=$request->all();
+                $images=array();
+
+                if($files=$request->file('photos')){
+                    $i = 0; 
+                    foreach($files as $file){ 
+                        $name=$file->getClientOriginalName(); 
+                        $file->move('app/photos',$name); 
+                        $images[$i++]=$name; 
+                    }
+                }
+
             $photo = Image::find($article->images_id);
-            $photo->urlimage = $request->urlimage;
+            $photo->$image = $request->$images;
             $photo->save();
 
 
-            $nbr=count($image);
-            $articleim=count($article->photos);
-            if($nbr < $articleim)
-            {
-
-                $produit = Image::create($request->all());
-                foreach ($request->photos as $photo) {
-                    $filename = $photo->store('photos');
-                    ProduitsPhoto::create([
-                        'photo_id' => $produit->id,
-                        'nomfoto' => $filename
-                    ]);
-                }
-
-
-            }
+            
 
 /**--------------------fin update image-------------------- */
 
@@ -284,11 +308,15 @@ public function publication(Request $request,$id)
     
     
     
-     public function destroy($id)
+     public function destroy(Request $request,$id)
     {
-        Article::destroy($id);
-        return redirect()->route('index')->with('success','Article supprimé');
+
+        $article = Article::find($id);
+        $article->archive = true;
+        $article->save();
         
+        return redirect()->route('index')->with('success','Article supprimé et Archivé');
+
     }
 
 

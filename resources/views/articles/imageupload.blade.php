@@ -20,14 +20,14 @@
                                     @endif
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Ajout Image de l'article</h3>
+                                        <h3 class="panel-title">Ajout Image de Publicité</h3>
                                     </div>
-                                    <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('uploades') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="panel-body">
                                                 <div class="form-group">
-                                                    <label for="nom">Nom du/des Images:</label>
-                                                    <input type="text" name="nom" />
+                                                    <label for="nom">Description du/des Fichiers:</label>
+                                                    <input type="text" name="urlvideo" placeholder="" />
                                                 </div>
 
                                                 <div class="col-md-6">
@@ -39,10 +39,9 @@
                                                 <div class="row" id="image_preview"></div>
                                         </div>
                                         <div class="pull-right">
-                                            <a class="btn btn-warning" href="{{ route('index') }}"> Retour</a>
-                                        </div>
+                                           <!-- <a class="btn btn-warning" href="{{ route('index') }}"> Retour</a>-->
+                                        </div>  
                                     </form>
-                            
   <!--========================================== /Fin Upload image/  ========================================================================-->
 
 

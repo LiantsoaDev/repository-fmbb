@@ -54,18 +54,20 @@
             <div class="col-sm-6">
 
                         <div class="form-group">
-
-                            <input type="text" name="urlimage" value="{{$images->urlimage}}" /></br></br>
-                                        
+                                      
                            
-                                <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
+                                <input type="file" class="form-control" id="images" name="photos[explode('|',$images->urlimage)]" value="" onchange="preview_images();" multiple/>
                             
                         </div>
                         
                         <div class="row" id="image_preview">
-                        @foreach($image as $images)
-                            <img src="../../app/{{$images->nomfoto}}" alt="...">
-                            @endforeach
+
+                            
+                        @foreach(explode('|',$images->urlimage) as $url)
+                                <img src="../../app/photos/{{$url}}" alt="...">
+                                @endforeach
+                            
+
                         </div>
                         
 

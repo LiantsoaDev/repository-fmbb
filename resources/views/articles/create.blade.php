@@ -31,11 +31,11 @@
                                                                         <textarea id="demo-textarea-input" rows="5" class="form-control" name="contenu" placeholder="Contenue..."></textarea>
                                                                     </div>                                                    
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group wish-tags">
                                                     <label class="col-sm-2 control-label"> Tag : </label>
                                                     <div class="col-sm-6">
 
-                                                    <input class="form-control" name="tag" type="text" placeholder="Tag.." data-parsley-equalto="#passwordinput" data-parsley-group="order" data-parsley-required />
+                                                    <input class="form-control" name="tag" type="text" placeholder="Tag,input" id="tags" data-role="tagsinput" />
 
                                                     </div>
                                                 </div>
@@ -80,7 +80,7 @@
 
                                                                 <div class="form-group">
 
-                                                                    <input type="text" name="urlimage" placeholder="Nom de l'image..." /></br></br>
+                                                                    <input type="text" name="urlvideo" placeholder="urlvideo..." /></br></br>
                                                                                 
                                                                     
                                                                         <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
@@ -107,6 +107,6 @@
                                                 
                                         </div>
                     </form>
-
+                    
 
 @endsection
