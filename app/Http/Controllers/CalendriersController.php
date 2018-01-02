@@ -27,6 +27,33 @@ class CalendriersController extends Controller
         $this->event = new Event();
         $this->match = new Match();
     }
+
+    /**
+    * Fonction background color Phase
+    * @param string phase
+    * @return string color
+    */
+    public function gestionColor($phase)
+    {
+        switch ($phase) {
+            case 'phase de groupe':
+                return 'dark';
+                break;
+            case 'quart de final':
+                return 'info';
+                break;
+            case 'demi final':
+                return 'warning';
+                break;
+            case 'final':
+                return 'danger';
+                break;
+            default:
+                return 'default';
+                break;
+        }
+    }
+
     /**
     * Fonction view Calendrier 
     * @return view page calendrier
@@ -36,7 +63,8 @@ class CalendriersController extends Controller
         $request->session()->put('idevent',$id);
         $instancematch = new MatchsController();
         $information = $instancematch->showallmatchsbyEvent( $request );
-    	return view('admin.calendrier',compact('information'));
+        $color = $this->gestionColor($information->encours);
+    	return view('admin.calendrier',compact('information','color'));
     }
 
     /** 

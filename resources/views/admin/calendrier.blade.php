@@ -19,7 +19,7 @@
 <div class="col-md-8">
          <div class="panel">
              <div class="panel-heading">
-                 <h3 class="panel-title">Tooltips on Text</h3>
+                 <h3 class="panel-title"> <b>{{ucfirst($information->encours)}}</b> </h3>
              </div>
 
              @foreach($information as $info)
@@ -28,13 +28,13 @@
                     <div class="row">
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
-                                    <div class="avatar bg-mint">
-                                        <img src="{{LINK}}/images/{{$info->logoequipeA}}" alt="avatar">
-                                        <div class="name osLight"> {{$info->sigleA}} </div>
+                                    <div class="avatar bg-{{$color}}">
+                                        <img src="{{LINK}}/images/{{$info->teamA->LOGOURL}}" alt="avatar">
+                                        <div class="name osLight"> {{$info->teamA->SIGLE}} </div>
                                          <div class="col-sm-3 pull-right"><h1>100<small>pts</small></h1></div>
                                     </div>
-                                    <div class="title"> {!!$info->nomequipeA!!} </div>
-                                    <div class="address"> Los Angeles, CA, USA </div>
+                                    <div class="title"> {!!$info->teamA->NAME!!} </div>
+                                    <div class="address"> {{$info->teamA->REGION}} </div>
                                     <ul class="fullstats">
                                         <li> <span>0</span>Victoires </li>
                                         <li> <span>0</span>Défaites </li>
@@ -45,13 +45,13 @@
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
-                                    <div class="avatar bg-mint">
-                                        <img src="{{LINK}}/images/{{$info->logoequipeB}}" alt="avatar">
-                                        <div class="name osLight"> {{$info->sigleB}} </div>
+                                    <div class="avatar bg-{{$color}}">
+                                        <img src="{{LINK}}/images/{{$info->teamB->LOGOURL}}" alt="avatar">
+                                        <div class="name osLight"> {{$info->teamB->SIGLE}} </div>
                                          <div class="col-sm-3 pull-right"><h1>89<small>pts</small></h1></div>
                                     </div>
-                                    <div class="title"> {!!$info->nomequipeB!!} </div>
-                                    <div class="address"> Los Angeles, CA, USA </div>
+                                    <div class="title"> {!!$info->teamB->NAME!!} </div>
+                                    <div class="address"> {{$info->teamB->REGION}} </div>
                                     <ul class="fullstats">
                                         <li> <span>0</span>Victoires </li>
                                         <li> <span>0</span>Défaites </li>
@@ -62,15 +62,26 @@
                             </div>
 					</div>
 
-					 <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <button class="btn btn-success btn-labeled fa fa-check">En cours</button>
-                            <button class="btn btn-default btn-labeled fa fa-exclamation-triangle">Terminer</button>
-                            <button class="btn btn-warning btn-labeled fa fa-times">Reporter</button>
-                            <button class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Score</button>
+                    <div class="row">
+                         <div class="text-semibold pad-hor">
+                            <h4>
+                                <i class="fa fa-calendar" aria-hidden="true"></i> {{ date('d-m-Y',strtotime($info->datematch)) }} - 
+                                <i class="fa fa-clock-o"></i> {{ $info->heurematch }} - 
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> {{ $info->lieumatch }}
+                            </h4> 
                         </div>
                     </div>
-                 </div><!-- panel-bofy -->
+
+					 <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <button class="btn btn-warning btn-labeled fa fa-share">Reporter</button>
+                            <button class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Mettre à jour score</button>
+                        </div>
+                    </div>
+
+
+
+                 </div><!-- panel-body -->
 
             @endforeach
 
@@ -84,10 +95,10 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group">
-                    <a href="#" class="list-group-item list-group-item-success disabled">Phase de Poule/Groupe</a>
-                    <a href="#" class="list-group-item list-group-item-info">Quart de finale</a>
-                    <a href="#" class="list-group-item list-group-item-warning">Demi finale</a>
-                    <a href="#" class="list-group-item list-group-item-danger">Final</a>
+                    <a href="#" class="list-group-item list-group-item-success disabled"><h5>Phase de Poule/Groupe</h5></a>
+                    <a href="#" class="list-group-item list-group-item-info"><h5>Quart de finale</h5></a>
+                    <a href="#" class="list-group-item list-group-item-warning"><h5>Demi finale</h5></a>
+                    <a href="#" class="list-group-item list-group-item-danger"><h5>Final</h5></a>
                 </ul>
             </div>
         </div>
