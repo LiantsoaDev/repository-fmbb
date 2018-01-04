@@ -8,18 +8,16 @@ use App\Poule;
 
 class EquipesController extends Controller
 {
-    private $equipe;
-    private $poule;
+    public $equipe;
+    public $poule;
 
-    public function __construct()
+    public function __construct($idequipe=null)
     {
-    	$this->equipe = new Equipe();
-    	$this->poule = new Poule();
+    	$instance = new Equipe();
+    	if( !empty($idequipe) )
+    		$this->equipe =  $instance->getinfoequipebyid($idequipe);
+    	else
+    		$this->equipe = Equipe::all();
+
     }
-
-    /** 
-    * fonction verifiant que les 2 equipes sont pas identiques
-    
-
-
 }	

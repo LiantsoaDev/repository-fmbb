@@ -1,8 +1,10 @@
 @include('admin.header-match')
 
 <div id="page-content">
-<!-- ajouter nouveau match -->
 <div class="col-md-8">
+    <!-- ajouter nouveau match -->
+    @include('admin.notification')
+
 	<div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">Ajout d'un nouveau match</h3>
@@ -74,12 +76,42 @@
 
 					 <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <button class="btn btn-warning btn-labeled fa fa-share">Reporter</button>
-                            <button class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Mettre à jour score</button>
+                            <button class="btn btn-warning btn-labeled fa fa-share" data-toggle="modal" data-target="#reporting">Reporter</button>
+                            <a href="{{ route('admin.show-update-match',$info->idmatch) }}" class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Mettre à jour score</a>
                         </div>
+                        <button class="btn btn-danger btn-rounded btn-labeled fa fa-video-camera pull-right"> Ce Match est {{ $info->statut }}</button>
                     </div>
 
-
+                    <!-- Modal -->
+                      <div class="modal fade" id="reporting" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Reporter le match : <small>Inserer la <code>nouvelle date</code> et <code> la nouvelle heure </code></small></h4>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form-inline" method="post" action="{{route('route.report')}}">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <div class="form-group mar-hor">
+                                        <input type="hidden" name="numeromatch" value="{{$info->idmatch}}">
+                                        <input type="text" name="newdate" placeholder="Nouvelle date" id="datepicker" class="form-control">
+                                    </div>
+                                    <div class="form-group mar-rgt">
+                                        <input type="time" name="newheure" placeholder="Nouvelle heure" id="demo-inline-inputpass" class="form-control">
+                                    </div>
+                                    <button class="btn btn-mint" type="submit">Reporter</button>
+                                    <button class="btn btn-warning" type="reset">réinitialiser</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div><!-- end Modal -->
 
                  </div><!-- panel-body -->
 

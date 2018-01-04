@@ -3,35 +3,37 @@
 <div id="page-content">
     <div class="row">
                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                           
                                 <div class="userWidget-1">
-                                    <div class="avatar bg-danger">
-                                        <img src="../img/av1.png" alt="avatar">
-                                        <div class="name osLight"> Sam Smith </div>
-                                        <div class="col-sm-3 pull-right"><h1>89 pts</h1></div>
+                                    <div class="avatar bg-dark">
+                                        <img src="../../images/{{ $equipe1->LOGOURL }}" alt="avatar">
+                                        <div class="name osLight"> {{ $equipe1->SIGLE }} </div>
+                                        <div class="col-sm-3 pull-right"><h1>89 </h1></div>
                                     </div>
-                                    <div class="title"> Web Designer </div>
-                                    <div class="address"> Los Angeles, CA, USA </div>
+                                    <div class="title"> {!! $equipe1->NAME !!} </div>
+                                    <div class="address"> {{ $equipe1->region }} </div>
                                     <ul class="fullstats">
-                                        <li> <span>280</span>Followers </li>
-                                        <li> <span>345</span>Following </li>
-                                        <li> <span>36</span>Posts </li>
+                                        <li> <span>0</span>Victoires </li>
+                                        <li> <span>0</span>Défaites </li>
+                                        <li> <span>0</span>Points </li>
                                     </ul>
                                     <div class="clearfix"> </div>
                                 </div>
+                           
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
-                                    <div class="avatar bg-mint">
-                                        <img src="../img/av2.png" alt="avatar">
-                                        <div class="name osLight"> Jani Samual </div>
-                                        <div class="col-sm-3 pull-right"><h1>69 pts</h1></div>
+                                    <div class="avatar bg-dark">
+                                        <img src="../../images/{{ $equipe2->LOGOURL }}" alt="avatar">
+                                        <div class="name osLight"> {{ $equipe2->SIGLE }} </div>
+                                        <div class="col-sm-3 pull-right"><h1>69 </h1></div>
                                     </div>
-                                    <div class="title"> Web Designer </div>
-                                    <div class="address"> Los Angeles, CA, USA </div>
+                                    <div class="title"> {!! $equipe2->NAME !!} </div>
+                                    <div class="address"> {{ $equipe2->region }} </div>
                                     <ul class="fullstats">
-                                        <li> <span>280</span>Followers </li>
-                                        <li> <span>345</span>Following </li>
-                                        <li> <span>36</span>Posts </li>
+                                         <li> <span>0</span>Victoires </li>
+                                        <li> <span>0</span>Défaites </li>
+                                        <li> <span>0</span>Points </li>
                                     </ul>
                                     <div class="clearfix"> </div>
                                 </div>
@@ -39,335 +41,143 @@
         </div>
 
         <div class="row">
+            <div class="col-xs-8">
+                <div class="panel">
+                                    <!--Panel heading-->
+                                    <!--Panel body-->
+                                    <div class="panel-body">
+                                       <div class="col-xs-5">
+                                            <div class="col-xs-6">
+                                                <div class="media-object center"> <img src="../../img/av1.png" alt="" class="img-circle"> </div>
+                                            </div>
+                                             <div class="col-xs-6">
+                                                <div class="col-sm-3 pull-right"><h1>69</h1></div>
+                                                <h3>Equipe1</h3>
+                                                 <h6>Homme</h6>
+                                             </div>  
+                                      </div>
+                                      <div class="col-xs-2">
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
+                                               <button class="btn btn-primary btn-labeled fa fa-clock-o">Quart Temps 1</button>
+                                                <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS</h3>
+                                                <button class="btn btn-danger btn-labeled fa fa-bell-o">En cours</button>
+                                                 <br>   
+                                             </div>
+                                      </div>
+                                      <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <div class="col-sm-3 pull-right"><h3>Equipe2</h3> <h6>Homme</h6></div>
+                                                        <h1>69</h1>
+                                                    </div>
+                                             <div class="col-xs-6">
+                                                <div class="media-object pull-right"> <img src="../../img/av1.png" alt="" class="img-circle"> </div>
+                                            </div>
+                                      </div>
+                                    </div><!-- end panel-body-->
+                                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="panel">
+                                    <!--Panel heading-->
+                                    <!--Panel body-->
+                                    <div class="panel-body">
+                                       <div class="col-xs-5">
+                                            <div class="form-group">
+                                                <div class="col-xs-5">
+                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" required>
+                                                     <small class="help-block">Insérer le score durant ce quart temps</small>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="col-xs-2">
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
+                                               <button class="btn btn-success btn-labeled fa fa-check-circle">Valider le Quart temps</button> <br>   
+                                             </div>
+                                      </div>
+                                      <div class="col-xs-5">
+                                            <div class="form-group">
+                                                <div class="col-xs-5 pull-right">
+                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" required>
+                                                     <small class="help-block">Insérer le score durant ce quart temps</small>
+                                                </div>
+                                            </div>    
+                                      </div>
+                                    </div><!-- end panel-body-->
+                                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-lg-8">
                                 <div class="panel">
-                                    <!-- Panel heading -->
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Form Validation</h3>
+                                        <h3 class="panel-title">Monthly Statistics <small> based on the User Activities </small></h3>
                                     </div>
-                                    <!-- Panel body -->
-                                    <form id="registrationForm" class="form-horizontal">
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                                <label class="col-xs-2 control-label">Full name</label>
-                                                <div class="col-xs-4">
-                                                    <input type="text" class="form-control" name="firstName" placeholder="First name" />
-                                                </div>
-                                                <div class="col-xs-4">
-                                                    <input type="text" class="form-control" name="lastName" placeholder="Last name" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-footer">
-                                            <div class="form-group">
-                                                <div class="col-xs-9 col-xs-offset-10">
-                                                    <button type="submit" class="btn btn-info btn-lg" name="signup" value="Sign up">
-                                                    Submit
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                                <!--Default Accordion-->
-                                <!--===================================================-->
-                                <div class="panel-group accordion" id="accordion">
-                                    <div class="panel">
-                                        <!--Accordion title-->
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-parent="#accordion" data-toggle="collapse" href="#collapseOne">Ajouter tous les quarts</a>
-                                            </h4>
-                                        </div>
-                                        <!--Accordion content-->
-                                        <div class="panel-collapse collapse" id="collapseOne">
-                                            <form>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Firstname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Lastname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Email</label>
-                                                            <input type="email" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Website</label>
-                                                            <input type="url" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Firstname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Lastname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                 <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Firstname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Lastname</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel-footer text-right">
-                                                <button class="btn btn-info" type="submit">Submit</button>
-                                            </div>
-                                        </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--===================================================-->
-                                <!--End Default Accordion-->
-                            </div>
-        </div>
-
-        <div class="row">
-                            <div class="col-md-8">
-                                <div class="panel">
-                                    <div class="panel-body np">
-                                        <!--Default Tabs (Left Aligned)--> 
+                                    <div class="panel-body pad-no">
+                                        <!--Default Accordion--> 
                                         <!--===================================================-->
-                                        <div class="tab-base mar-no">
-                                            <!--Nav Tabs-->
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"> <a data-toggle="tab" href="#demo-lft-tab-1"> Top Selling </a> </li>
-                                                <li> <a data-toggle="tab" href="#demo-lft-tab-2">Most Viewed</a> </li>
-                                            </ul>
-                                            <!--Tabs Content-->
-                                            <div class="tab-content">
-                                                <div id="demo-lft-tab-1" class="tab-pane fade active in">
-                                                    <!--Hover Rows--> 
-                                                    <!--===================================================-->
-                                                    <table class="table table-hover table-vcenter">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="hidden-xs">#</th>
-                                                                <th>Project</th>
-                                                                <th>Project Deadline</th>
-                                                                <th>Status</th>
-                                                                <th>Clients</th>
-                                                                <th class="hidden-xs">Progress</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="hidden-xs">1</td>
-                                                                <td>IT Help Desk</td>
-                                                                <td>11 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-info">Block</div>
-                                                                </td>
-                                                                <td>Semantha Armstrong</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-primary" style="width: 25%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">2</td>
-                                                                <td>Product Dev</td>
-                                                                <td>15 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-danger">On Hold</div>
-                                                                </td>
-                                                                <td>Jonathan Smith</td>
-                                                                <td></td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-success" style="width: 35%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">3</td>
-                                                                <td>Website Redesign</td>
-                                                                <td>19 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-success">Approved</div>
-                                                                </td>
-                                                                <td>Jacob Armstrong</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-info" style="width: 85%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">4</td>
-                                                                <td>Local Ad</td>
-                                                                <td>25 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td>Sandra Smith</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-warning" style="width: 45%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">5</td>
-                                                                <td>Design new theme</td>
-                                                                <td>28 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td>Will DeBrandon</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-danger" style="width: 55%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">6</td>
-                                                                <td>Mockup Testing</td>
-                                                                <td>31 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td>Alexander Flynn</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-success" style="width: 75%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">7</td>
-                                                                <td>Testing</td>
-                                                                <td>31 May 2016</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td>Alexander Flynn</td>
-                                                                <td class="hidden-xs">
-                                                                    <div class="progress progress-striped progress-sm">
-                                                                        <div class="progress-bar progress-bar-success" style="width: 75%;"></div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <!--===================================================--> 
-                                                    <!--End Hover Rows--> 
+                                        <div class="panel-group accordion mar-no">
+                                            <div class="panel">
+                                                <!--Accordion title-->
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"> 
+                                                        <a data-parent="#statistics" data-toggle="collapse"> 
+                                                        <i class="fa fa-calendar"></i> Age Group </a> 
+                                                    </h4>
                                                 </div>
-                                                <div id="demo-lft-tab-2" class="tab-pane fade">
-                                                    <!--Hover Rows-->
-                                                    <!--===================================================-->
-                                                    <table class="table table-hover table-vcenter">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Invoice</th>
-                                                                <th>Name</th>
-                                                                <th class="text-center">Value</th>
-                                                                <th class="hidden-xs">Delivery date</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Desktop</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 4,234k</small>
-                                                                </td>
-                                                                <td class="text-center">$250</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-info">On Process</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Laptop</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 3,876k</small>
-                                                                </td>
-                                                                <td class="text-center">$350</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-danger">Cancelled</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Tablet</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 45,678k</small>
-                                                                </td>
-                                                                <td class="text-center">$325</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-success">Shipped</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Smartphone</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 34,553k</small>
-                                                                </td>
-                                                                <td class="text-center">$250</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <!--Accordion content-->
+                                                <div class="panel-collapse collapse in">
+                                                    <div class="panel-body pad-no">
+                                                        <table class="table mar-no bg-light-gray">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Gender</th>
+                                                                    <th>Unique User</th>
+                                                                    <th>Percentage</th>
+                                                                    <th class="text-center">Changes</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
+                                                                    <td>18 to 25 year old</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
+                                                                    <td>26 to 35 year old</td>
+                                                                    <td class="center">35%</td>
+                                                                    <td class="text-center"><i class="fa fa-caret-down text-danger fa-2x"></i></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
+                                                                    <td>36 to 45 year old</td>
+                                                                    <td class="center">45%</td>
+                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
+                                                                    <td>46 to 55 year old</td>
+                                                                    <td class="center">40%</td>
+                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!--===================================================--> 
-                                        <!--End Default Tabs (Left Aligned)--> 
+                                        <!--End Default Accordion--> 
                                     </div>
                                 </div>
                             </div>
         </div>
- </div>
 
+ </div>
 
 @include('admin.footer-match')

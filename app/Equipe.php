@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Region;
+use App\Categorie;
 
 class Equipe extends Model
 {
@@ -34,6 +36,21 @@ class Equipe extends Model
     }
 
     /**
+    * Fonction information generale un equipe
+    * @param integer idequipe
+    * @return Collection Object Equipe
+    */
+    public function getinfoequipebyid($idequipe)
+    {
+        $info =  self::where('idequipe',$idequipe)->first();
+        $instanceRegion = new Region();
+        $info->region = $instanceRegion->getregion($info->IDREGION)->LIBELLE;
+        $instanceCategorie = new Categorie();
+        $info->categorie = $instanceCategorie->getcategoriebyid($info->IDCATEGORIE)->libellecategorie;
+        return $info;
+    }
+
+    /**
     * Fonction listes equipes by IN()
     * @param string IN()
     * @return Collection Object
@@ -57,7 +74,7 @@ class Equipe extends Model
     public function getNameAttribute($value)
     {
         if(is_null($value))
-            return '<small>Aucun nom n\'est attribué<small>';
+            return '<small>Aucun nom n\'est attribué</small>';
         else
             return $value;
     }

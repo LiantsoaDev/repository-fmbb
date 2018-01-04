@@ -256,8 +256,7 @@ class EventsController extends Controller
     */
     public function showupdate($id)
     {
-        $event = new Event();
-        $listes = Event::findOrFail($id)->get();
+        $listes = Event::where('id',$id)->get();
         return view('admin.updatevent',compact('listes'));
     }
 

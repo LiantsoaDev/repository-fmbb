@@ -36,5 +36,17 @@ class Match extends Model
                 ->join('calendriers','calendriers.idcalendrier','=','matchs.idcalendrier')
                 ->join('poules','poules.idpoule','=','matchs.idpoule')
                 ->where(['matchs.idevent' => $idevent ] , ['matchs.phase' , $phase ])->get();
-    }   
+    }  
+
+    /**
+    * Fonction get information d'un match par idmatch
+    * @param integer idmatch
+    * @return Collection Object Match
+    */
+    public function getmatchbyid($idmatch)
+    {
+        if( !is_null($idmatch) )
+            return self::where('idmatch',$idmatch)->first();
+    }
+
 }

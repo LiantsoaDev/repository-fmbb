@@ -49,4 +49,14 @@ class MatchsController extends Controller
     	return $brute;
     }
 
+    /**
+    * Fonction Main tous les matchs 
+    * @param Request $request
+    * @return boolean 
+    */
+    public function mainMatch()
+    {
+        dd($request->all());
+    }
+
 }

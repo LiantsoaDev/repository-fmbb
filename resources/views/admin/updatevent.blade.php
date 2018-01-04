@@ -20,6 +20,7 @@
                                     <!--===================================================-->
                                     <form class="panel-body form-horizontal" method="POST" action="{{route('form.update.event')}}" enctype="multipart/form-data" 
                                 data-upload-template-id="template-upload-1" data-download-template-id="template-download-1">
+                                       
                                         @foreach($listes as $lst)
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <input type="hidden" name="reference" value="{{$lst->id}}">

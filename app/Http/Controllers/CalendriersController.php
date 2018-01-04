@@ -8,6 +8,7 @@ use App\Equipe;
 use App\Poule;
 use App\Http\Controllers\PoulesController;
 use App\Http\Controllers\MatchsController;
+use App\Http\Controllers\EquipesController;
 use Carbon\Carbon;
 use App\Point;
 use App\Calendrier;
@@ -19,6 +20,7 @@ class CalendriersController extends Controller
     private $poule;
     private $event;
     private $match;
+    private $calendrier;
 
     public function __construct()
     {
@@ -26,6 +28,8 @@ class CalendriersController extends Controller
         $this->poule = new Poule();
         $this->event = new Event();
         $this->match = new Match();
+        $this->calendrier = new Calendrier();
+
     }
 
     /**
@@ -63,6 +67,7 @@ class CalendriersController extends Controller
         $request->session()->put('idevent',$id);
         $instancematch = new MatchsController();
         $information = $instancematch->showallmatchsbyEvent( $request );
+        // verification poule
         $color = $this->gestionColor($information->encours);
     	return view('admin.calendrier',compact('information','color'));
     }
@@ -72,10 +77,14 @@ class CalendriersController extends Controller
     * @param integer idmatch
     * @return Collection Object
     */
-    public function showupdatematch()
+    public function showupdatematch($idmatch)
     {
-        echo 'showmatch';
-        return view('admin.showmatch');
+        $rencontre = $this->match->getmatchbyid($idmatch);
+        $team1 = new EquipesController($rencontre->EQUIPE_ID1);
+        $team2 = new EquipesController($rencontre->EQUIPE_ID2);
+        $equipe1 = $team1->equipe;
+        $equipe2 = $team2->equipe;
+        return view('admin.showmatch',compact('equipe1','equipe2'));
     }
 
     /** 
@@ -185,4 +194,31 @@ class CalendriersController extends Controller
                     return true;
                }
     }
+
+    /**
+    * fonction permet de reporter un match 
+    * @param integer idmatch
+    * @return null
+    */
+    public function reportingmatch(Request $request)
+    {   
+        $validation = $this->validate($request,[
+            'numeromatch' => 'required',
+            'newdate' => 'required',
+            'newheure' => 'date_format:"H:i"|required'
+        ]);
+
+        $idcalendrier = Match::where('idmatch',intval($request->post('numeromatch')))->first()->IDCALENDRIER;
+        $date = Carbon::instance(new \Datetime($request->post('newdate')))->format('Y-m-d');
+        $hour = Carbon::instance(new \Datetime($request->post('newheure')))->format('H:i:s');
+
+      if( $date >= Carbon::today() && Carbon::createFromFormat('H:i:s', $hour )->toDateTimeString() )
+      {
+            $update = $this->calendrier->reportingmatchrequest( $idcalendrier, $date , $hour );
+            return back()->with('success','Le match a été reporté le '. date('d-m-Y',strtotime($date)) . ' à ' . $hour . ' !');
+      }  
+      else
+            return back()->with('error','La date ou l\'heure n\'est pas valide. Le match n\'a pas été reporté ! ');
+    }
+
 }
