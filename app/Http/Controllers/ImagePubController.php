@@ -14,6 +14,7 @@ use App\Http\Requests\UploadRequest;
 use App\Http\Requests;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 class ImagePubController extends Controller
@@ -23,89 +24,66 @@ class ImagePubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+    
 
-
+/**------------------------------------------------------FOND DU SITE--------------------------------------------------- */
     public function fond()
     {
         
-        $image =Imagefond::paginate(5);
+        $image =Imagefond::paginate(4);
 
-        return view('articles.imagefond',compact('image'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('articles.imagefond',compact('image'))->with('i', (request()->input('page', 1) - 1) * 4);
 
     }
 
     public function insertimages(Request $request)
     {
-        //$this->validate($request, ['photos' => 'image|mines:jpeg,png,jpg,gif,svg|max:10000|nullable']);
-      
-        $input=$request->all();
-        $files1=$request->file('photos1');
-        $files2=$request->file('photos2');
         
-        if(!empty($files1) && empty($files2))
+        
+        
+        $files1=Input::file('photos1');
+        $files2=Input::file('photos2');
+        
+        if(!is_null($files1))
         {
 
               $name1=$files1->getClientOriginalName(); 
-              $file->move('app/photos',$name1); 
+              $files1->move('app/photos',$name1); 
+              //$desc = $request->description1;
 
               DB::table('imagefonds')->insert(array(
-                'numpub'=>null,
+                'description'=>$request->description1,
                 'numfond'=>'1',
                 'statut'=>false,
                 'url'=> $name1,
                 'updated_at' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s')
+
               ));
-              
+            return redirect()->route('fond')->with('success','Image inseré!! ');              
         }
         
-        elseif(empty($files1) && !empty($files2))
+        if(!is_null($files2))
         {
 
               $name2=$files2->getClientOriginalName(); 
-              $file->move('app/photos',$name2); 
+              $files2->move('app/photos',$name2); 
 
 
               DB::table('imagefonds')->insert(array(
-                'numpub'=>null,
+                'description'=>$request->description2,
                 'numfond'=>'2',
                 'statut'=>false,
                 'url'=> $name2,
                 'updated_at' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s')
               ));
+              return redirect()->route('fond')->with('success','Image inseré!! ');
         }
         
-        else
+        else 
         {
-
-              $name1=$files1->getClientOriginalName(); 
-              $name2=$files2->getClientOriginalName(); 
-              $file1->move('app/photos',$name1); 
-              $file2->move('app/photos',$name2); 
-
-
-              DB::table('imagefonds')->insert(array(
-                'numpub'=>null,
-                'numfond'=>'1',
-                'statut'=>false,
-                'url'=> $name1,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s')
-              ));
-
-              DB::table('imagefonds')->insert(array(
-                'numpub'=>null,
-                'numfond'=>'2',
-                'statut'=>false,
-                'url'=> $name2,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s')
-              ));
+            return redirect()->route('fond')->with('warning','pas d\'Image selectionné!! ');
         }
 
 
@@ -113,69 +91,54 @@ class ImagePubController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function publication(Request $request, $id)
     {
-        //
+        
+        $img = Imagefond::find($id);
+
+        $fn2 = DB::table('imagefonds')->select('numfond')->where('numfond','2')->get()->count();
+        $fn1 = DB::table('imagefonds')->select('numfond')->where('numfond','1')->get()->count();
+
+        $statm = DB::table('imagefonds')->select('statut')->where('statut',true)->get()->count();
+        $statf = DB::table('imagefonds')->select('statut')->where('statut',false)->get()->count();
+        //dd($img);
+        
+        if($img->statut == false)
+        {
+            $img->statut = true;
+            $img->save();
+            return redirect()->route('fond')->with('success','L\'image est publié');
+        }
+        else
+        {
+            $img->statut = false;
+            $img->save();
+        }
+        
+        
+        
+        return redirect()->route('fond');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $imdel = Imagefond::find($id);
+        $image = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.id',$id)->first()->url;
+        
+        File::delete("../../app/photos/$image");
+        
+        Imagefond::destroy($id);
+
+
+                
+        return redirect()->route('fond')->with('warning','Image supprimée!');
+
     }
+
+
+/**------------------------------------------------------FIN FOND DU SITE--------------------------------------------------- */
+
+
 }

@@ -65,7 +65,7 @@
                             
                         @foreach(explode('|',$images->urlimage) as $url)
                                 <img src="../../app/photos/{{$url}}" alt="...">
-                                @endforeach
+                        @endforeach
                             
 
                         </div>

@@ -217,8 +217,7 @@ input.header-mobile__search-control{margin-top:12px;}
 .main-nav__list li > .main-nav__megamenu,
 .main-nav__list li:hover > .main-nav__megamenu{opacity:1;}
 }
-.hero-unit{background:#27313b url("../images/header_bg.jpg") 50% 0 no-repeat;background-size:cover;}
-.hero-unit__content--left-center{text-align:center;}
+
 @media (min-width:992px){.hero-unit__content--left-center{width:50%;}
 }
 .hero-unit__container{height:400px;position:relative;}

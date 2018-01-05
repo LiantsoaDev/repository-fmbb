@@ -25,7 +25,7 @@ Route::prefix('authent')->group(function(){
 });
 /*---------------------------------------------------------------------*/
 
-/* --------------------------Route Articles-------------------------- */
+/* --------------------------Route ARTICLES-------------------------- */
 
 Route::prefix('articles')->group(function(){
     
@@ -37,26 +37,35 @@ Route::prefix('articles')->group(function(){
         Route::post('/update/{id}',array('as'=>'update','uses'=>'ArticlesController@update'));
         Route::get('/delete/{id}',array('as'=>'delete','uses'=>'ArticlesController@destroy'));
 
-/*----------------------------route images----------------------------------*/
-        Route::get('/uploadimage', array('as'=>'uploadimage','uses'=>'ArticlesController@uploadForm'));
-        Route::post('/uploades', array('as'=>'uploades','uses'=>'ArticlesController@uploadSubmit'));
+
+/*----------------------------route publicite----------------------------------*/
+        Route::get('/publicite', array('as'=>'publicite','uses'=>'PubController@indexpub'));
+        Route::post('/insertpub', array('as'=>'insertpub','uses'=>'PubController@storepub'));
+        Route::get('/publierpub/{id}', array('as'=>'publierpub','uses'=>'PubController@publierpub'));
+        Route::get('/supprpub/{id}', array('as'=>'supprpub', 'uses'=>'PubController@supprpub'));
+/*----------------------------------------------------------------------------*/
+
+
 /*----------------------------route image-fond----------------------------------*/
 
         Route::get('/fond',array('as'=>'fond','uses'=>'ImagePubController@fond'));
         Route::post('/insertimgpub',array('as'=>'insertimgpub','uses'=>'ImagePubController@insertimages'));
-
-/*-------------------------------------------------------------------------*/
+        Route::get('/destroy/{id}',array('as'=>'destroy','uses'=>'ImagePubController@destroy'));
+/*----------------------------------------------------------------------------*/
 
 /*----------------------------route publication---------------------------*/
 
-        //Route::get('/publication/{id}', array('as'=>'index','uses'=>'ArticlesController@publication'));
+        //publier articles
         Route::get('/publication/{id}', array('as'=>'publication','uses'=>'ArticlesController@publication'));
+
+        //publier Images de fond
+        Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));
 
 /*-------------------------------------------------------------------------*/
     
     });
 
-/*-----------------------------Fin articles-------------------------------------------- */
+/*------------------------------------------------------------Fin ARTICLES----------------------------------------------------------------------- */
 
 
 /*-----------------------------Backoffice admin -------------------------------------------- */
@@ -93,4 +102,4 @@ Route::prefix('front')->group(function(){
        
     });
 
-/**--------------------------------------------------------------------------------------------------------------------*/
+/**----------------------------------------------Fin Front-end jersam--------------------------------------------------*/

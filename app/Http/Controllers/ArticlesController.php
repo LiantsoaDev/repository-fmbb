@@ -48,12 +48,12 @@ class ArticlesController extends Controller
 
 /**----------------------------------------------poir l'insert fichier --------------------------------*/
 
-public function uploadForm()
+public function publicite()
 {
-    return view('articles.imageupload');
+    return view('articles.publicite');
 }
 
-public function uploadSubmit(Request $request)
+public function uploadPub(Request $request)
 {
     
 /*

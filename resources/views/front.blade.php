@@ -46,6 +46,12 @@
 
   <!-- Custom CSS-->
   <link href="../../front/assets/css/custom.css" rel="stylesheet">
+  <style>
+    
+    .hero-unit{background:#27313b url("../../app/photos/{{$fond2}}") 50% 0 no-repeat;background-size:cover;}
+    .hero-unit__content--left-center{text-align:center;}
+
+  </style>
 
 </head>
 <body class="template-basketball">
@@ -563,8 +569,9 @@
         </div>
     
         <figure class="hero-unit__img">
-          <img src="../../front/assets/images/samples/header_player.png" alt="Hero Unit Image">
+          <img src="../../app/photos/{{$fond1}}" alt="Hero Unit Image">
         </figure>
+      
       </div>
     </div>
     
@@ -572,109 +579,61 @@
     <!-- Header Featured News
     ================================================== -->
     <div class="posts posts--carousel-featured featured-carousel">
-    
+     
+    @foreach(explode('|',$pub1url->url) as $key => $url)
       <div class="posts__item posts__item--category-1">
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
-            <img src="../../front/assets/images/samples/featured-carousel-2.jpg" alt="">
+      
+            <img src="../../app/photos/{{$url}}" alt="">
+
           </figure>
+          @foreach($pub1 as $pubs1)
           <div class="posts__inner">
             <div class="posts__cat">
-              <span class="label posts__cat-label">The Team</span>
+              <span class="label posts__cat-label">{{$pubs1->description}}</span>
             </div>
-            <h3 class="posts__title">Alchemists women team tryouts will start in January</h3>
+            <h3 class="posts__title">{{$pubs1->contenu}}</h3>
             <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
+            <ul@foreach class="post__meta meta">
               <li class="meta__item meta__item--views">2369</li>
               <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
               <li class="meta__item meta__item--comments">18</li>
             </ul>
           </div>
+          @endforeach
         </a>
       </div>
-    
+      @endforeach
+
+      @foreach(explode('|',$pub1url->url) as $key => $url)
       <div class="posts__item posts__item--category-1">
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
-            <img src="../../front/assets/images/samples/featured-carousel-3.jpg" alt="">
+      
+            <img src="../../app/photos/{{$url}}" alt="">
+
           </figure>
+          @foreach($pub1 as $pubs1)
           <div class="posts__inner">
             <div class="posts__cat">
-              <span class="label posts__cat-label">The Team</span>
+              <span class="label posts__cat-label">{{$pubs1->description}}</span>
             </div>
-            <h3 class="posts__title">Checkout the new ride of our best player of the season</h3>
+            <h3 class="posts__title">{{$pubs1->contenu}}</h3>
             <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
+            <ul@foreach class="post__meta meta">
               <li class="meta__item meta__item--views">2369</li>
               <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
               <li class="meta__item meta__item--comments">18</li>
             </ul>
           </div>
+          @endforeach
         </a>
       </div>
-    
-      <div class="posts__item posts__item--category-1">
-        <a href="#" class="posts__link-wrapper">
-          <figure class="posts__thumb">
-            <img src="../../front/assets/images/samples/featured-carousel-1.jpg" alt="">
-          </figure>
-          <div class="posts__inner">
-            <div class="posts__cat">
-              <span class="label posts__cat-label">The Team</span>
-            </div>
-            <h3 class="posts__title">All the players are taking a team trip this summer</h3>
-            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
-              <li class="meta__item meta__item--views">2369</li>
-              <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
-              <li class="meta__item meta__item--comments">18</li>
-            </ul>
-          </div>
-        </a>
-      </div>
-    
-      <div class="posts__item posts__item--category-1">
-        <a href="#" class="posts__link-wrapper">
-          <figure class="posts__thumb">
-            <img src="../../front/assets/images/samples/featured-carousel-2.jpg" alt="">
-          </figure>
-          <div class="posts__inner">
-            <div class="posts__cat">
-              <span class="label posts__cat-label">The Team</span>
-            </div>
-            <h3 class="posts__title">Alchemists women team tryouts will start in January</h3>
-            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
-              <li class="meta__item meta__item--views">2369</li>
-              <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
-              <li class="meta__item meta__item--comments">18</li>
-            </ul>
-          </div>
-        </a>
-      </div>
-    
-      <div class="posts__item posts__item--category-1">
-        <a href="#" class="posts__link-wrapper">
-          <figure class="posts__thumb">
-            <img src="../../front/assets/images/samples/featured-carousel-1.jpg" alt="">
-          </figure>
-          <div class="posts__inner">
-            <div class="posts__cat">
-              <span class="label posts__cat-label">The Team</span>
-            </div>
-            <h3 class="posts__title">All the players are taking a team trip this summer</h3>
-            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
-              <li class="meta__item meta__item--views">2369</li>
-              <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
-              <li class="meta__item meta__item--comments">18</li>
-            </ul>
-          </div>
-        </a>
-      </div>
-    
+      @endforeach
+
     </div>
-    
+
 
     <!-- Content
     ================================================== -->
@@ -701,144 +660,59 @@
                 <!-- Slider -->
                 <div class="slick posts posts--slider-featured">
 
+@foreach(explode('|',$pub2url->url) as $key => $url1)
                   <div class="posts__item posts__item--category-1">
                     <a href="#" class="posts__link-wrapper">
                       <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide1.jpg" alt="">
+                        <img src="../../app/photos/{{$url1}}" alt="">
                       </figure>
+                      @foreach($pub2 as $pubs2)
                       <div class="posts__inner">
                         <div class="posts__cat">
-                          <span class="label posts__cat-label">The Team</span>
+                          <span class="label posts__cat-label">{{$pubs2->description}}</span>
                         </div>
-                        <h3 class="posts__title">The Planettroters will <span class="posts__title-higlight">perform this May 4th</span> at Madison Cube</h3>
+                        <h3 class="posts__title"> {{$pubs2->contenu}} <span class="posts__title-higlight">perform this May 4th</span> at Madison Cube</h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
                             <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
                           </figure>
                           <div class="post-author__info">
-                            <h4 class="post-author__name">Jesse Stevens</h4>
-                            <time datetime="2017-08-28" class="posts__date">August 28th, 2017</time>
+                            <h4 class="post-author__name"></h4>
+                            <time datetime="2017-08-28" class="posts__date">{{$pubs2->created_at}}</time>
                           </div>
                         </div>
                       </div>
+                      @endforeach
                     </a>
                   </div>
-
-                  <div class="posts__item posts__item--category-3">
-                    <a href="#" class="posts__link-wrapper">
-                      <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide2.jpg" alt="">
-                      </figure>
-                      <div class="posts__inner">
-                        <div class="posts__cat">
-                          <span class="label posts__cat-label">Playoffs</span>
-                        </div>
-                        <h3 class="posts__title">New York is preparing all <span class="posts__title-higlight">for the Playoffs Final</span> next December</h3>
-                        <div class="post-author">
-                          <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
-                          </figure>
-                          <div class="post-author__info">
-                            <h4 class="post-author__name">James Spiegel</h4>
-                            <time datetime="2017-06-28" class="posts__date">June 28th, 2017</time>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
+@endforeach
+@foreach(explode('|',$pub2url->url) as $key => $url1)
                   <div class="posts__item posts__item--category-1">
                     <a href="#" class="posts__link-wrapper">
                       <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide3.jpg" alt="">
+                        <img src="../../app/photos/{{$url1}}" alt="">
                       </figure>
+                      @foreach($pub2 as $pubs2)
                       <div class="posts__inner">
                         <div class="posts__cat">
-                          <span class="label posts__cat-label">The Team</span>
+                          <span class="label posts__cat-label">{{$pubs2->description}}</span>
                         </div>
-                        <h3 class="posts__title">The new eco friendly <span class="posts__title-higlight">stadium won a Leafy</span> Award in 2016</h3>
+                        <h3 class="posts__title"> {{$pubs2->contenu}} <span class="posts__title-higlight">perform this May 4th</span> at Madison Cube</h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+                            <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
                           </figure>
                           <div class="post-author__info">
-                            <h4 class="post-author__name">James Spiegel</h4>
-                            <time datetime="2017-06-28" class="posts__date">June 28th, 2017</time>
+                            <h4 class="post-author__name"></h4>
+                            <time datetime="2017-08-28" class="posts__date">{{$pubs2->created_at}}</time>
                           </div>
                         </div>
                       </div>
+                      @endforeach
                     </a>
                   </div>
-
-                  <div class="posts__item posts__item--category-3">
-                    <a href="#" class="posts__link-wrapper">
-                      <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide4.jpg" alt="">
-                      </figure>
-                      <div class="posts__inner">
-                        <div class="posts__cat">
-                          <span class="label posts__cat-label">Playoffs</span>
-                        </div>
-                        <h3 class="posts__title">New York Islanders are <span class="posts__title-higlight">now flying to California</span> for the big game</h3>
-                        <div class="post-author">
-                          <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
-                          </figure>
-                          <div class="post-author__info">
-                            <h4 class="post-author__name">James Spiegel</h4>
-                            <time datetime="2017-06-28" class="posts__date">June 28th, 2017</time>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="posts__item posts__item--category-3">
-                    <a href="#" class="posts__link-wrapper">
-                      <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide6.jpg" alt="">
-                      </figure>
-                      <div class="posts__inner">
-                        <div class="posts__cat">
-                          <span class="label posts__cat-label">Playoffs</span>
-                        </div>
-                        <h3 class="posts__title">Jeremy Rittersen was <span class="posts__title-higlight">called to be</span> in the National Team</h3>
-                        <div class="post-author">
-                          <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-2.jpg" alt="Post Author Avatar">
-                          </figure>
-                          <div class="post-author__info">
-                            <h4 class="post-author__name">Jessica Hoops</h4>
-                            <time datetime="2017-05-24" class="posts__date">May 24th, 2017</time>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div class="posts__item posts__item--category-2">
-                    <a href="#" class="posts__link-wrapper">
-                      <figure class="posts__thumb">
-                        <img src="../../front/assets/images/samples/post-slide5.jpg" alt="">
-                      </figure>
-                      <div class="posts__inner">
-                        <div class="posts__cat">
-                          <span class="label posts__cat-label">Injuries</span>
-                        </div>
-                        <h3 class="posts__title">Jessica Valentine has a <span class="posts__title-higlight">sprained ankle</span> and won't be in the Final</h3>
-                        <div class="post-author">
-                          <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
-                          </figure>
-                          <div class="post-author__info">
-                            <h4 class="post-author__name">Jesse Stevens</h4>
-                            <time datetime="2017-04-12" class="posts__date">April 12th, 2017</time>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
+@endforeach
+                  
                 </div>
                 <!-- Slider / End -->
 
@@ -1190,14 +1064,14 @@
                     <div class="posts__item posts__item--card posts__item--category-1 card">
                       <figure class="posts__thumb">
 
-                      
+                    
                               <div class="carousel-inner" role="listbox" style="height:300px;">
 
-                                  @foreach(explode('|',$image) as $key => $url)
+                                  @foreach(explode('|',$articles->images_id->urlimage) as $key => $url)
 
                                       <div class="item{{$key == 0 ? ' active' : ''}}">
                                       
-                                          <img src="../../public/app/photos/{{$url}}" alt="...">
+                                          <img src="../../app/photos/{{$url}}" alt="...">
                                       
                                       </div>
                                   

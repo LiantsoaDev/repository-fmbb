@@ -400,7 +400,7 @@
                                             <!--Submenu-->
                                             <ul class="collapse">
                                                 <li><a href="{{ route('index') }}"><i class="fa fa-caret-right"></i>Articles</a></li>
-                                                <li><a href="{{ route('uploadimage') }}"><i class="fa fa-caret-right"></i>Publicités</a></li>
+                                                <li><a href="{{ route('publicite') }}"><i class="fa fa-caret-right"></i>Publicités</a></li>
                                                 <li><a href="{{ route('fond') }}"><i class="fa fa-caret-right"></i>Fonds du site</a></li>
                                             </ul>
                                         </li>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Article;
 use App\Image;
+use App\ImageFond;
+use App\Publicite;
 
 use File;
 
@@ -26,17 +28,37 @@ class FrontController extends Controller
     public function index()
     {
 
+        $fond1 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut',true)->where(DB::raw('imagefonds.numfond'),'1')->first()->url;
+        
+        $fond2 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut', true)->where(DB::raw('imagefonds.numfond'),'2')->first()->url;
+
+        /**------------------------------------------------article---------------------------------------- */
+       
         $article = Article::where('statut',true)->get();
-        //dd($article);
+        
        
             foreach($article as $articles)
         {
 
-            $image = DB::table('images')->select('images.urlimage')->where('images.id', $articles->images_id)->get();
+            $articles->images_id = DB::table('images')->select('images.urlimage')->where('images.id', $articles->images_id)->first();
         
         }
 
-        return view('front',compact('article','image'));
+        /**------------------------------------------------------------------------------------------------ */
+
+        /**----------------------------------------------PUBLICITE----------------------------------------- */
+
+        $pub1 = Publicite::where('statut',true)->where('numpub','1')->get();
+
+        $pub1url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'1')->first(); 
+
+
+        $pub2 = Publicite::where('statut',true)->where('numpub','2')->get();
+
+        $pub2url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'2')->first();
+
+        /**----------------------------------------------------------------------------------------------- */
+        return view('front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url'));
 
     }
 
