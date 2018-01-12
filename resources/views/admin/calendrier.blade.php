@@ -79,7 +79,7 @@
                             <button class="btn btn-warning btn-labeled fa fa-share" data-toggle="modal" data-target="#reporting">Reporter</button>
                             <a href="{{ route('admin.show-update-match',$info->idmatch) }}" class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Mettre à jour score</a>
                         </div>
-                        <button class="btn btn-danger btn-rounded btn-labeled fa fa-video-camera pull-right"> Ce Match est {{ $info->statut }}</button>
+                        <button class="btn btn-danger btn-rounded btn-labeled fa fa-video-camera pull-right"> {{ $info->statutencours }}</button>
                     </div>
 
                     <!-- Modal -->

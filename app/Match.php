@@ -49,4 +49,15 @@ class Match extends Model
             return self::where('idmatch',$idmatch)->first();
     }
 
+    /**
+    * Fonction mettre à jour le Point dans Match
+    * @param integer idpoint
+    * @return Collection Object Match
+    */
+    public function updateMatch($idmatch,$update)
+    {
+        if( !empty($idmatch) && is_array($update) )
+            return self::where('idmatch',$idmatch)->update($update);
+
+    }
 }

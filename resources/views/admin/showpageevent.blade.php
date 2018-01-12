@@ -71,7 +71,7 @@
                                                                      <a href="{{route('event.detail',$chmps->id)}}" class="btn btn-primary btn-labeled fa fa-eye">Voir Détail</a>
                                                                 </td>
                                                                 <td>
-                                                                     <a href="{{route('admin.calendrier',$chmps->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Calendrier</a>
+                                                                     <a href="{{route('admin.calendrier',$chmps->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Matchs</a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{route('event.showupdate',$chmps->id)}}" class="btn btn-default btn-labeled fa fa-pencil">Modifier</a>

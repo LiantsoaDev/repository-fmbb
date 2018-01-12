@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+'); 
     Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
     Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
-    Route::post('match-online',['as' => 'calculate.match', 'uses' => 'MatchsController@mainMatch']);
+    Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
+    Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
         
 });

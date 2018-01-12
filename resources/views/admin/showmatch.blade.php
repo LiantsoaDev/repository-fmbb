@@ -2,13 +2,12 @@
 
 <div id="page-content">
     <div class="row">
-                            <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
-                           
+                     <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
                                     <div class="avatar bg-dark">
                                         <img src="../../images/{{ $equipe1->LOGOURL }}" alt="avatar">
                                         <div class="name osLight"> {{ $equipe1->SIGLE }} </div>
-                                        <div class="col-sm-3 pull-right"><h1>89 </h1></div>
+                                        <div class="col-sm-3 pull-right"><h1> {{$equipe1->score}} </h1></div>
                                     </div>
                                     <div class="title"> {!! $equipe1->NAME !!} </div>
                                     <div class="address"> {{ $equipe1->region }} </div>
@@ -26,7 +25,7 @@
                                     <div class="avatar bg-dark">
                                         <img src="../../images/{{ $equipe2->LOGOURL }}" alt="avatar">
                                         <div class="name osLight"> {{ $equipe2->SIGLE }} </div>
-                                        <div class="col-sm-3 pull-right"><h1>69 </h1></div>
+                                        <div class="col-sm-3 pull-right"><h1> {{$equipe2->score}} </h1></div>
                                     </div>
                                     <div class="title"> {!! $equipe2->NAME !!} </div>
                                     <div class="address"> {{ $equipe2->region }} </div>
@@ -38,8 +37,11 @@
                                     <div class="clearfix"> </div>
                                 </div>
                             </div>
+                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                                @include('admin.notification')
+                             </div>
         </div>
-
+        @foreach($boucle as $bcl)
         <div class="row">
             <div class="col-xs-8">
                 <div class="panel">
@@ -48,68 +50,76 @@
                                     <div class="panel-body">
                                        <div class="col-xs-5">
                                             <div class="col-xs-6">
-                                                <div class="media-object center"> <img src="../../img/av1.png" alt="" class="img-circle"> </div>
+                                                <div class="media-object center"> <img src="../../images/{{ $bcl->equipe1->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
                                             </div>
                                              <div class="col-xs-6">
-                                                <div class="col-sm-3 pull-right"><h1>69</h1></div>
-                                                <h3>Equipe1</h3>
-                                                 <h6>Homme</h6>
+                                                <div class="col-sm-3 pull-right"><h1>{{ $bcl->equipe1->score }}</h1></div>
+                                                <h3>{{ $bcl->equipe1->sigle }}</h3>
+                                                 <h6>{{ $bcl->equipe1->genre }}</h6>
                                              </div>  
                                       </div>
                                       <div class="col-xs-2">
                                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
-                                               <button class="btn btn-primary btn-labeled fa fa-clock-o">Quart Temps 1</button>
+                                               {!! $period !!}
                                                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS</h3>
-                                                <button class="btn btn-danger btn-labeled fa fa-bell-o">En cours</button>
+                                                {!! $start !!}
                                                  <br>   
                                              </div>
                                       </div>
                                       <div class="col-xs-5">
                                                 <div class="col-xs-6">
-                                                    <div class="col-sm-3 pull-right"><h3>Equipe2</h3> <h6>Homme</h6></div>
-                                                        <h1>69</h1>
+                                                    <div class="col-sm-3 pull-right"><h3>{{ $bcl->equipe2->sigle }}</h3> <h6>{{ $bcl->equipe2->genre }}</h6></div>
+                                                        <h1>{{ $bcl->equipe2->score }}</h1>
                                                     </div>
                                              <div class="col-xs-6">
-                                                <div class="media-object pull-right"> <img src="../../img/av1.png" alt="" class="img-circle"> </div>
+                                                <div class="media-object pull-right"> <img src="../../images/{{ $bcl->equipe2->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
                                             </div>
                                       </div>
                                     </div><!-- end panel-body-->
                                 </div>
             </div>
         </div>
+        @endforeach
 
+        @if($affichage)
         <div class="row">
             <div class="col-xs-8">
                 <div class="panel">
                                     <!--Panel heading-->
                                     <!--Panel body-->
                                     <div class="panel-body">
+                                    <form method="POST" action="{{route('match.start')}}">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <input type="hidden" name="one" value="{{$equipe1->IDEQUIPE}}">
+                                    <input type="hidden" name="two" value="{{$equipe2->IDEQUIPE}}">
+                                    <input type="hidden" name="matchref" value="{{$idmatch}}">
                                        <div class="col-xs-5">
                                             <div class="form-group">
                                                 <div class="col-xs-5">
-                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" required>
+                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" name="scoreTeam1" required>
                                                      <small class="help-block">Insérer le score durant ce quart temps</small>
                                                 </div>
                                             </div>
                                       </div>
                                       <div class="col-xs-2">
                                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
-                                               <button class="btn btn-success btn-labeled fa fa-check-circle">Valider le Quart temps</button> <br>   
+                                               <button typ="submit" class="btn btn-success btn-labeled fa fa-check-circle">Valider le Quart temps</button> <br>   
                                              </div>
                                       </div>
                                       <div class="col-xs-5">
                                             <div class="form-group">
                                                 <div class="col-xs-5 pull-right">
-                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" required>
+                                                    <input type="number" id="demo-text-input" class="form-control" placeholder="Score" name="scoreTeam2" required>
                                                      <small class="help-block">Insérer le score durant ce quart temps</small>
                                                 </div>
                                             </div>    
                                       </div>
+                                      </form>
                                     </div><!-- end panel-body-->
                                 </div>
             </div>
         </div>
-
+        @endif
         <div class="row">
             <div class="col-lg-8">
                                 <div class="panel">

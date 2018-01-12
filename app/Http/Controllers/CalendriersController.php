@@ -79,12 +79,33 @@ class CalendriersController extends Controller
     */
     public function showupdatematch($idmatch)
     {
-        $rencontre = $this->match->getmatchbyid($idmatch);
-        $team1 = new EquipesController($rencontre->EQUIPE_ID1);
-        $team2 = new EquipesController($rencontre->EQUIPE_ID2);
-        $equipe1 = $team1->equipe;
-        $equipe2 = $team2->equipe;
-        return view('admin.showmatch',compact('equipe1','equipe2'));
+        if( $this->calendrier->verifictionModifiableMatch($idmatch) )
+        {
+            $rencontre = $this->match->getmatchbyid($idmatch);
+            $team1 = new EquipesController($rencontre->EQUIPE_ID1);
+            $team2 = new EquipesController($rencontre->EQUIPE_ID2);
+            $instancematch = new MatchsController();
+
+            $equipe1 = $team1->equipe;
+            $equipe2 = $team2->equipe;
+
+            $main = $instancematch->main($idmatch, $rencontre->EQUIPE_ID1, $rencontre->EQUIPE_ID2);
+            if( $main ){
+                $equipe1->score = $instancematch->score;
+                $equipe2->score = $instancematch->score;
+                $period = $instancematch->periode;
+                $start = $instancematch->demarrage;
+                $affichage = $instancematch->affichage;
+            }
+
+            $boucleArray = ['equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
+            $boucle[] = json_decode(json_encode($boucleArray));
+            return view('admin.showmatch',compact('equipe1','equipe2','period','start','affichage','boucle','idmatch'));
+        }
+        else
+        {
+            return back()->with('error','Impossible de modifier le score de ce match ! Le match n\'a pas encore commencé.');
+        }
     }
 
     /** 
@@ -152,7 +173,7 @@ class CalendriersController extends Controller
             {
                 //insertion rencontre : calendrier + match 
                if( $this->insertionrencontre( $request, $verification) )
-                    return redirect()->route('admin.addmatch')->with('success',$request->session()->get('message'));
+                    return redirect()->route('admin.calendrier',$request->session()->get('idevent'))->with('success',$request->session()->get('message'));
             }
             else
                 return redirect()->route('admin.addmatch')->with('error','Les deux equipes <b>NE</b> sont <b>PAS</b> dans le <b>MEME POULE</b> ! <br> En phase de <code>Poule</code> les équipes qui se rencontrent, doivent être dans une même poule !');
@@ -185,7 +206,6 @@ class CalendriersController extends Controller
                     'idpoule' => $idpoule,
                     'equipe_id1' => $request->get('equipe_id1'),
                     'equipe_id2' => $request->get('equipe_id2'),
-                    'statut' => $this->event->scopeStatutEvent( $calendrier['datematch'] , $calendrier['datematch']),
                     'phase' => $request->post('phase')
                 ];
                if( $this->match->insertionMatchwithoutPoint($match) )
