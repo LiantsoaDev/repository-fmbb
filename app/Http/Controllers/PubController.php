@@ -24,9 +24,9 @@ class PubController extends Controller
 
     public function indexpub()
     {
-        $pub = Publicite::paginate(7);
+        $pub = Publicite::paginate(3);
 
-        return view('articles.publicite',compact('pub'))->with('i', (request()->input('page', 1) - 1) * 7);
+        return view('articles.pages.publicite',compact('pub'))->with('i', (request()->input('page', 1) - 1) * 3);
     }
 
     /**
@@ -50,10 +50,10 @@ class PubController extends Controller
         $files=Input::file('photos');
         
         
-        if(!is_null($files) && !empty($files))
+        if(!is_null($files) && !empty($files) && !empty($request->description))
         {
 
-            $input=$request->all();
+            
             $images=array();
             
             if($files=$request->file('photos')){
@@ -82,7 +82,7 @@ class PubController extends Controller
         
         else 
         {
-            return redirect()->route('publicite')->with('warning','pas d\'Image selectionné!! ');
+            return redirect()->route('publicite')->with('warning','Il y-a de champ incomplété ou pas d\'Image selectionné!! ');
         }
 
 

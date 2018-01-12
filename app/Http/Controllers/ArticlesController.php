@@ -13,6 +13,7 @@ use File;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -50,7 +51,7 @@ class ArticlesController extends Controller
 
 public function publicite()
 {
-    return view('articles.publicite');
+    return view('articles.pages.publicite');
 }
 
 public function uploadPub(Request $request)
@@ -60,7 +61,7 @@ public function uploadPub(Request $request)
     $this->validate($request, ['photos' => 'image|mines:jpeg,png,jpg,gif,svg|max:10000|nullable']);
   */
 
-  $input=$request->all();
+
   $images=array();
   
   if($files=$request->file('photos')){
@@ -104,9 +105,9 @@ public function publication(Request $request,$id)
     
      public function index()
     {
-        $articles = Article::paginate(5);
+        $articles = Article::paginate(7);
         
-        return view('articles.index',compact('articles'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('articles.pages.index',compact('articles'))->with('i', (request()->input('page', 1) - 1) * 7);
 
     }
 
@@ -122,7 +123,7 @@ public function publication(Request $request,$id)
     
      public function create()
     {
-        return view('articles.create');
+        return view('articles.pages.create');
         
     }
 
@@ -140,52 +141,62 @@ public function publication(Request $request,$id)
     public function store(Request $request)
     {
 
-         /*------------------insertion d'image---------------------*/
+        $img = Input::file('photos');
+        if( !empty($request->titre) && !empty($request->tag) && !empty($request->slug) && !empty($request->seo) && !empty($img) )
+        {
+                /*------------------insertion d'image---------------------*/
 
-         $input=$request->all();
-         $images=array();
-         
-         if($files=$request->file('photos')){
-           $i = 0; 
-           foreach($files as $file){ 
-               $name=$file->getClientOriginalName(); 
-               $file->move('app/photos',$name); 
-               $images[$i++]=$name; 
-           }
-         }
-       
-         DB::table('images')->insert(array(
-            'urlimage'=>  implode("|",$images),
-           'urlvideo'=>$request->urlvideo,
-           'updated_at' => date('Y-m-d H:i:s'),
-            'created_at' => date('Y-m-d H:i:s')
-         ));
+                
+                $images=array();
+                
+                if($files=$request->file('photos')){
+                $i = 0; 
+                foreach($files as $file){ 
+                    $name=$file->getClientOriginalName(); 
+                    $file->move('app/photos',$name); 
+                    $images[$i++]=$name; 
+                }
+                }
+            
+                DB::table('images')->insert(array(
+                    'urlimage'=>  implode("|",$images),
+                // 'urlvideo'=>$request->urlvideo,
+                'updated_at' => date('Y-m-d H:i:s'),
+                    'created_at' => date('Y-m-d H:i:s')
+                ));
 
-         
-         $img = Image::where('urlimage',implode("|",$images))->first();
-         
-    
-         /*------------------Fin insertion----------------------- */
+                $img = Image::where('urlimage',implode("|",$images))->first();
+                
+            
+                /*------------------Fin insertion----------------------- */
 
-         $insert=$this->validate($request,[
-            'titre'=>'required',
-            'contenu'=>'required',
-            'tag'=>'required',
-            'slug'=>'required',
-            'seo'=>'required',
-            'administrateurs_id'=>'required'
-        ]);
+                $insert=$this->validate($request,[
+                    'titre'=>'required',
+                    'contenu'=>'required',
+                    'tag'=>'required',
+                    'slug'=>'required',
+                    'seo'=>'required',
+                    'categorie'=>'required',
+                    'administrateurs_id'=>'required'
+                ]);
 
-        
+                
 
-        $insert["images_id"] = $img->id;
-        $insert["statut"] = false;
-        $insert["archive"] = false;
+                $insert["images_id"] = $img->id;
+                $insert["statut"] = false;
+                $insert["archive"] = false;
 
-        Article::create($insert);  
-        
-        return redirect()->route('index')->with('success','article créer avec succes');
-        
+                Article::create($insert);  
+                
+                return redirect()->route('index')->with('success','article créer avec succes');
+                
+        }
+
+        else
+        {
+            return redirect()->route('create')->with('warning','Veuillez verifier s\'il y en a des cases vide!' );
+        }
+
     }
 
     
@@ -207,7 +218,7 @@ public function publication(Request $request,$id)
 
         $images = Image::where('id',$article->images_id)->first();
 
-        return view('articles.show',compact('article','images','id'));
+        return view('articles.pages.show',compact('article','images','id'));
 
     }
 
@@ -228,9 +239,9 @@ public function publication(Request $request,$id)
 
         $article = Article::find($id);
 
-        $images = Image::where('id',$article->images_id)->first();
+        $images = Image::where('id',$article->images_id)->first()->urlimage;
 
-        return view('articles.edit',compact('article','images','id'));
+        return view('articles.pages.edit',compact('article','images','id'));
 
     }
 
@@ -251,6 +262,8 @@ public function publication(Request $request,$id)
 
      public function update(Request $request, $id)
     {
+        if( !empty($request->titre) && !empty($request->tag) && !empty($request->slug) && !empty($request->seo) )
+        {
 
         $article = Article::find($id);
 
@@ -260,8 +273,8 @@ public function publication(Request $request,$id)
 
 /**--------------------debut update image--------------------------- */
 
-                $input=$request->all();
-                $images=array();
+                //$input=$request->all();
+          /*      $images=array();
 
                 if($files=$request->file('photos')){
                     $i = 0; 
@@ -273,9 +286,9 @@ public function publication(Request $request,$id)
                 }
 
             $photo = Image::find($article->images_id);
-            $photo->$image = $request->$images;
+            $photo->urlimage = implode("|",$images);
             $photo->save();
-
+*/
 
             
 
@@ -286,13 +299,18 @@ public function publication(Request $request,$id)
         $article->tag = $request->tag;
         $article->slug = $request->slug;
         $article->seo = $request->seo;
+        $article->categorie = $request->categorie;
         
         $photo->id = $request->images_id;
 
         $article->save();
         
         return redirect()->route('index')->with('success','Article modifié avec succes');
-        
+        }
+        else
+        {
+            return redirect()->route('index')->with('warning','L\'article n\'est pas modifié car Il y-a des cases qui ne devraient pas etre vides!');
+        }
     }
 
     
@@ -315,7 +333,7 @@ public function publication(Request $request,$id)
         $article->archive = true;
         $article->save();
         
-        return redirect()->route('index')->with('success','Article supprimé et Archivé');
+        return redirect()->route('index')->with('warning','Article supprimé et Archivé');
 
     }
 

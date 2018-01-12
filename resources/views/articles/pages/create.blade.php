@@ -1,10 +1,51 @@
-@extends('back')
+@include('articles.header')
 
-@section('content')
+<div class="boxed">
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<section id="content-container">
+    <header class="pageheader hidden-xs">
+        <h3><i class="fa fa-home"></i> Administrateur </h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label">Vous etes ici:</span>
+            <ol class="breadcrumb">
+                <li> <a href="#"> Accueil </a> </li>
+                <li class="active"> Administrateur </li>
+            </ol>
+        </div>
+    </header>
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+        <div class="row">
+            <div class="col-md-12 eq-box-md">
+                <!--Panel with Header-->
+                <!--===================================================-->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">ARTICLES</h3>
+                    </div>
+                    <div class="panel-body">
 
-<form class="form-horizontal form-bordered" action="{{ route('store') }}" id="wizard-validate" method="POST" enctype="multipart/form-data">
 
-<input type="hidden" value="{!!csrf_token()!!}" name="_token" />
+
+
+
+
+
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @elseif ($message = Session::get('warning'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+
+            <form class="form-horizontal form-bordered" action="{{ route('store') }}" id="wizard-validate" method="POST" enctype="multipart/form-data">
+
+            <input type="hidden" value="{!!csrf_token()!!}" name="_token" />
 
                                     <!-- Panel heading -->
                                     <div class="panel-heading">
@@ -48,7 +89,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Seo : </label>
                                                     <div class="col-sm-6">
-                                                        <input class="form-control" name="seo" type="text" placeholder="Seo" data-parsley-equalto="#passwordinput" data-parsley-group="order" data-parsley-required />
+                                                        <input class="form-control" name="seo" type="text" placeholder="Seo" data-parsley-equalto="" data-parsley-group="order" data-parsley-required />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label"> Catégorie : </label>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" name="categorie" type="text" placeholder="Categorie" data-parsley-equalto="" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
 
@@ -80,13 +127,13 @@
 
                                                                 <div class="form-group">
 
-                                                                    <input type="text" name="urlvideo" placeholder="urlvideo..." /></br></br>
+                                                                    <!--<input type="text" name="urlvideo" placeholder="urlvideo..." /></br></br>-->
                                                                                 
                                                                     
                                                                         <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
                                                                     
                                                                 </div>
-                                                                <div class="row" id="image_preview"></div>
+                                                                <div class="row" style="height:100px" id="image_preview"></div>
                                                         
 
                                                     </div>
@@ -109,4 +156,17 @@
                     </form>
                     
 
-@endsection
+
+
+                                </div>
+                                </div>
+                                <!--===================================================-->
+                                <!--End Panel with Header-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--===================================================-->
+                    <!--End page content-->
+                </section>
+                <!--===================================================-->
+@include('articles.footer')

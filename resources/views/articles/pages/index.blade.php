@@ -1,6 +1,34 @@
-@extends('back')
+@include('articles.header')
 
-@section('content')
+<div class="boxed">
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<section id="content-container">
+    <header class="pageheader hidden-xs">
+        <h3><i class="fa fa-home"></i> Administrateur </h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label">Vous etes ici:</span>
+            <ol class="breadcrumb">
+                <li> <a href="#"> Accueil </a> </li>
+                <li class="active"> Administrateur </li>
+            </ol>
+        </div>
+    </header>
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+        <div class="row">
+            <div class="col-md-12 eq-box-md">
+                <!--Panel with Header-->
+                <!--===================================================-->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">ARTICLES</h3>
+                    </div>
+                    <div class="panel-body">
+
+
+
 
 
             <div class="pad-btm form-inline">
@@ -12,10 +40,15 @@
                     </div>
                 </div>
 
+                   
                     @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @elseif ($message = Session::get('warning'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
                     @endif
 
 
@@ -96,4 +129,15 @@
         
         <!--========================================================Fin Article=========================================================-->
 
-@endsection
+                                </div>
+                                </div>
+                                <!--===================================================-->
+                                <!--End Panel with Header-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--===================================================-->
+                    <!--End page content-->
+                </section>
+                <!--===================================================-->
+@include('articles.footer')

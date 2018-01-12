@@ -32,7 +32,7 @@ class ImagePubController extends Controller
         
         $image =Imagefond::paginate(4);
 
-        return view('articles.imagefond',compact('image'))->with('i', (request()->input('page', 1) - 1) * 4);
+        return view('articles.pages.imagefond',compact('image'))->with('i', (request()->input('page', 1) - 1) * 4);
 
     }
 
@@ -96,29 +96,32 @@ class ImagePubController extends Controller
         
         $img = Imagefond::find($id);
 
-        $fn2 = DB::table('imagefonds')->select('numfond')->where('numfond','2')->get()->count();
-        $fn1 = DB::table('imagefonds')->select('numfond')->where('numfond','1')->get()->count();
+        $fn2 = DB::table('imagefonds')->where('numfond','2')->where('statut',true)->get()->count();
+        $fn1 = DB::table('imagefonds')->where('numfond','1')->where('statut',true)->get()->count();
 
-        $statm = DB::table('imagefonds')->select('statut')->where('statut',true)->get()->count();
-        $statf = DB::table('imagefonds')->select('statut')->where('statut',false)->get()->count();
+
+        $st2 = DB::table('imagefonds')->where('numfond','2')->where('statut',false)->get()->count();
+        $st1 = DB::table('imagefonds')->where('numfond','1')->where('statut',false)->get()->count();
         //dd($img);
+
+    if($img->statut == true)
+    {
         
-        if($img->statut == false)
-        {
+            $img->statut = false;
+            $img->save();
+        
+    }
+    else
+    {
+
             $img->statut = true;
             $img->save();
             return redirect()->route('fond')->with('success','L\'image est publié');
-        }
-        else
-        {
-            $img->statut = false;
-            $img->save();
-        }
-        
-        
-        
-        return redirect()->route('fond');
     }
+
+    return redirect()->route('fond');
+    
+}
 
 
 

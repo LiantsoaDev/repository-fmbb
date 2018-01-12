@@ -98,7 +98,8 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('front')->group(function(){
     
-        Route::get('/accueil',array('as'=>'accueil','uses'=>'FrontController@index')); 
+        Route::get('/accueil',array('as'=>'accueil','uses'=>'FrontController@index'));
+        Route::get('/articles/{id}',array('as'=>'articles','uses'=>'FrontController@showarticles')); 
        
     });
 

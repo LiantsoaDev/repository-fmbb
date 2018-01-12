@@ -1,6 +1,36 @@
-@extends('back')
+@include('articles.header')
 
-@section('content')
+<div class="boxed">
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<section id="content-container">
+    <header class="pageheader hidden-xs">
+        <h3><i class="fa fa-home"></i> Administrateur </h3>
+        <div class="breadcrumb-wrapper">
+            <span class="label">Vous etes ici:</span>
+            <ol class="breadcrumb">
+                <li> <a href="#"> Accueil </a> </li>
+                <li class="active"> Administrateur </li>
+            </ol>
+        </div>
+    </header>
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+        <div class="row">
+            <div class="col-md-12 eq-box-md">
+                <!--Panel with Header-->
+                <!--===================================================-->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">ARTICLES</h3>
+                    </div>
+                    <div class="panel-body">
+
+
+
+
+
 
 
 <div class="col-md-6">
@@ -12,15 +42,16 @@
 
 
     <div class="userWidget-1">
-        <div class="avatar bg-info">
+        <div class="avatar bg-primary">
             <div class="name osLight"> <h2 class="alert-heading">{{$article->titre}}</h2> </div>
         </div>
         <div class="title"> <p>{{$article->contenu}}.</p> </div>
         
         <ul class="fullstats">
-            <li> <span>Tag</span> {{$article->tag}}</li>
+            
             <li> <span>Slug</span> {{$article->slug}}</li>
             <li> <span>Seo</span> {{$article->seo}}</li>
+            <li> <span>Categorie</span> {{$article->categorie}}</li>
         </ul>
         <div class="clearfix"> </div>
     </div>
@@ -48,7 +79,7 @@
                     
                         <div class="item{{$key == 0 ? ' active' : ''}}">
                         
-                            <img src="../../../app/photos/{{$url}}" alt="...">
+                            <img src="../../../app/photos/{{$url}}" style="height:300px" alt="...">
                         
                         </div>
                     
@@ -76,4 +107,19 @@
 </div>
 
 
-@endsection
+
+
+
+
+                                </div>
+                                </div>
+                                <!--===================================================-->
+                                <!--End Panel with Header-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--===================================================-->
+                    <!--End page content-->
+                </section>
+                <!--===================================================-->
+@include('articles.footer')
