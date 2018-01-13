@@ -58,22 +58,33 @@ class MatchsController extends Controller
     /** 
     * Fonction main rencontre match 
     * @param integer idmatch
-    * @return array 
+    * @return 0,1,2
+    //result 0 : initialiser Match
+    //result 1 : start Match
+    //result 2 : Match déjà en cours
     */
     public function main($idmatch, $id1, $id2)
     {
-        //initial
+        $returnValue = '';
+        //initialisation
         $main = $this->initialiserMatch($idmatch);
         if( $main )
-            return true;
-        else
+            $returnValue = '0';
+        elseif( $main == false )
         {
-            if( $this->getstart($idmatch) )
-                return true;
+           if( $this->getstart($idmatch) )
+                $returnValue = '1';
             else
-                return redirect()->route('admin.show-update-match',$idmatch)->with('error','Une erreur s\'est produite ! Veuillez réessayer ultérieurement ! ');
+                $returnValue = '2';
         }
-        
+       if( $returnValue == '2')
+        {
+             $equipeUn = $this->point->getlastPoint($idmatch,$id1);
+            $equipeDeux = $this->point->getlastPoint($idmatch,$id2);
+            if( !is_null($equipeUn) && !is_null($equipeDeux) )
+                $returnValue = array( 'scoreEquipeUn' => $equipeUn , 'scoreEquipeDeux' => $equipeDeux );
+        }
+        return $returnValue;
     }
 
     /**
@@ -93,6 +104,8 @@ class MatchsController extends Controller
             
             return true;
         }
+        else
+            return false;
     }
 
     /** 
@@ -122,10 +135,10 @@ class MatchsController extends Controller
     */
     public function getstart($idmatch)
     {
-        $verifQuartOne = $this->point->getAllQuarts($idmatch,'idmatch');
+        $verifQuartOne = $this->point->getOneQuarts($idmatch,'idmatch');
         if( is_null($verifQuartOne->quart1) ) //->first()
         {
-             $this->periode = '<button class="btn btn-primary btn-labeled fa fa-clock-o">Quart temps 1</button>';
+            $this->periode = '<button class="btn btn-primary btn-labeled fa fa-clock-o">Quart temps 1</button>';
             $this->demarrage = '<button class="btn btn-success btn-labeled fa fa-spinner">En cours</button>';
             $this->score = '00';
             return true;
@@ -151,8 +164,10 @@ class MatchsController extends Controller
         ]);
 
         //verifier que superieur ou egal précedent score 
+        //listes : id des equipes
         $listes = [ $request->post('one') , $request->post('two') ];
         $periodes = ['quart1','quart2','quart3','quart4'];
+        //scores  : score respective des deux equipes
         $scores = [ $request->post('scoreTeam1') , $request->post('scoreTeam2') ];
 
         $scorepoint = Point::where('idequipe', $request->post('one') )->first();
@@ -169,27 +184,41 @@ class MatchsController extends Controller
         {
             for( $a=0; $a<count($listes); $a++ )
             {
-                $array = $this->point->getAllQuarts( $request->post('matchref') ,'idmatch');
-                for( $b=0; $a<count($array); $b++ )
+                $arrayStdClass = $this->point->getAllQuarts( $request->post('matchref') ,'idmatch');
+                $array = json_decode(json_encode($arrayStdClass),true);
+                //insertion des scores
+                for($b=0; $b<count($array); $b++ )
                 {
-                    if( is_null($array[$b]) )
-                        $array[$b] = $scores[$a];
+                    foreach($array[$b] as $key => $value)
+                    {
+                        if( is_null($array[$b][$key]) )
+                        {
+                            $array[$b][$key] = intval($scores[$b]);
+                            break;
+                        }
+                    }
                 }
             }
+           
              //inserer dans Point ( 2 Teams )
-             $this->point->updatePoint( $request->post('matchref') , $listes[$i] , $array );
+            for($e=0; $e<count($listes); $e++)
+                $this->point->updatePoint( $request->post('matchref') , $listes[$e] , $array[$e] );
         }
          //verification quart4 
-
+        die();
+        
         //afficher les scores du match de chaque periode
         for( $c=0; $c<count($listes); $c++ )
         {
-            $quarts[$c] = $this->point->getAllQuarts($listes[$c],'idequipe');
-            $boucleInArray[] = $this->affichageInObjectUpdateMatch( json_decode(json_encode($quarts[$c]),true), $listes[$c] , $c+1 );
+            $quarts[] = $this->point->getAllQuarts($listes[$c],'idequipe');
+            $boucleInArrayNotConvert[] = $this->affichageInObjectUpdateMatch( json_decode(json_encode($quarts[$c]),true), $listes[$c] , $c+1 );
         }
         
+        $boucleInArray[0]['equipe1'] = $boucleInArrayNotConvert[0]['equipe1'];
+        $boucleInArray[0]['equipe2'] = $boucleInArrayNotConvert[1]['equipe2'];
+        
         $boucleInObject = json_decode(json_encode($boucleInArray), false);
-
+        
         $equipeOne = new EquipesController($request->post('one'));
         $equipeTwo = new EquipesController($request->post('two'));
         $instancematch = new MatchsController();
@@ -199,8 +228,10 @@ class MatchsController extends Controller
         $boucle = $boucleInObject;
         $equipe1 = json_decode(json_encode($equipeOne),false)->equipe;
         $equipe2 = json_decode(json_encode($equipeTwo),false)->equipe;
+        $idmatch = $request->post('matchref');
 
-        $equipe1->score = $this->point->getTotalbyId( $request->post('matchref') );
+        $equipe1->score = $this->point->getlastPoint($request->post('matchref'), $request->post('one'));
+        $equipe2->score = $this->point->getlastPoint($request->post('matchref'), $request->post('two'));
         
         return view('admin.showmatch',compact('equipe1','equipe2','period','start','affichage','boucle','idmatch'));
     }
@@ -218,14 +249,15 @@ class MatchsController extends Controller
             {
                 //boucle->equipe1->logo
                 $indicequart = $e+1;
-                if( !is_null( $arrays['quart'.$indicequart] ) ){
+                if( !is_null( $arrays[$e]['quart'.$indicequart] ) ){
                     $boucle['equipe'.$indice]['logo'] = $this->equipe->findequipe($equipe)->LOGOURL;
                     $boucle['equipe'.$indice]['sigle'] = $this->equipe->findequipe($equipe)->SIGLE;
                     $boucle['equipe'.$indice]['genre'] = $this->equipe->findequipe($equipe)->SEXE;
-                    $boucle['equipe'.$indice]['score'] = $arrays['quart'.$indicequart];
+                    $boucle['equipe'.$indice]['score'] = $arrays[$e]['quart'.$indicequart];
                 }
             }
         }
+       
         return $boucle;
     }
 

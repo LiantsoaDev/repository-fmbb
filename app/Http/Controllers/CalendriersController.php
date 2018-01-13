@@ -88,18 +88,27 @@ class CalendriersController extends Controller
 
             $equipe1 = $team1->equipe;
             $equipe2 = $team2->equipe;
-
+            //result 0 : initialiser Match
+            //result 1 : start Match
+            //result 2 : Match déjà en cours
             $main = $instancematch->main($idmatch, $rencontre->EQUIPE_ID1, $rencontre->EQUIPE_ID2);
-            if( $main ){
+     
+            if( $main == '2' ){
+                $equipe1->score = $main['scoreEquipeUn'];
+                $equipe2->score = $main['scoreEquipeDeux'];
+            }
+            elseif( $main =='0' || $main == '1' )
+            {
                 $equipe1->score = $instancematch->score;
                 $equipe2->score = $instancematch->score;
-                $period = $instancematch->periode;
-                $start = $instancematch->demarrage;
-                $affichage = $instancematch->affichage;
             }
+            $period = $instancematch->periode;
+            $start = $instancematch->demarrage;
+            $affichage = $instancematch->affichage;
 
             $boucleArray = ['equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
             $boucle[] = json_decode(json_encode($boucleArray));
+            
             return view('admin.showmatch',compact('equipe1','equipe2','period','start','affichage','boucle','idmatch'));
         }
         else

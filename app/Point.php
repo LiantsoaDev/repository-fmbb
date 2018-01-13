@@ -22,6 +22,19 @@ class Point extends Model
     		return false;
     }
 
+       /** 
+    * Fonction get point Quart temps 1 
+    * @param integer idmatch 
+    * @return Collection Object Point
+    */
+    public function getOneQuarts($idmatch,$requete)
+    {
+        $query = DB::table('points')->select('quart1','quart2','quart3','quart4')->where($requete,$idmatch)->first();
+        //->toArray()
+        //return self::hydrate($query);
+        return $query;
+    }
+
     /** 
     * Fonction get point Quart temps 1 
     * @param integer idmatch 
@@ -29,7 +42,7 @@ class Point extends Model
     */
     public function getAllQuarts($idmatch,$requete)
     {
-        $query = DB::table('points')->select('quart1','quart2','quart3','quart4')->where($requete,$idmatch)->first();
+        $query = DB::table('points')->select('quart1','quart2','quart3','quart4')->where($requete,$idmatch)->get();
         //->toArray()
         //return self::hydrate($query);
         return $query;
@@ -63,6 +76,23 @@ class Point extends Model
     public function getTotalbyId($idmatch)
     {
         return self::where('total',$idmatch)->first();
+    }
+
+    /**
+    * Fonction get la derniere resultat du match
+    * @param integer idmatch
+    * @return integer quart
+    */
+    public function getlastPoint($idmatch,$idequipe)
+    {
+        $lastpoint = null;
+        $points = DB::table('points')->select('quart1','quart2','quart3','quart4')->where('idmatch',$idmatch)->where('idequipe',$idequipe)->first();
+        foreach ($points as $key => $value)
+        {
+            if( !is_null($value) )
+                $lastpoint = $value;
+        }
+        return $lastpoint;
     }
 
 }
