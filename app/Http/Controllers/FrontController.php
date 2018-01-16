@@ -143,9 +143,14 @@ class FrontController extends Controller
         $pub3 = Publicite::where('statut',true)->where('numpub','3')->get();
         $pub3url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'3')->first();
 
+        foreach($pub3 as $puba3)
+        {
+            $prime = explode('|',$puba3->url);
+            $puba3->url = $prime[0];
+        }
         /**----------------------------------------------------------------------------------------------- */
-        return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','pub3url','select'
-        ,'img1','slt','article4','artMois'
+        return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','pub3url','pub3','select'
+        ,'img1','img','slt','article4','artMois'
         ));
 
     }

@@ -207,34 +207,27 @@
 
 
 
-            <div id="first-slider">
-    <div id="carousel-example-generic" class="carousel slide carousel-fade">
-        <!-- Indicators -->
-        
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <!-- Item 1 -->
-            @foreach(explode('|',$pub3url->url) as $key => $url3)
-            <div class="item active slide{{$key}}" style="">
-                <div class="row"><div class="container">
-                    <div class="col-md-3 text-right">
-                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="">
-                    </div>
-                    <div class="col-md-9 text-left">
-        
-                     </div>
-                </div></div>
-             </div> 
-             @endforeach
-            <!-- Item 2 -->
+            <div id="hero-wrapper">
+            <div class="carousel-wrapper">
+              <div id="hero-carousel" class="carousel slide carousel-fade">
+                
+                <div class="carousel-inner">
+                @foreach($pub3 as $pb3)
+                  <div class="item active">
+                      <img src="../../app/photos/{{$pb3->url}}">
+                  </div>
+                  @endforeach
+                @foreach(explode('|',$pub3url->url) as $key => $url)
+                  <div class="item">
+                    <img src="../../app/photos/{{$url}}">
+                  </div>
 
-    
-        </div>
-        <!-- End Wrapper for slides-->
-        
-    </div>
-</div>
-
+                @endforeach  
+                </div>
+                
+              </div>
+            </div>
+          </div>
 
 
 

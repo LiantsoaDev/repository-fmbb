@@ -53,20 +53,6 @@
     
 
 
-/*PUB 3*/
-
-@foreach(explode('|',$pub3url->url) as $key => $url3)
-    
-    #first-slider .slide{{$key}} {
-        background-image: url(../../app/photos/{{$url3}});
-        
-          background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-@endforeach
-/*Fin Pub 3*/
-
 
 /*scroll table*/
     .side-bar-content {
