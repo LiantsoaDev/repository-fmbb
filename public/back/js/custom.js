@@ -1,8 +1,3 @@
-// Add your custom JS code here
-
-/*------------------DEBUT JS pour slide de PUB3----------------------------- */
-
-
 (function( $ ) {
 
     //Function to animate slider captions 
@@ -44,6 +39,3 @@
     });
 	
 })(jQuery);	
-
-
-/*------------------FIN JS pour slide de PUB3----------------------------- */

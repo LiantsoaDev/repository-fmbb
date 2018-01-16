@@ -7,8 +7,8 @@ h5{font-size:16px;font-style:normal;text-transform:uppercase;}
 h6{font-size:14px;text-transform:uppercase;margin-bottom:2em;line-height:26px;font-size:normal;}
 p{margin-bottom:1.5em;}
 .lead{font-size:16px;line-height:2em;}
-a{color:#ffcc00;text-decoration:none;}
-a:hover, a:focus{color:#ffdc11;text-decoration:none;outline:none;}
+a{color:#006eff;text-decoration:none;}
+a:hover, a:focus{color:#1115ff;text-decoration:none;outline:none;}
 ol.list{list-style-type:none;padding:0;margin:0;margin-bottom:1.5em;counter-reset:counter;}
 ol.list li{position:relative;padding:0 0 .5em 30px;}
 ol.list li::before{display:inline-block;position:absolute;left:0;content:counter(counter) ". ";counter-increment:counter;font-weight:bold;width:20px;color:#31404b;font-family:"Montserrat", sans-serif;font-size:13px;}

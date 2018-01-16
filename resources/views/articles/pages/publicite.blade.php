@@ -54,7 +54,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title"></h3>
                                     </div>
-                <form action="{{ route('insertpub') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('insertpub') }}" method="post" enctype="multipart/form-data" >
                     {{ csrf_field() }}
                         
                         
@@ -106,7 +106,7 @@
                                                     <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
                                         </div>
                                     </div>
-                                    
+                                    <div class="row" id="image_preview"></div>                                    
                                     </div>
                                 </div>
                                 
@@ -125,7 +125,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Liste de Publicité</h3>
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body" >
                                        
                                        
                                        <!--========================table de la publicité=======================-->
@@ -140,6 +140,7 @@
                                                     <th>Suppr</th>
                                                 </tr>
                                             </thead>
+                                            
                                             <tbody>
                         @foreach($pub as $pubs)
                                                 <tr>
@@ -154,10 +155,11 @@
                                                         <td><a class="btn btn-info btn-icon icon-lg fa fa-reply"  href="{{ route('publierpub',$pubs->id) }}"></a></td>
                                                     @endif
 
-                                                    <td> <a class="btn btn-danger btn-icon icon-lg fa fa-remove" href="{{ route('supprpub',$pubs->id) }}"></a></td>
+                                                    <td> <a class="btn btn-warning btn-icon icon-lg fa fa-remove" href="{{ route('supprpub',$pubs->id) }}"></a></td>
                                                 </tr>
                         @endforeach                    
                                             </tbody>
+                                            
                                         </table>
                         {{ $pub->links() }}
                                        <!--====================================================================-->
@@ -165,16 +167,7 @@
 
                                     </div>
                                 </div>
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Aperçue:</h3>
-                                    </div>
-                                    <div class="panel-body">
 
-                                        <div class="row" id="image_preview"></div>
-                                    
-                                    </div>
-                                </div>
                             </div>
                         </div>
 

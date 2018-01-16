@@ -393,9 +393,17 @@ $('#add_more').click(function() {
         });
 
 
+        //confirmation de suppression
+        
+
+
 </script>
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+
+<script src="../../back/js/custom.js"></script>
 
         <script src="../../back/js/jquery-2.1.1.min.js"></script>
         <!--BootstrapJS [ RECOMMENDED ]-->

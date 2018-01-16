@@ -130,7 +130,7 @@ class ImagePubController extends Controller
         $imdel = Imagefond::find($id);
         $image = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.id',$id)->first()->url;
         
-        File::delete("../../app/photos/$image");
+        File::delete('public/app/photos/$image');
         
         Imagefond::destroy($id);
 

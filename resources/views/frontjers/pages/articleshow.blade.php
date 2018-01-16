@@ -1,4 +1,4 @@
-@include('frontjers.header')
+@include('frontjers.headerNL')
 
  
     
@@ -25,13 +25,65 @@
                                     <div class="product__bg-letters">SK</div>
 
                                         <div class="product__slider">
-                                            @foreach(explode('|',$images->urlimage) as $image)
-                                            <div class="product__slide">
+                                            
+                                            <!--@foreach(explode('|',$images->urlimage) as $image)<div class="product__slide">
                                                 <div class="product__slide-img">
                                                     <img src="../../../app/photos/{{$image}}" alt="">
                                                 </div>
-                                            </div>
-                                            @endforeach
+                                            </div>         @endforeach-->
+
+                                            <div class="row">
+            <div class="col-sm-3" id="slider-thumbs">
+                <!-- Bottom switcher of slider -->
+                <ul class="hide-bullets">
+                   
+                @foreach(explode('|',$images->urlimage) as $key => $image)
+                    <li class="col-sm-12">
+                   
+                        <a class="thumbnail" id="carousel-selector-{{$key}}">
+                        
+                          <img src="../../../app/photos/{{$image}}">
+                        
+                        </a>
+                   
+                    </li>
+                    @endforeach
+                  
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-xs-12" id="slider">
+                    <!-- Top part of the slider -->
+                    <div class="row">
+                        <div class="col-sm-12" id="carousel-bounding-box">
+                            <div class="carousel slide" id="myCarousel">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                  
+                                @foreach(explode('|',$images->urlimage) as $key => $image)
+                                  
+                                    <div class="item" data-slide-number="{{$key}}">
+                                    
+                                      <img src="../../../app/photos/{{$image}}">
+                                    
+                                    </div>
+                                
+                                @endforeach
+
+                                </div>
+                                <!-- Carousel nav -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                   
                                         </div>
                                     </div>
                                 </div>
@@ -90,19 +142,19 @@
               <ul class="newslog">
                 
               @foreach($artout->slice(0, 4) as $art)
-               <a href="{{ route('articles',$art->id) }}">
+               
                     <li class="newslog__item newslog__item--injury">
                     <figure class="posts__thumb">
                         <a href="{{ route('articles',$art->id) }}"><img src="../../app/photos/{{$art->urlimage}}" style="height:50px;width:100px;" alt=""></a>
                     </figure>
                     <div class="newslog__item-inner">
-                      <div class="newslog__content"><strong>{{$art->titre}} :</strong> {{str_limit($art->contenu, $limit = 35, $end = '...')}}<strong></strong>. </div>
+                      <div class="newslog__content"><a href="{{ route('articles',$art->id) }}"><strong>{{$art->titre}} :</strong> {{str_limit($art->contenu, $limit = 35, $end = '...')}}<strong></strong>. </a></div>
                       <time class="newslog__date" datetime="2016-01-19">January 19, 2016</time>
                     </div>
                   </li>
 
                     </li>
-                    </a>
+                    
               @endforeach                  
                 </ul>
 

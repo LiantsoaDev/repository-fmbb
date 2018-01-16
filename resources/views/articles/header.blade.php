@@ -33,6 +33,16 @@
         <script type="text/javascript" src="../../back/js/jquery.form.js"></script>
     </head>
 
+    <script>
+        jQuery(document).ready(function($){
+              $('.deleteGroup').on('submit',function(e){
+        if(!confirm('Do you want to delete this item?')){
+              e.preventDefault();
+        }
+      });
+});
+    </script>
+
     <style>
     
     #formdiv {
@@ -81,6 +91,16 @@
   border-radius: 50%;
   background: #ccc;
 }
+
+
+
+/*---------------------565------- scroll -----------------*/
+
+#slider-thumbs {
+    height: 400px;
+    overflow-y: scroll;
+    white-space: nowrap;
+} 
     
     </style>
 

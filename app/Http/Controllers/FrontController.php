@@ -85,7 +85,7 @@ class FrontController extends Controller
                         ->where('articles.statut',true)
                         ->where('articles.archive',false)
                         ->whereRaw('MONTH(articles.created_at) = ?',[$currentMonth])
-                        ->orderBy('created_at', 'asc')
+                        ->orderBy('created_at', 'desc')
                         
                         ->get();
 
@@ -134,16 +134,17 @@ class FrontController extends Controller
         /**----------------------------------------------PUBLICITE----------------------------------------- */
 
         $pub1 = Publicite::where('statut',true)->where('numpub','1')->get();
-
         $pub1url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'1')->first(); 
 
 
         $pub2 = Publicite::where('statut',true)->where('numpub','2')->get();
-
         $pub2url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'2')->first();
 
+        $pub3 = Publicite::where('statut',true)->where('numpub','3')->get();
+        $pub3url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'3')->first();
+
         /**----------------------------------------------------------------------------------------------- */
-        return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','select'
+        return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','pub3url','select'
         ,'img1','slt','article4','artMois'
         ));
 
@@ -181,13 +182,19 @@ class FrontController extends Controller
         
         $article = Article::find($id);
         $images = Image::where('id',$article->images_id)->first();
-       
+        $images2 = Image::where('id',$article->images_id)->first();
         //article tout sur affichage
             $artout = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'asc')->get();
 
             foreach($artout as $url)
             {
+                
                 $ty = explode('|',$url->urlimage);
+                
+                //conter les images dans les articles
+                $conter = count($ty);
+                //fin conter
+
                 $url->urlimage = $ty[0];
             }
         //Fin article tout sur affichage
@@ -195,7 +202,7 @@ class FrontController extends Controller
         $fond1 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut',true)->where(DB::raw('imagefonds.numfond'),'1')->first()->url;
         $fond2 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut', true)->where(DB::raw('imagefonds.numfond'),'2')->first()->url;
 
-        return view('frontjers.pages.articleshow',compact('fond2','fond1','article','images','id','artout'));
+        return view('frontjers.pages.articleshow',compact('fond2','fond1','article','images','id','artout','conter'));
     }
 
     /**

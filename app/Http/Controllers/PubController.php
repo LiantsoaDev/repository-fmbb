@@ -24,9 +24,9 @@ class PubController extends Controller
 
     public function indexpub()
     {
-        $pub = Publicite::paginate(3);
+        $pub = Publicite::paginate(7);
 
-        return view('articles.pages.publicite',compact('pub'))->with('i', (request()->input('page', 1) - 1) * 3);
+        return view('articles.pages.publicite',compact('pub'))->with('i', (request()->input('page', 1) - 1) * 7);
     }
 
     /**

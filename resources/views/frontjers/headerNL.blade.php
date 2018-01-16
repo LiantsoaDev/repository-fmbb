@@ -53,19 +53,6 @@
     
 
 
-/*PUB 3*/
-
-@foreach(explode('|',$pub3url->url) as $key => $url3)
-    
-    #first-slider .slide{{$key}} {
-        background-image: url(../../app/photos/{{$url3}});
-        
-          background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-@endforeach
-/*Fin Pub 3*/
 
 
 /*scroll table*/
@@ -581,22 +568,5 @@
 
     <!-- Hero Unit
     ================================================== -->
-    <div class="hero-unit">
-      <div class="container hero-unit__container">
-        <div class="hero-unit__content hero-unit__content--left-center">
-          <span class="hero-unit__decor">
-            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-          </span>
-          <h5 class="hero-unit__subtitle">We are BasketBall</h5>
-          <h1 class="hero-unit__title">MADAGASCAR <span class="text-primary">SPORTS</span></h1>
-          <div class="hero-unit__desc">Féderation Malagasy de BasketBall .</div>
-          <a href="#" class="btn btn-inverse btn-sm btn-outline btn-icon-right btn-condensed hero-unit__btn">Voir Plus <i class="fa fa-plus text-primary"></i></a>
-        </div>
-    
-        <figure class="hero-unit__img">
-          <img src="../../app/photos/{{$fond1}}" style="height:500px" alt="Hero Unit Image">
-        </figure>
-      
-      </div>
-    </div>
+  
     

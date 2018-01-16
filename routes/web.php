@@ -38,13 +38,17 @@ Route::prefix('articles')->group(function(){
         Route::get('/delete/{id}',array('as'=>'delete','uses'=>'ArticlesController@destroy'));
 
 
+/*----------------------------route Archive d'article----------------------------------*/
+        Route::get('/archive', array('as'=>'archive','uses'=>'ArticlesController@archive'));
+        Route::get('/desarchive/{id}', array('as'=>'desarchive', 'uses'=>'ArticlesController@desarchive'));
+/*----------------------------------------------------------------------------*/
+
 /*----------------------------route publicite----------------------------------*/
         Route::get('/publicite', array('as'=>'publicite','uses'=>'PubController@indexpub'));
         Route::post('/insertpub', array('as'=>'insertpub','uses'=>'PubController@storepub'));
         Route::get('/publierpub/{id}', array('as'=>'publierpub','uses'=>'PubController@publierpub'));
         Route::get('/supprpub/{id}', array('as'=>'supprpub', 'uses'=>'PubController@supprpub'));
 /*----------------------------------------------------------------------------*/
-
 
 /*----------------------------route image-fond----------------------------------*/
 
@@ -57,6 +61,7 @@ Route::prefix('articles')->group(function(){
 
         //publier articles
         Route::get('/publication/{id}', array('as'=>'publication','uses'=>'ArticlesController@publication'));
+        Route::get('/depublication/{id}', array('as'=>'depublication','uses'=>'ArticlesController@depublication'));
 
         //publier Images de fond
         Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));

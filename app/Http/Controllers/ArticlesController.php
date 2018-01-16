@@ -95,6 +95,15 @@ public function publication(Request $request,$id)
     
     return redirect()->route('index')->with('success','L\'article est publié');
 }
+public function depublication(Request $request,$id)
+{
+
+    $article = Article::find($id);
+    $article->statut = false;
+    $article->save();
+    
+    return redirect()->route('index');
+}
 
 
 /*------------------------------------------FIN PUBLICATION------------------------------------------------*/
@@ -111,6 +120,22 @@ public function publication(Request $request,$id)
 
     }
 
+    /*----------------Affichage Archive Articles-------------------------*/
+
+    public function archive()
+    {
+        $arch = Article::paginate(5);
+        return view('articles.pages.archivearticle',compact('arch'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    public function desarchive(Request $request,$id)
+    {
+        $desarch = Article::find($id);
+        $desarch->archive = false;
+        $desarch->save();
+        return redirect()->route('archive')->with('success','Article recuperé');
+    }
+
+    /**---------------Fin vue Archive articles------------------------ */
     
     
     /**

@@ -234,7 +234,7 @@ fieldset[disabled] .btn-odnoklassniki.focus{background-color:#F4731C;border-colo
 .card__header{padding:27px 23px;border-radius:4px 4px 0 0;position:relative;border-bottom:1px solid #e4e7ed;overflow:hidden;background-color:transparent;}
 .card__header ~ .card__header{border-radius:0;}
 .card__header ~ .card__header::before{border-radius:0;}
-.card__header::before{content:"";display:block;position:absolute;width:6px;left:0;top:0;bottom:0;background-color:#ffdc11;border-radius:3px 0 0 0;}
+.card__header::before{content:"";display:block;position:absolute;width:6px;left:0;top:0;bottom:0;background-color:#11a8ff;border-radius:3px 0 0 0;}
 .card__header > h4{font-size:16px;line-height:1.2em;letter-spacing:-0.02em;margin-bottom:0;text-transform:uppercase;font-style:normal;}
 @media (min-width:992px){.card__header .card-header__button{float:right;}
 }
@@ -272,7 +272,7 @@ fieldset[disabled] .btn-odnoklassniki.focus{background-color:#F4731C;border-colo
 }
 @media (min-width:992px){.card--xlg .card__content{padding:70px 70px;}
 }
-.card--alt-color .card__header::before{background-color:#9a66ca;}
+.card--alt-color .card__header::before{background-color:#11a8ff;}
 .card__header--shop-filter{padding:0;}
 .card--section{border-radius:0;border-left:none;border-right:none;}
 .label{padding:.5em 1.1em;font-size:8px;font-family:"Montserrat", sans-serif;color:#fff;text-transform:uppercase;}

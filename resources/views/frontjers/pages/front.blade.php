@@ -17,7 +17,7 @@
             </div>
             <h3 class="posts__title">{{$pubs1->contenu}}</h3>
             <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul@foreach class="post__meta meta">
+            <ul class="post__meta meta">
               <li class="meta__item meta__item--views">2369</li>
               <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
               <li class="meta__item meta__item--comments">18</li>
@@ -84,16 +84,19 @@
 
 @foreach($img1 as $url1)
                   <div class="posts__item posts__item--category-1">
-                    <a href="#" class="posts__link-wrapper">
+                    
                       <figure class="posts__thumb">
-                        <img src="../../app/photos/{{$url1}}" style="height:500px;width:800px;" alt="">
+                        
+                        <img src="../../app/photos/{{$url1}}" style="height:500px;width:800px;" alt=""><!-- class="posts__link-wrapper" -->
+                        
                       </figure>
+                      
                       @foreach($slt as $slts)
                       <div class="posts__inner">
                         <div class="posts__cat">
                           <span class="label posts__cat-label"></span>
                         </div>
-                        <h3 class="posts__title">  <span class="posts__title-higlight">perform this May 4th</span> at Madison Cube</h3>
+                        <h3 class="posts__title">  <span class="posts__title-higlight">{{str_limit($slts->titre, $limit = 20, $end = '...')}}</span>{{str_limit($slts->contenu, $limit = 20, $end = '...')}}</h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
                             <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
@@ -105,12 +108,12 @@
                         </div>
                       </div>
                       @endforeach
-                    </a>
+                    
                   </div>
 @endforeach
 @foreach($img1 as $url1)
                   <div class="posts__item posts__item--category-1">
-                    <a href="#" class="posts__link-wrapper">
+                    
                       <figure class="posts__thumb">
                         <img src="../../app/photos/{{$url1}}" style="height:500px;width:800px;" alt="">
                       </figure>
@@ -119,7 +122,7 @@
                         <div class="posts__cat">
                           <span class="label posts__cat-label"></span>
                         </div>
-                        <h3 class="posts__title">  <span class="posts__title-higlight">perform this May 4th</span> at Madison Cube</h3>
+                        <h3 class="posts__title">  <span class="posts__title-higlight"></span></h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
                             <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
@@ -131,7 +134,7 @@
                         </div>
                       </div>
                       @endforeach
-                    </a>
+                    
                   </div>
 @endforeach
 
@@ -156,14 +159,14 @@
                 <div class="posts__item posts__item--card posts__item--category-1 card">
                   <figure class="posts__thumb">
                     <div class="posts__cat">
-                      <span class="label posts__cat-label">The Team</span>
+                      <span class="label posts__cat-label">{{str_limit($art4->categorie, $limit = 15, $end = '...')}}</span>
                     </div>
                     <img src="../../app/photos/{{$art4->urlimage}}" style="height:260px;" alt="">
                   </figure>
                   <div class="posts__inner card__content">
                     <a href="#" class="posts__cta"></a>
                     <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                    <h6 class="posts__title"><a href="{{ route('articles',$art4->id) }}">{{$art4->titre}}</a></h6>
+                    <h6 class="posts__title"><a href="{{ route('articles',$art4->id) }}">{{str_limit($art4->titre, $limit = 20, $end = '...')}}</a></h6>
                     <div class="posts__excerpt">
                     {{str_limit($art4->contenu, $limit = 40, $end = '...')}}
                     </div>
@@ -199,28 +202,43 @@
 
             <!-- Main News Banner -->
             <div class="main-news-banner main-news-banner--img-left">
-              <figure class="main-news-banner__img">
-                <img src="../../front/assets/images/samples/main-news-banner__img.png" alt="">
-              </figure>
-              <div class="main-news-banner__inner">
-                <div class="posts posts--simple-list posts--simple-list--xlg">
-                  <div class="posts__item posts__item--category-1">
-                    <div class="posts__inner">
-                      <div class="posts__cat">
-                        <span class="label posts__cat-label">The Team</span>
-                      </div>
-                      <h6 class="posts__title"><a href="#">Take a look at the brand <span class="text-primary">New Uniforms</span> for next season</a></h6>
-                      <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-                      <div class="posts__excerpt">
-                        Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor.
-                      </div>
-                      <div class="posts__more">
-                        <a href="#" class="btn btn-inverse btn-sm btn-outline btn-icon-right btn-condensed">Read More <i class="fa fa-plus text-primary"></i></a>
-                      </div>
+              
+
+
+
+
+            <div id="first-slider">
+    <div id="carousel-example-generic" class="carousel slide carousel-fade">
+        <!-- Indicators -->
+        
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <!-- Item 1 -->
+            @foreach(explode('|',$pub3url->url) as $key => $url3)
+            <div class="item active slide{{$key}}" style="">
+                <div class="row"><div class="container">
+                    <div class="col-md-3 text-right">
+                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="">
                     </div>
-                  </div>
-                </div>
-              </div>
+                    <div class="col-md-9 text-left">
+        
+                     </div>
+                </div></div>
+             </div> 
+             @endforeach
+            <!-- Item 2 -->
+
+    
+        </div>
+        <!-- End Wrapper for slides-->
+        
+    </div>
+</div>
+
+
+
+
+
 
             </div>
             <!-- Main News Banner / End -->
@@ -258,9 +276,9 @@
                       <div class="posts__inner">
                         <div class="card__content">
                           <div class="posts__cat">
-                            <span class="label posts__cat-label">The Team</span>
+                            <span class="label posts__cat-label">{{str_limit($articles->categorie, $limit = 15, $end = '...')}}</span>
                           </div>
-                          <h6 class="posts__title"><a href="{{ route('articles',$articles->id) }}">{{$articles->titre}}</a></h6>
+                          <h6 class="posts__title"><a href="{{ route('articles',$articles->id) }}">{{str_limit($articles->titre, $limit = 20, $end = '...')}}</a></h6>
                           <time datetime="2016-08-17" class="posts__date">August 17th, 2016</time>
                           <div class="posts__excerpt">
                               {{str_limit($articles->contenu, $limit = 40, $end = '...')}}
@@ -455,22 +473,16 @@
 
             <!-- Widget: Social Buttons -->
             <aside class="widget widget--sidebar widget-social">
+
               <a href="#" class="btn-social-counter btn-social-counter--fb" target="_blank">
                 <div class="btn-social-counter__icon">
                   <i class="fa fa-facebook"></i>
                 </div>
-                <h6 class="btn-social-counter__title">Like Our Facebook Page</h6>
+                <h6 class="btn-social-counter__title">Notre Page facebook</h6>
                 <span class="btn-social-counter__count"><span class="btn-social-counter__count-num"></span> Likes</span>
                 <span class="btn-social-counter__add-icon"></span>
               </a>
-              <a href="#" class="btn-social-counter btn-social-counter--twitter" target="_blank">
-                <div class="btn-social-counter__icon">
-                  <i class="fa fa-twitter"></i>
-                </div>
-                <h6 class="btn-social-counter__title">Follow Us on Twitter</h6>
-                <span class="btn-social-counter__count"><span class="btn-social-counter__count-num"></span> Followers</span>
-                <span class="btn-social-counter__add-icon"></span>
-              </a>
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmadagascarbasketball%2F&tabs=timeline&width=378&height=500&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=1486609321428645" width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
               <a href="#" class="btn-social-counter btn-social-counter--rss" target="_blank">
                 <div class="btn-social-counter__icon">
                   <i class="fa fa-rss"></i>
@@ -485,12 +497,13 @@
 
             <!-- Widget: Popular News -->
             <aside class="widget widget--sidebar card widget-popular-posts">
+
               <div class="widget__title card__header">
                 <h4>Article du mois</h4>
               </div>
 
 
-              <div class="widget__content card__content">
+              <div class="widget__content card__content" id="slider-thumbs">
                 <ul class="posts posts--simple-list">
                 
                                   
@@ -502,7 +515,7 @@
                     </figure>
                     <div class="posts__inner">
                       <div class="posts__cat">
-                        <span class="label posts__cat-label">{{$art->titre}}</span>
+                        <span class="label posts__cat-label">{{str_limit($art->titre, $limit = 20, $end = '...')}}</span>
                       </div>
                       <h6 class="posts__title"><a href="{{ route('articles',$art->id) }}">{{str_limit($art->contenu, $limit = 40, $end = '...')}}</a></h6>
                       <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>

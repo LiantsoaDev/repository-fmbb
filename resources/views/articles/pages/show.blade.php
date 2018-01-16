@@ -34,11 +34,7 @@
 
 
 <div class="col-md-6">
-    <div class="alert alert-dark" role="alert">
-        
-
-        
-    </div>
+   
 
 
     <div class="userWidget-1">

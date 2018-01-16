@@ -124,7 +124,7 @@
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <ul class="footer-nav">
-                  <li class="footer-nav__item"><a href="#">Home</a></li>
+                  <li class="footer-nav__item"><a href="{{ route('accueil') }}">Home</a></li>
                   <li class="footer-nav__item"><a href="#">Features</a></li>
                   <li class="footer-nav__item"><a href="#">Statistics</a></li>
                   <li class="footer-nav__item"><a href="#">The Team</a></li>
@@ -225,6 +225,33 @@
   <!-- Javascript Files
   ================================================== -->
   <!-- Core JS -->
+  <script>
+
+        jQuery(document).ready(function($) {
+        
+        $('#myCarousel').carousel({
+                interval: 5000
+        });
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click(function () {
+        var id_selector = $(this).attr("id");
+        try {
+            var id = /-(\d+)$/.exec(id_selector)[1];
+            console.log(id_selector, id);
+            jQuery('#myCarousel').carousel(parseInt(id));
+        } catch (e) {
+            console.log('Regex failed!', e);
+        }
+        });
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid.bs.carousel', function (e) {
+                  var id = $('.item.active').data('slide-number');
+                $('#carousel-text').html($('#slide-content-'+id).html());
+        });
+        });
+
+  </script>
   <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../front/assets/js/core-min.js"></script>
   

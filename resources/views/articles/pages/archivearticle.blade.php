@@ -23,7 +23,7 @@
                 <!--===================================================-->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">ARTICLES</h3>
+                        <h3 class="panel-title">ARTICLES Archivée</h3>
                     </div>
                     <div class="panel-body">
 
@@ -35,10 +35,7 @@
                 <div class="row">
                     <div class="col-sm-6 table-toolbar-left">
                         <div class="btn-group">
-                        <a class="btn btn-primary btn-labeled fa fa-plus-circle" href="{{ route('create') }}">Ajouter Article</a>
-                        </div>
-                        <div class="btn-group">
-                        <a class="btn btn-warning btn-labeled fa fa-recycle" href="{{ route('archive') }}">Voir Articles Archivée</a>
+                        <a class="btn btn-warning btn-labeled fa fa-toggle-left" href="{{ route('index') }}">Accueil Article</a>
                         </div>
                     </div>
                 </div>
@@ -71,62 +68,36 @@
                         <th>tag</th>
                         <th>Seo</th>
                         <th>Date d'insertion</th>
-                        <th>Statuts</th>
-                        <th>Publication</th>
-                        <th>Actions</th>
+
+                        <th>Recuperation</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($articles as $article)
-
-                    @if($article->archive == 0)
+                @foreach($arch as $archive)
+                        @if($archive->archive == 1)
                         <tr>
-                            <td>{{ $article->id }}</td>
+                            <td>{{ $archive->id }}</td>
                             
-                            <td> {{str_limit($article->titre, $limit = 20, $end = '...')}} </td>
+                            <td> {{ $archive->titre }} </td>
                             
-                            <td>{{ $article->tag }}</td>
+                            <td>{{ $archive->tag }}</td>
                             
-                            <td>{{ $article->seo }}</td>
+                            <td>{{ $archive->seo }}</td>
                             
-                            <td><span class="text-muted"><i class="fa fa-clock-o"> </i>  {{ $article->created_at->format('d-m-Y') }}</span></td>
-                            
-                            <td>
-                                
-                                <div>
-                                    @if($article->statut == 1)
-                                    <span class="label label-table label-mint">Publié</span>
-                                    @elseif($article->statut == 0)
-                                    <span class="label label-table label-dark">En attente..</span>
-                                    @endif
-                                </div>
-
-                            </td>
-                            
-                            <td>
-                                @if($article->statut == 0)
-                                    <a class="label label-table label-success" href="{{ route('publication',$article->id) }}">Publier</a>
-                                @elseif($article->statut == 1)
-                                <a class="label label-table label-default"  href="{{ route('depublication',$article->id) }}">Retirer</a>
-                                @endif
-                            </td>
+                            <td><span class="text-muted"><i class="fa fa-clock-o"> </i>  {{ $archive->created_at->format('d-m-Y') }}</span></td>
 
                             <td>
-                                <a class="btn btn-info btn-icon icon-lg fa fa-pencil"  href="{{ route('edit',$article->id) }}"></a>
-                                <a class="btn btn-mint btn-icon icon-lg fa fa-eye" href="{{ route('show',$article->id) }}"></a>
-                                <a class="btn btn-danger btn-icon icon-lg fa fa-trash" href="{{ route('delete',$article->id) }}"></a>                    
+                                <a class="btn btn-info btn-icon icon-lg fa fa-reply"  href="{{ route('desarchive',$archive->id) }}"></a>                    
                             </td>
                             
                         </tr>
-                    @else
-                    
-                    @endif
-
+                        @elseif($archive->archive == 0)
+                        @endif
                      @endforeach
 
                     </tbody>
                 </table>
-                {{ $articles->links() }}                                  
+                {{ $arch->links() }}                                  
 
             </div>
         
