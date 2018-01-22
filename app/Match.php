@@ -60,4 +60,14 @@ class Match extends Model
             return self::where('idmatch',$idmatch)->update($update);
 
     }
+
+    /**
+    * Fonction signaler fin de match avec dernier quart-temps
+    * @param integer idmatch
+    * @return null
+    */
+    public function finDeMatch(EquipeController $instance, $idmatch)
+    {
+        dd($instance);
+    }
 }

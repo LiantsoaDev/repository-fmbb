@@ -15,7 +15,8 @@ class Fichiers extends Migration
     {
         Schema::create('fichiers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom');
+            $table->string('urlimage');
+            $table->string('urlvideo');
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@ Route::prefix('authent')->group(function(){
 });
 /*---------------------------------------------------------------------*/
 
-/* --------------------------Route Articles-------------------------- */
+/* --------------------------Route ARTICLES-------------------------- */
 
 Route::prefix('articles')->group(function(){
     
@@ -36,12 +36,42 @@ Route::prefix('articles')->group(function(){
         Route::get('/edit/{id}',array('as'=>'edit','uses'=>'ArticlesController@edit'));
         Route::post('/update/{id}',array('as'=>'update','uses'=>'ArticlesController@update'));
         Route::get('/delete/{id}',array('as'=>'delete','uses'=>'ArticlesController@destroy'));
+//suppression d'archive
+        Route::get('/deletearchive/{id}',array('as'=>'deletearchive','uses'=>'ArticlesController@deletearchive'));
+       
 
-/*----------------------------route images----------------------------------*/
-        Route::get('/uploadimage', array('as'=>'uploadimage','uses'=>'ArticlesController@uploadForm'));
-        Route::post('/upload', array('as'=>'upload','uses'=>'ArticlesController@uploadSubmit'));
+/*----------------------------route Archive d'article----------------------------------*/
+        Route::get('/archive', array('as'=>'archive','uses'=>'ArticlesController@archive'));
+        Route::get('/desarchive/{id}', array('as'=>'desarchive', 'uses'=>'ArticlesController@desarchive'));
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------route publicite----------------------------------*/
+        Route::get('/publicite', array('as'=>'publicite','uses'=>'PubController@indexpub'));
+        Route::post('/insertpub', array('as'=>'insertpub','uses'=>'PubController@storepub'));
+        Route::get('/publierpub/{id}', array('as'=>'publierpub','uses'=>'PubController@publierpub'));
+        Route::get('/supprpub/{id}', array('as'=>'supprpub', 'uses'=>'PubController@supprpub'));
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------route image-fond----------------------------------*/
+
+        Route::get('/fond',array('as'=>'fond','uses'=>'ImagePubController@fond'));
+        Route::post('/insertimgpub',array('as'=>'insertimgpub','uses'=>'ImagePubController@insertimages'));
+        Route::get('/destroy/{id}',array('as'=>'destroy','uses'=>'ImagePubController@destroy'));
+/*----------------------------------------------------------------------------*/
+
+/*----------------------------route publication---------------------------*/
+
+        //publier articles
+        Route::get('/publication/{id}', array('as'=>'publication','uses'=>'ArticlesController@publication'));
+        Route::get('/depublication/{id}', array('as'=>'depublication','uses'=>'ArticlesController@depublication'));
+
+        //publier Images de fond
+        Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));
+
+/*-------------------------------------------------------------------------*/
     
     });
+
 
 /*-----------------------------Backoffice admin lints-------------------------------------------- */
 
@@ -70,3 +100,15 @@ Route::prefix('admin')->group(function () {
     Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
         
 });
+
+
+/**----------------------------------------------Front-end jersam---------------------------------------------------- */
+
+Route::prefix('front')->group(function(){
+    
+        Route::get('/accueil',array('as'=>'accueil','uses'=>'FrontController@index'));
+        Route::get('/articles/{id}',array('as'=>'articles','uses'=>'FrontController@showarticles')); 
+       
+    });
+
+/**----------------------------------------------Fin Front-end jersam--------------------------------------------------*/

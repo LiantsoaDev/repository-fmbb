@@ -191,74 +191,147 @@ class MatchsController extends Controller
                 {
                     foreach($array[$b] as $key => $value)
                     {
-                        if( is_null($array[$b][$key]) )
+                        $previous = $b - 1;
+                        if( is_null($array[$b][$key]) && $array[$previous][$key] <= $scores[$b] )
                         {
                             $array[$b][$key] = intval($scores[$b]);
                             break;
                         }
+                        else
+                        {
+                            return redirect()->route('admin.show-update-match',$request->post('matchref'))->with('error','La valeur entrée n\'est pas acceptée ! ');
+                        }
                     }
                 }
             }
-           
              //inserer dans Point ( 2 Teams )
             for($e=0; $e<count($listes); $e++)
                 $this->point->updatePoint( $request->post('matchref') , $listes[$e] , $array[$e] );
         }
-         //verification quart4 
-        die();
-        
         //afficher les scores du match de chaque periode
-        for( $c=0; $c<count($listes); $c++ )
-        {
-            $quarts[] = $this->point->getAllQuarts($listes[$c],'idequipe');
-            $boucleInArrayNotConvert[] = $this->affichageInObjectUpdateMatch( json_decode(json_encode($quarts[$c]),true), $listes[$c] , $c+1 );
-        }
+        $resultatPoint[] = Point::where('idmatch', $request->post('matchref') )->get(['idequipe','quart1','quart2','quart3','quart4']);
+   
+        $resultats = $this->affichageScoreMatch(null, $request->post('matchref') , new EquipesController($request->post('one')), new EquipesController($request->post('two')), $resultatPoint);   
         
-        $boucleInArray[0]['equipe1'] = $boucleInArrayNotConvert[0]['equipe1'];
-        $boucleInArray[0]['equipe2'] = $boucleInArrayNotConvert[1]['equipe2'];
-        
-        $boucleInObject = json_decode(json_encode($boucleInArray), false);
-        
-        $equipeOne = new EquipesController($request->post('one'));
-        $equipeTwo = new EquipesController($request->post('two'));
-        $instancematch = new MatchsController();
-        $period = $instancematch->periode;
-        $start = $instancematch->demarrage;
-        $affichage = $instancematch->affichage;
-        $boucle = $boucleInObject;
-        $equipe1 = json_decode(json_encode($equipeOne),false)->equipe;
-        $equipe2 = json_decode(json_encode($equipeTwo),false)->equipe;
-        $idmatch = $request->post('matchref');
+        $result = json_decode(json_encode($resultats), false );
 
-        $equipe1->score = $this->point->getlastPoint($request->post('matchref'), $request->post('one'));
-        $equipe2->score = $this->point->getlastPoint($request->post('matchref'), $request->post('two'));
-        
-        return view('admin.showmatch',compact('equipe1','equipe2','period','start','affichage','boucle','idmatch'));
+        return view('admin.updatematchlive',compact('result'));
     }
 
     /**
-    * Fonction affichage de la boucle en tant qu'Object 
-    * @param Array $arrays : tableau contenant listes des quarts ; integer equipe : id equipe ; 
-    * @return Object 
+    * Fonction Commencer un Match ou Match en cours
+    * @param integer idmatch
+    * @return array Match
     */
-    public function affichageInObjectUpdateMatch($arrays, $equipe, $indice)
+    public function MatchEnCours($idmatch)
     {
-        if( is_array($arrays) )
-        {
-            for( $e=0; $e<count($arrays); $e++ )
+            $rencontre = $this->match->getmatchbyid($idmatch);
+            $team1 = new EquipesController($rencontre->EQUIPE_ID1);
+            $team2 = new EquipesController($rencontre->EQUIPE_ID2);
+
+            //result 0 : initialiser Match
+            //result 1 : start Match
+            //result 2 : Match déjà en cours
+            $main = $this->main($idmatch, $rencontre->EQUIPE_ID1, $rencontre->EQUIPE_ID2);
+            $resultat[] = Point::where('idmatch', $idmatch )->get(['idequipe','quart1','quart2','quart3','quart4']);
+
+            $arrayScore = $this->affichageScoreMatch($main, $idmatch, $team1, $team2, $resultat);   
+            
+            return json_decode(json_encode($arrayScore),false);
+    }
+
+    /** 
+    * Fonction Affichage resultat Score Match
+    * @param integer idmatch
+    * @return Array scoreMatch
+    */
+    public function affichageScoreMatch($main=null, $idmatch, $team1, $team2, $result=null)
+    {
+        $equipe1 = $team1->equipe;
+        $equipe2 = $team2->equipe;
+
+            if( is_array($main) ){
+                $equipe1->score = $main['scoreEquipeUn'];
+                $equipe2->score = $main['scoreEquipeDeux'];
+            }
+            elseif( $main =='0' || $main == '1' )
             {
-                //boucle->equipe1->logo
-                $indicequart = $e+1;
-                if( !is_null( $arrays[$e]['quart'.$indicequart] ) ){
-                    $boucle['equipe'.$indice]['logo'] = $this->equipe->findequipe($equipe)->LOGOURL;
-                    $boucle['equipe'.$indice]['sigle'] = $this->equipe->findequipe($equipe)->SIGLE;
-                    $boucle['equipe'.$indice]['genre'] = $this->equipe->findequipe($equipe)->SEXE;
-                    $boucle['equipe'.$indice]['score'] = $arrays[$e]['quart'.$indicequart];
+                $equipe1->score = $this->score;
+                $equipe2->score = $this->score;
+            }
+
+            $affichage = $this->affichage;
+
+            if( is_null($this->point->getOneQuarts($idmatch,'idmatch')->quart1) )
+            {
+                $boucleArray = ['periode' => $this->periode ,'start' => $this->demarrage, 'equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
+                $boucle[] = json_decode(json_encode($boucleArray));
+            }
+            elseif( !empty($result) )
+            {   
+                $parser = json_decode(json_encode($result),false);
+                $boucle = $this->parserResultPoint($parser[0],$idmatch,$equipe1,$equipe2);
+            }
+            
+            return array('equipe1' => $equipe1, 'equipe2' => $equipe2, 'affichage' => $affichage ,'boucle' => $boucle ,'idmatch' => $idmatch);
+    }
+
+    /**
+    * Fonction parser resultat score Point pour afficher les quarts
+    * @param Array result
+    * @return Array parser
+    */
+    public function parserResultPoint($result,$idmatch,$equipe1=null,$equipe2=null)
+    {
+        //appelle fonction getlastpointMatch
+        $quarts = ['quart1','quart2','quart3','quart4'];
+        
+        for( $i=0; $i<count($result); $i++ )
+        {
+            foreach ($result[$i] as $key => $value)
+            {
+                if( is_null($result[$i]->$key) )
+                {
+                    unset($result[$i]->$key);
+                }
+                else
+                {
+                    $cle = array_search($key,$quarts);
+                    $tableauIndice[] = $quarts[$cle];
                 }
             }
         }
-       
-        return $boucle;
+        //clés des quarts non null
+        $cleValue = array_values(array_unique($tableauIndice));
+        //convertir en Array
+        for($j=0; $j<count($cleValue); $j++ )
+        {
+            $resultat = json_decode(json_encode($result),true);
+            //$bcl->Quarttemps1->equipe2->sigle 
+                $q=$j+1;
+                $periode = '<button class="btn btn-primary btn-labeled fa fa-clock-o">Quart temps '.$q.'</button>';
+                $resultats = json_decode(json_encode($resultat),true);
+                $tableau[] = array();
+                for( $i=0; $i<count($resultat); $i++ )
+                {
+                    $b = $i+1;
+                    $tableau[$j]['periode'] = $periode;
+                    $tableau[$j]['start'] = '<button class="btn btn-success btn-labeled fa fa-spinner">En cours</button>';
+                    $tableau[$j]['equipe'.$b]['sigle'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->SIGLE;
+                    $tableau[$j]['equipe'.$b]['logo'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->LOGOURL;
+                    $tableau[$j]['equipe'.$b]['genre'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->SEXE;
+                    $tableau[$j]['equipe'.$b]['nom'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->NAME;
+                    $tableau[$j]['equipe'.$b]['region'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->region;
+                    $tableau[$j]['equipe'.$b]['categorie'] = $this->equipe->getinfoequipebyid($resultats[$i]['idequipe'])->categorie;
+                    $tableau[$j]['equipe'.$b]['score'] = $resultats[$i][$cleValue[$j]];
+                    if( $equipe1->IDEQUIPE  == $resultats[$i]['idequipe'] )
+                        $equipe1->score = $resultats[$i][$cleValue[$j]];
+                    if( $equipe2->IDEQUIPE  == $resultats[$i]['idequipe'] )
+                        $equipe2->score = $resultats[$i][$cleValue[$j]];
+                } 
+        }   
+         return json_decode(json_encode($tableau),false);
     }
+
 
 }

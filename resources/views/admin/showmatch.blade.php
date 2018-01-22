@@ -5,12 +5,12 @@
                      <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
                                     <div class="avatar bg-dark">
-                                        <img src="../../images/{{ $equipe1->LOGOURL }}" alt="avatar">
-                                        <div class="name osLight"> {{ $equipe1->SIGLE }} </div>
-                                        <div class="col-sm-3 pull-right"><h1> {{$equipe1->score}} </h1></div>
+                                        <img src="../../images/{{ $result->equipe1->LOGOURL }}" alt="avatar">
+                                        <div class="name osLight"> {{ $result->equipe1->SIGLE }} </div>
+                                        <div class="col-sm-3 pull-right"><h1> {{$result->equipe1->score}} </h1></div>
                                     </div>
-                                    <div class="title"> {!! $equipe1->NAME !!} </div>
-                                    <div class="address"> {{ $equipe1->region }} </div>
+                                    <div class="title"> {!! $result->equipe1->NAME !!} </div>
+                                    <div class="address"> {{ $result->equipe1->region }} </div>
                                     <ul class="fullstats">
                                         <li> <span>0</span>Victoires </li>
                                         <li> <span>0</span>Défaites </li>
@@ -23,12 +23,12 @@
                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
                                     <div class="avatar bg-dark">
-                                        <img src="../../images/{{ $equipe2->LOGOURL }}" alt="avatar">
-                                        <div class="name osLight"> {{ $equipe2->SIGLE }} </div>
-                                        <div class="col-sm-3 pull-right"><h1> {{$equipe2->score}} </h1></div>
+                                        <img src="../../images/{{ $result->equipe2->LOGOURL }}" alt="avatar">
+                                        <div class="name osLight"> {{ $result->equipe2->SIGLE }} </div>
+                                        <div class="col-sm-3 pull-right"><h1> {{ $result->equipe2->score }} </h1></div>
                                     </div>
-                                    <div class="title"> {!! $equipe2->NAME !!} </div>
-                                    <div class="address"> {{ $equipe2->region }} </div>
+                                    <div class="title"> {!! $result->equipe2->NAME !!} </div>
+                                    <div class="address"> {{ $result->equipe2->region }} </div>
                                     <ul class="fullstats">
                                          <li> <span>0</span>Victoires </li>
                                         <li> <span>0</span>Défaites </li>
@@ -41,7 +41,7 @@
                                 @include('admin.notification')
                              </div>
         </div>
-        @foreach($boucle as $bcl)
+        @foreach($result->boucle as $bcl)
         <div class="row">
             <div class="col-xs-8">
                 <div class="panel">
@@ -60,9 +60,9 @@
                                       </div>
                                       <div class="col-xs-2">
                                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
-                                               {!! $period !!}
+                                               {!! $bcl->periode !!}
                                                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS</h3>
-                                                {!! $start !!}
+                                                {!! $bcl->start !!}
                                                  <br>   
                                              </div>
                                       </div>
@@ -81,7 +81,7 @@
         </div>
         @endforeach
 
-        @if($affichage)
+        @if($result->affichage)
         <div class="row">
             <div class="col-xs-8">
                 <div class="panel">
@@ -90,9 +90,9 @@
                                     <div class="panel-body">
                                     <form method="POST" action="{{route('match.start')}}">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <input type="hidden" name="one" value="{{$equipe1->IDEQUIPE}}">
-                                    <input type="hidden" name="two" value="{{$equipe2->IDEQUIPE}}">
-                                    <input type="hidden" name="matchref" value="{{$idmatch}}">
+                                    <input type="hidden" name="one" value="{{ $result->equipe1->IDEQUIPE }}">
+                                    <input type="hidden" name="two" value="{{ $result->equipe2->IDEQUIPE }}">
+                                    <input type="hidden" name="matchref" value="{{ $result->idmatch }}">
                                        <div class="col-xs-5">
                                             <div class="form-group">
                                                 <div class="col-xs-5">

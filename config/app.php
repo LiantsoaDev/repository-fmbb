@@ -180,6 +180,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         App\Providers\DynamicClassname::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
 
     ],
 

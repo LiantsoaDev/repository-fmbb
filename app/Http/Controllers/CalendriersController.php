@@ -21,9 +21,11 @@ class CalendriersController extends Controller
     private $event;
     private $match;
     private $calendrier;
+    private $point;
 
     public function __construct()
     {
+        $this->point = new Point();
     	$this->equipe = new Equipe();
         $this->poule = new Poule();
         $this->event = new Event();
@@ -79,37 +81,19 @@ class CalendriersController extends Controller
     */
     public function showupdatematch($idmatch)
     {
+        $matchinstance = new MatchsController();
         if( $this->calendrier->verifictionModifiableMatch($idmatch) )
         {
-            $rencontre = $this->match->getmatchbyid($idmatch);
-            $team1 = new EquipesController($rencontre->EQUIPE_ID1);
-            $team2 = new EquipesController($rencontre->EQUIPE_ID2);
-            $instancematch = new MatchsController();
-
-            $equipe1 = $team1->equipe;
-            $equipe2 = $team2->equipe;
-            //result 0 : initialiser Match
-            //result 1 : start Match
-            //result 2 : Match déjà en cours
-            $main = $instancematch->main($idmatch, $rencontre->EQUIPE_ID1, $rencontre->EQUIPE_ID2);
-     
-            if( $main == '2' ){
-                $equipe1->score = $main['scoreEquipeUn'];
-                $equipe2->score = $main['scoreEquipeDeux'];
-            }
-            elseif( $main =='0' || $main == '1' )
-            {
-                $equipe1->score = $instancematch->score;
-                $equipe2->score = $instancematch->score;
-            }
-            $period = $instancematch->periode;
-            $start = $instancematch->demarrage;
-            $affichage = $instancematch->affichage;
-
-            $boucleArray = ['equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
-            $boucle[] = json_decode(json_encode($boucleArray));
-            
-            return view('admin.showmatch',compact('equipe1','equipe2','period','start','affichage','boucle','idmatch'));
+           $getotal = $this->point->getTotalbyId($idmatch);
+           if( is_null($getotal) )
+           {
+                $result = $matchinstance->MatchEnCours($idmatch);
+           } 
+           else 
+           {
+                $result = $matchinstance->getResultatMatch($idmatch);
+           }   
+           return view('admin.showmatch',compact('result')); 
         }
         else
         {
