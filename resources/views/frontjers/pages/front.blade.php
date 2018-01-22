@@ -244,7 +244,7 @@
               <div class="card__content">
                 <!-- Posts List -->
                 <div class="posts posts--cards posts--cards-thumb-left post-list">
-
+<!--=============================================ARTICLES DE D'ANNEE==================================================-->
 
 @foreach($article as $articles)
 <a href="{{ route('articles',$articles->id) }}">
@@ -253,7 +253,7 @@
                       <figure class="posts__thumb">
 
                                       
-                                          <img src="../../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
+                              <img src="../../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
                                       
                       
                       </figure>
@@ -288,7 +288,8 @@
                   </div>
                   </a>
 @endforeach
-
+{{$article->links()}}
+<!--=============================================FIN ARTICLES DE D'ANNEE==================================================-->
                 </div>
                 <!-- Posts List / End -->
               </div>

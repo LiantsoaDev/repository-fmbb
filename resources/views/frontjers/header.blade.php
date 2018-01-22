@@ -83,7 +83,7 @@
     <!-- Header Mobile -->
     <div class="header-mobile clearfix" id="header-mobile">
       <div class="header-mobile__logo">
-        <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="header-mobile__logo-img"></a>
+        <a href="index.html"><img src="../../app/photos/logofmbb.png" srcset="../../app/photos/logofmbb.png" alt="Alchemists" class="header-mobile__logo-img"></a>
       </div>
       <div class="header-mobile__inner">
         <a id="header-mobile__toggle" class="burger-menu-icon"><span class="burger-menu-icon__line"></span></a>
@@ -142,7 +142,7 @@
           <div class="header__primary-inner">
             <!-- Header Logo -->
             <div class="header-logo">
-              <a href="index.html"><img src="../../front/assets/images/logo.png" alt="Alchemists" srcset="../../front/assets/images/logo@2x.png 2x" class="header-logo__img"></a>
+              <a href="index.html"><img src="../../app/photos/logofmbb.png" alt="fmbb" style="width:180px;height:180px;" srcset="../../app/photos/logofmbb.png" class="header-logo__img"></a>
             </div>
             <!-- Header Logo / End -->
   
@@ -153,8 +153,8 @@
                   
                 </li>
                 <li class=""><a href="#">Classements</a>
-                  <div class="main-nav__megamenu clearfix">
-                    <ul class="col-lg-2 col-md-3 col-xs-12 main-nav__ul">
+                  
+                    <ul class="main-nav__sub">
                       <li class="main-nav__title">Features</li>
                       <li><a href="features-shortcodes.html">Shortcodes</a></li>
                       <li><a href="features-typography.html">Typography</a></li>
@@ -165,90 +165,7 @@
                       <li><a href="features-search-results.html">Search Results</a></li>
                       <li><a href="page-contacts.html">Contact Us</a></li>
                     </ul>
-                    <ul class="col-lg-2 col-md-3 col-xs-12 main-nav__ul">
-                      <li class="main-nav__title">Main Features</li>
-                      <li><a href="team-overview.html">Team Overview</a></li>
-                      <li><a href="team-roster-2.html">Team Roster</a></li>
-                      <li><a href="player-stats.html">Player Stats</a></li>
-                      <li><a href="shop-list.html">Shop Page V1</a></li>
-                      <li><a href="shop-grid.html">Shop Page V2</a></li>
-                      <li><a href="shop-cart.html">Shopping Cart</a></li>
-                      <li><a href="shop-wishlist.html">Wishlist</a></li>
-                      <li><a href="shop-checkout.html">Checkout</a></li>
-                    </ul>
-                    <div class="col-lg-4 col-md-3 col-xs-12">
-  
-                      <div class="posts posts--simple-list posts--simple-list--lg">
-                        <div class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The team is starting a new power breakfast regimen</a></h6>
-                            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi nel elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                          <div class="posts__footer card__footer">
-                            <div class="post-author">
-                              <figure class="post-author__avatar">
-                                <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
-                              </figure>
-                              <div class="post-author__info">
-                                <h4 class="post-author__name">James Spiegel</h4>
-                              </div>
-                            </div>
-                            <ul class="post__meta meta">
-                              <li class="meta__item meta__item--likes"><a href="#"><i class="meta-like meta-like--active icon-heart"></i> 530</a></li>
-                              <li class="meta__item meta__item--comments"><a href="#">18</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-  
-                    </div>
-                    <div class="col-lg-4 col-md-3 col-xs-12">
-                      <ul class="posts posts--simple-list">
-                        <li class="posts__item posts__item--category-1">
-                          <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img3-xs.jpg" alt=""></a>
-                          </figure>
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The new eco friendly stadium won a Leafy Award in 2016</a></h6>
-                            <time datetime="2016-08-21" class="posts__date">August 21st, 2016</time>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-2">
-                          <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img1-xs.jpg" alt=""></a>
-                          </figure>
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">Injuries</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">Mark Johnson has a Tibia Fracture and is gonna be out</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img4-xs.jpg" alt=""></a>
-                          </figure>
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The team is starting a new power breakfast regimen</a></h6>
-                            <time datetime="2016-08-21" class="posts__date">August 21st, 2016</time>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                   
                 </li>
                 <li class=""><a href="#">Calendrier</a>
                   <ul class="main-nav__sub">
@@ -463,7 +380,7 @@
  @if(!is_null($fond1))   
         <figure class="hero-unit__img">
          
-          <img src="../../app/photos/{{$fond1->url}}" style="height:500px" alt="Hero Unit Image">
+          <img src="../../app/photos/{{$fond1->url}}" style="height:500px;width:450px;" alt="Hero Unit Image">
         
         </figure>
       @else

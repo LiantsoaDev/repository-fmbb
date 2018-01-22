@@ -43,7 +43,7 @@ class FrontController extends Controller
         //pour les anciennent articles
         $count = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'desc')->count();
       
-        $article = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'desc')->limit(4,$count)->offset(4)->get();
+        $article = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'desc')->limit(4,$count)->offset(4)->paginate(5);
        
         foreach($article as $url)
                         {
@@ -157,7 +157,7 @@ class FrontController extends Controller
         /**----------------------------------------------------------------------------------------------- */
         return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','pub3url','pub3','select'
         ,'img1','img','slt','article4','artMois'
-    ))->with('i', (request()->input('page', 1) - 1) * 3);
+    ))->with('i', (request()->input('page', 1) - 1) * 5);
 
 
     }

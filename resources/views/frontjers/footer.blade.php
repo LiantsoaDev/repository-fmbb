@@ -12,7 +12,7 @@
     
                   <!-- Footer Logo -->
                   <div class="footer-logo">
-                    <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="footer-logo__img"></a>
+                    <a href="index.html"><img src="../../app/photos/logofmbb.png" srcset="../../app/photos/logofmbb.png" alt="Alchemists" class="footer-logo__img"></a>
                   </div>
                   <!-- Footer Logo / End -->
     
