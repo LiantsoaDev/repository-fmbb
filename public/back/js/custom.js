@@ -39,3 +39,25 @@
     });
 	
 })(jQuery);	
+
+
+$(document).ready(function() {
+    document.getElementById('pro-image').addEventListener('change', readImage, false);
+    
+    $( ".preview-images-zone" ).sortable();
+    
+    $(document).on('click', '.image-cancel', function() {
+        let no = $(this).data('no');
+        $(".preview-image.preview-show-"+no).remove();
+    });
+});
+
+
+
+
+
+
+//pour Dropzone
+
+
+//Fin pour Dropzone

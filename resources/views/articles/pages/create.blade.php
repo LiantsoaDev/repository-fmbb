@@ -62,59 +62,52 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Titre : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
                                                         <input class="form-control" name="titre" type="text" placeholder="Titre" data-parsley-range="[4, 10]" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Contenu : </label>
-                                                                    <div class="col-sm-6">
-                                                                        <textarea id="demo-textarea-input" rows="5" class="form-control" name="contenu" placeholder="Contenue..."></textarea>
-                                                                    </div>                                                    
+                                                        <div class="col-sm-9">
+                                                        <textarea id="demo-textarea-input" rows="7" name="contenu" class="form-control" placeholder="content ici.."></textarea>
+                                                        </div>                                                        
                                                 </div>
                                                 <div class="form-group wish-tags">
                                                     <label class="col-sm-2 control-label"> Tag : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
+                                                    <input data-role="tagsinput" type="text" value="tag ici.." name="tag" data-parsley-required>
+                                                  <!--  <ul id="jquery-tagIt-primary" class="primary">
+                                                        <li>Tag ici</li>
+                                                        
+                                                    </ul>-->
 
-                                                    <input class="form-control" name="tag" type="text" placeholder="Tag,input" id="tags" data-role="tagsinput" />
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Slug : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
                                                         <input class="form-control" name="slug" type="text" placeholder="Slug.." data-parsley-equalto="#passwordinput" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Seo : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
                                                         <input class="form-control" name="seo" type="text" placeholder="Seo" data-parsley-equalto="" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Catégorie : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
                                                         <input class="form-control" name="categorie" type="text" placeholder="Categorie" data-parsley-equalto="" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
 
-                                                <!--<div class="form-group">
-                                                    <label class="col-sm-2 control-label"> Statut de l'article : </label>
-                                                    <div class="col-sm-6">-->
-                                                        <!-- Default Bootstrap Select -->
-                                                        <!--===================================================-->
-                                                       <!-- <select class="form-control selectpicker" data-style="btn-purple">
-                                                            <option>En cours...</option>
-                                                            <option>Publié</option>
-                                                        </select>-->
-                                                        <!--===================================================-->
-                                                   <!-- </div>
-                                                </div>-->
+                                               
 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Administrateur : </label>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-9">
                                                         <input class="form-control" name="administrateurs_id" type="text" placeholder="Admin" data-parsley-equalto="#passwordinput" data-parsley-group="order" data-parsley-required />
                                                     </div>
                                                 </div>
@@ -123,19 +116,13 @@
 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"> Images : </label>
-                                                    <div class="col-sm-6">
-
-                                                                <div class="form-group">
-
-                                                                    <!--<input type="text" name="urlvideo" placeholder="urlvideo..." /></br></br>-->
-                                                                                
-                                                                    
+                                                    <div class="col-sm-9">
+                                                 
+                                                                <div class="form-group">         
                                                                         <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
                                                                     
                                                                 </div>
-                                                                <div class="row" style="height:100px" id="image_preview"></div>
-                                                        
-
+                                                               
                                                     </div>
                                                 </div>
 
@@ -169,4 +156,14 @@
                     <!--End page content-->
                 </section>
                 <!--===================================================-->
+
+
+
+
+<script>
+
+//file upload
+
+//file upload
+</script>
 @include('articles.footer')

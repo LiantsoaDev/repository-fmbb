@@ -6,9 +6,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>fmbb</title>
+
+  <!--========================PERSONNEL=========================-->
+     
+  <!--=====================FIN PERSONNEL============================-->
+
         <link rel="shortcut icon" href="../../back/img/favicon.ico">
         <!--STYLESHEET-->
         <!--=================================================-->
+        <!--Roboto Slab Font [ OPTIONAL ] -->
         <!--Roboto Slab Font [ OPTIONAL ] -->
         <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
@@ -22,18 +28,46 @@
         <link href="../../back/plugins/switchery/switchery.min.css" rel="stylesheet">
         <!--Bootstrap Select [ OPTIONAL ]-->
         <link href="../../back/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+        <!--Bootstrap Tags Input [ OPTIONAL ]-->
+        <link href="../../back/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+        <!--Jquery Tag It [ OPTIONAL ]-->
+        <link href="../../back/plugins/tag-it/jquery.tagit.css" rel="stylesheet">
+        <!--Ion.RangeSlider [ OPTIONAL ]-->
+        <link href="../../back/plugins/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet">
+        <link href="../../back/plugins/ion-rangeslider/ion.rangeSlider.skinNice.css" rel="stylesheet">
+        <!--Chosen [ OPTIONAL ]-->
+        <link href="../../back/plugins/chosen/chosen.min.css" rel="stylesheet">
+        <!--noUiSlider [ OPTIONAL ]-->
+        <link href="../../back/plugins/noUiSlider/jquery.nouislider.min.css" rel="stylesheet">
+        <link href="../../back/plugins/noUiSlider/jquery.nouislider.pips.min.css" rel="stylesheet">
+        <!--Bootstrap Timepicker [ OPTIONAL ]-->
+        <link href="../../back/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <!--Bootstrap Datepicker [ OPTIONAL ]-->
+        <link href="../../back/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
+        <!--Dropzone [ OPTIONAL ]-->
+        <link href="../../back/plugins/dropzone/dropzone.css" rel="stylesheet">
+        <!--Summernote [ OPTIONAL ]-->
+        <link href="../../back/plugins/summernote/summernote.min.css" rel="stylesheet">
         <!--Demo [ DEMONSTRATION ]-->
         <link href="../../back/css/demo/jasmine.css" rel="stylesheet">
         <!--SCRIPT-->
-        <!--========================http://www.expertphp.in/js/jquery.form.js=========================-->
+        <!--=================================================-->
         <!--Page Load Progress Bar [ OPTIONAL ]-->
         <link href="../../back/plugins/pace/pace.min.css" rel="stylesheet">
         <script src="../../back/plugins/pace/pace.min.js"></script>
+        <!--SCRIPT-->
+        <!--========================http://www.expertphp.in/js/jquery.form.js=========================-->
+        <!--Page Load Progress Bar [ OPTIONAL ]-->
+        <!--<link href="../../back/plugins/pace/pace.min.css" rel="stylesheet">
+        <script src="../../back/plugins/pace/pace.min.js"></script>
         <script src="../../back/js/dropzone.js"></script>
         <script type="text/javascript" src="../../back/js/jquery.form.js"></script>
-    </head>
-
-    <script>
+    	<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>-->
+  <script>
+         
+  </script>
+  
+<script>
         jQuery(document).ready(function($){
               $('.deleteGroup').on('submit',function(e){
         if(!confirm('Do you want to delete this item?')){
@@ -41,9 +75,9 @@
         }
       });
 });
-    </script>
+</script>
 
-    <style>
+<style>
     
     #formdiv {
   text-align: center;
@@ -103,6 +137,9 @@
 } 
     
     </style>
+
+    </head>
+
 
 
     <body>

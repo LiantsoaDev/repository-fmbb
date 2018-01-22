@@ -104,15 +104,13 @@
                             
                         </div>
                         
-                        <div class="row" id="image_preview">
-
+                        <div class="row">
                             
-                        @foreach(explode('|',$images) as $url)
-                                <img src="../../app/photos/{{$url}}" style="height:100px" alt="...">
-                        @endforeach
+                                @foreach(explode('|',$images) as $key => $url)
+                                            <img src="../../app/photos/{{$url}}" key="{{$key}}" class="img-rounded img-sm" alt="..."> 
+                                @endforeach
                             
-
-                        </div>
+                            </div>
                         
 
                 </div>

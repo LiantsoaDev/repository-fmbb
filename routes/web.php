@@ -36,7 +36,9 @@ Route::prefix('articles')->group(function(){
         Route::get('/edit/{id}',array('as'=>'edit','uses'=>'ArticlesController@edit'));
         Route::post('/update/{id}',array('as'=>'update','uses'=>'ArticlesController@update'));
         Route::get('/delete/{id}',array('as'=>'delete','uses'=>'ArticlesController@destroy'));
-
+//suppression d'archive
+        Route::get('/deletearchive/{id}',array('as'=>'deletearchive','uses'=>'ArticlesController@deletearchive'));
+       
 
 /*----------------------------route Archive d'article----------------------------------*/
         Route::get('/archive', array('as'=>'archive','uses'=>'ArticlesController@archive'));

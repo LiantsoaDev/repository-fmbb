@@ -30,7 +30,7 @@ class ImagePubController extends Controller
     public function fond()
     {
         
-        $image =Imagefond::paginate(4);
+        $image =Imagefond::orderBy('created_at', 'desc')->paginate(4);
 
         return view('articles.pages.imagefond',compact('image'))->with('i', (request()->input('page', 1) - 1) * 4);
 
@@ -102,8 +102,7 @@ class ImagePubController extends Controller
 
         $st2 = DB::table('imagefonds')->where('numfond','2')->where('statut',false)->get()->count();
         $st1 = DB::table('imagefonds')->where('numfond','1')->where('statut',false)->get()->count();
-        //dd($img);
-
+        
     if($img->statut == true)
     {
         
@@ -130,11 +129,9 @@ class ImagePubController extends Controller
         $imdel = Imagefond::find($id);
         $image = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.id',$id)->first()->url;
         
-        File::delete('public/app/photos/$image');
+        File::delete('app/photos/'.$image);
         
         Imagefond::destroy($id);
-
-
                 
         return redirect()->route('fond')->with('warning','Image supprimée!');
 

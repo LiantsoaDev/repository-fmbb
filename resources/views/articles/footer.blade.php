@@ -307,7 +307,16 @@
         <!--=================================================-->
         <!--jQuery [ REQUIRED ]-->
 
+
+
         <script>
+
+
+//file upload
+
+//file upload
+
+
 function preview_images() 
 {
  var total_file=document.getElementById("images").files.length;
@@ -399,13 +408,15 @@ $('#add_more').click(function() {
 
 </script>
 
+<!--<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
-
-<script src="../../back/js/custom.js"></script>
-
+<!--<script src="../../back/js/custom.js"></script>-->
+        <!--jQuery [ REQUIRED ]-->
         <script src="../../back/js/jquery-2.1.1.min.js"></script>
+        <!--jQuery UI [ REQUIRED ]-->
+        <script src="../../back/js/jquery-ui.min.js"></script>
         <!--BootstrapJS [ RECOMMENDED ]-->
         <script src="../../back/js/bootstrap.min.js"></script>
         <!--Fast Click [ OPTIONAL ]-->
@@ -420,8 +431,31 @@ $('#add_more').click(function() {
         <script src="../../back/plugins/switchery/switchery.min.js"></script>
         <!--Bootstrap Select [ OPTIONAL ]-->
         <script src="../../back/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+        <!--Bootstrap Tags Input [ OPTIONAL ]-->
+        <script src="../../back/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+        <!--Bootstrap Tags Input [ OPTIONAL ]-->
+        <script src="../../back/plugins/tag-it/tag-it.min.js"></script>
+        <!--Chosen [ OPTIONAL ]-->
+        <script src="../../back/plugins/chosen/chosen.jquery.min.js"></script>
+        <!--noUiSlider [ OPTIONAL ]-->
+        <script src="../../back/plugins/noUiSlider/jquery.nouislider.all.min.js"></script>
+        <!--Bootstrap Timepicker [ OPTIONAL ]-->
+        <script src="../../back/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <!--Bootstrap Datepicker [ OPTIONAL ]-->
+        <script src="../../back/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+        <!--Dropzone [ OPTIONAL ]-->
+        <script src="../../back/plugins/dropzone/dropzone.min.js"></script>
+        <!--Dropzone [ OPTIONAL ]-->
+        <script src="../../back/plugins/ion-rangeslider/ion.rangeSlider.min.js"></script>
+        <!--Masked Input [ OPTIONAL ]-->
+        <script src="../../back/plugins/masked-input/jquery.maskedinput.min.js"></script>
+        <!--Summernote [ OPTIONAL ]-->
+        <script src="../../back/plugins/summernote/summernote.min.js"></script>
         <!--Fullscreen jQuery [ OPTIONAL ]-->
         <script src="../../back/plugins/screenfull/screenfull.js"></script>
+        <!--Form Component [ SAMPLE ]-->
+        <script src="../../back/js/demo/form-component.js"></script>
+
     </body>
 
 

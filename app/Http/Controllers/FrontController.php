@@ -34,9 +34,9 @@ class FrontController extends Controller
     public function index()
     {
 
-        $fond1 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut',true)->where(DB::raw('imagefonds.numfond'),'1')->first()->url;
-        
-        $fond2 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut', true)->where(DB::raw('imagefonds.numfond'),'2')->first()->url;
+        $fond1 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut',true)->where(DB::raw('imagefonds.numfond'),'1')->first();
+  
+        $fond2 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut', true)->where(DB::raw('imagefonds.numfond'),'2')->first();
 
         /**------------------------------------------------ARTICLES---------------------------------------- */
        
@@ -101,21 +101,32 @@ class FrontController extends Controller
             
 
 //affichage du premier image
-        $slt = DB::table('articles')->where('statut',true)->where('archive',false)->orderBy('created_at', 'desc')->limit(4)->get();
+        $slt = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('statut',true)->where('archive',false)->orderBy('created_at', 'desc')->limit(4)->get();
         
-        foreach($slt as $imageids)
+           /* foreach($slt as $imageids)
+            {
+               
+                $arrayid[] = $imageids->images_id;
+               
+            }
+            $getimage = $this->image->getimagebyArrayId($arrayid);
+            
+    
+            foreach($getimage as $get)
+            {
+                $prime = explode('|',$get->urlimage);
+                $img1[] = $prime[0];
+            }
+*/
+        if(count($slt) != 0)
         {
-            $arrayid[] = $imageids->images_id;
+            foreach($slt as $get)
+            {
+                $prime = explode('|',$get->urlimage);
+                $get->urlimage = $prime[0];
+            }
         }
         
-        $getimage = $this->image->getimagebyArrayId($arrayid);
-
-        foreach($getimage as $get)
-        {
-            $prime = explode('|',$get->urlimage);
-            $img1[] = $prime[0];
-        }
-     
 
         //Fin Quatre premiers articles du journaux
 
@@ -134,24 +145,20 @@ class FrontController extends Controller
         /**----------------------------------------------PUBLICITE----------------------------------------- */
 
         $pub1 = Publicite::where('statut',true)->where('numpub','1')->get();
-        $pub1url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'1')->first(); 
+        $pub1url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'1')->get(); 
 
 
-        $pub2 = Publicite::where('statut',true)->where('numpub','2')->get();
-        $pub2url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'2')->first();
+        $pub2 = Publicite::where('statut',true)->select('publicites.url')->where('numpub','2')->first();
+        $pub2url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'2')->get();
 
-        $pub3 = Publicite::where('statut',true)->where('numpub','3')->get();
-        $pub3url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'3')->first();
+        $pub3 = DB::table('publicites')->select('publicites.url')->where('statut',true)->where('publicites.numpub','3')->first();
+        $pub3url = DB::table('publicites')->select('publicites.url')->where('publicites.statut',true)->where(DB::raw('publicites.numpub'),'3')->get();
 
-        foreach($pub3 as $puba3)
-        {
-            $prime = explode('|',$puba3->url);
-            $puba3->url = $prime[0];
-        }
         /**----------------------------------------------------------------------------------------------- */
         return view('frontjers.pages.front',compact('article','fond1','fond2','pub1','pub1url','pub2','pub2url','pub3url','pub3','select'
         ,'img1','img','slt','article4','artMois'
-        ));
+    ))->with('i', (request()->input('page', 1) - 1) * 3);
+
 
     }
 
@@ -186,28 +193,32 @@ class FrontController extends Controller
     {
         
         $article = Article::find($id);
-        $images = Image::where('id',$article->images_id)->first();
-        $images2 = Image::where('id',$article->images_id)->first();
-        //article tout sur affichage
-            $artout = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'asc')->get();
-
-            foreach($artout as $url)
+        $images = Image::where('id',$article->images_id)->get();
+        $images2 = Image::where('id',$article->images_id)->get();
+        
+           $artout = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'asc')->get();
+           
+            foreach($images2 as $img)
+            {
+                $affimage =  explode('|',$img->urlimage);
+                   
+            }
+            
+//ici pour recuperer le 1er image de l'article
+            foreach($images as $url)
             {
                 
                 $ty = explode('|',$url->urlimage);
                 
-                //conter les images dans les articles
-                $conter = count($ty);
-                //fin conter
-
                 $url->urlimage = $ty[0];
+                $trop = $url->urlimage;
             }
-        //Fin article tout sur affichage
-        
-        $fond1 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut',true)->where(DB::raw('imagefonds.numfond'),'1')->first()->url;
-        $fond2 = DB::table('imagefonds')->select('imagefonds.url')->where('imagefonds.statut', true)->where(DB::raw('imagefonds.numfond'),'2')->first()->url;
+            
+//Fin ici pour recuperer le 1er image de l'article
 
-        return view('frontjers.pages.articleshow',compact('fond2','fond1','article','images','id','artout','conter'));
+      
+
+        return view('frontjers.pages.articleshow',compact('fond2','fond1','article','images','images2','id','artout','conter','trop','affimage'));
     }
 
     /**

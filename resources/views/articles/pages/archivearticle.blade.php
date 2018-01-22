@@ -87,7 +87,8 @@
                             <td><span class="text-muted"><i class="fa fa-clock-o"> </i>  {{ $archive->created_at->format('d-m-Y') }}</span></td>
 
                             <td>
-                                <a class="btn btn-info btn-icon icon-lg fa fa-reply"  href="{{ route('desarchive',$archive->id) }}"></a>                    
+                                <a class="btn btn-info btn-icon icon-lg fa fa-reply"  href="{{ route('desarchive',$archive->id) }}"></a> 
+                                <a class="btn btn-danger btn-icon icon-lg fa fa-remove" href="{{ route('deletearchive',$archive->id) }}"></a>                   
                             </td>
                             
                         </tr>

@@ -1,53 +1,43 @@
 @include('frontjers.header')
     <!-- Header Featured News================================================== -->
     <div class="posts posts--carousel-featured featured-carousel">
-     
-    @foreach(explode('|',$pub1url->url) as $key => $url)
+
+ <!-- ================================================DEBUT PUB 1================================================ -->                      
+    @foreach($pub1url as $url)
       <div class="posts__item posts__item--category-1">
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
       
-            <img src="../../app/photos/{{$url}}" style="height:280px" alt="">
+            <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
           @foreach($pub1 as $pubs1)
           <div class="posts__inner">
             <div class="posts__cat">
-              <span class="label posts__cat-label">{{$pubs1->description}}</span>
+            
             </div>
-            <h3 class="posts__title">{{$pubs1->contenu}}</h3>
-            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul class="post__meta meta">
-              <li class="meta__item meta__item--views">2369</li>
-              <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
-              <li class="meta__item meta__item--comments">18</li>
-            </ul>
+            
           </div>
           @endforeach
         </a>
       </div>
       @endforeach
 
-      @foreach(explode('|',$pub1url->url) as $key => $url)
+      @foreach($pub1url as $url)
       <div class="posts__item posts__item--category-1">
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
       
-            <img src="../../app/photos/{{$url}}" style="height:280px" alt="">
+            <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
           @foreach($pub1 as $pubs1)
           <div class="posts__inner">
             <div class="posts__cat">
-              <span class="label posts__cat-label">{{$pubs1->description}}</span>
+            
             </div>
-            <h3 class="posts__title">{{$pubs1->contenu}}</h3>
-            <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
-            <ul@foreach class="post__meta meta">
-              <li class="meta__item meta__item--views">2369</li>
-              <li class="meta__item meta__item--likes"><i class="meta-like icon-heart"></i> 530</li>
-              <li class="meta__item meta__item--comments">18</li>
-            </ul>
+            
+            
           </div>
           @endforeach
         </a>
@@ -55,7 +45,7 @@
       @endforeach
 
     </div>
-
+ <!-- ================================================FIN PUB 1================================================ -->                 
 
     <!-- Content
     ================================================== -->
@@ -70,36 +60,31 @@
             <div class="card card--clean">
               <header class="card__header card__header--has-filter">
                 <h4>Nouvelles</h4>
-                <ul class="category-filter category-filter--featured">
-                  <li class="category-filter__item"><a href="#" class="category-filter__link category-filter__link--reset category-filter__link--active">Tout</a></li>
-                  <li class="category-filter__item"><a href="#" class="category-filter__link" data-category="posts__item--category-1">équipes</a></li>
-                  <li class="category-filter__item"><a href="#" class="category-filter__link" data-category="posts__item--category-3">Playoffs</a></li>
-                  <li class="category-filter__item"><a href="#" class="category-filter__link" data-category="posts__item--category-2">Injuries</a></li>
-                </ul>
+                
               </header>
               <div class="card__content">
 
-                <!-- Slider -->
+ <!-- ================================================DEBUT DU SLIDE 4 derniers articles================================================ -->                 
                 <div class="slick posts posts--slider-featured">
-
-@foreach($img1 as $url1)
+@if(count($slt) != 0)
+@foreach($slt as $slts)
                   <div class="posts__item posts__item--category-1">
                     
                       <figure class="posts__thumb">
-                        
-                        <img src="../../app/photos/{{$url1}}" style="height:500px;width:800px;" alt=""><!-- class="posts__link-wrapper" -->
-                        
+                      <a href="{{ route('articles',$slts->id) }}"> 
+                        <img src="../../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt=""><!-- class="posts__link-wrapper" -->
+</a>
                       </figure>
                       
-                      @foreach($slt as $slts)
+                      
                       <div class="posts__inner">
                         <div class="posts__cat">
                           <span class="label posts__cat-label"></span>
                         </div>
-                        <h3 class="posts__title">  <span class="posts__title-higlight">{{str_limit($slts->titre, $limit = 20, $end = '...')}}</span>{{str_limit($slts->contenu, $limit = 20, $end = '...')}}</h3>
+                        <h3 class="posts__title"> <a href="{{ route('articles',$slts->id) }}"> <span class="posts__title-higlight">{{str_limit($slts->titre, $limit = 20, $end = '...')}}</span></a></h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
+                            
                           </figure>
                           <div class="post-author__info">
                             <h4 class="post-author__name"></h4>
@@ -107,25 +92,27 @@
                           </div>
                         </div>
                       </div>
-                      @endforeach
+                      
                     
                   </div>
 @endforeach
-@foreach($img1 as $url1)
+@foreach($slt as $slts)
                   <div class="posts__item posts__item--category-1">
                     
                       <figure class="posts__thumb">
-                        <img src="../../app/photos/{{$url1}}" style="height:500px;width:800px;" alt="">
+                      <a href="{{ route('articles',$slts->id) }}">
+                        <img src="../../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt="">
+</a>
                       </figure>
-                      @foreach($slt as $slts)
+                      
                       <div class="posts__inner">
                         <div class="posts__cat">
                           <span class="label posts__cat-label"></span>
                         </div>
-                        <h3 class="posts__title">  <span class="posts__title-higlight"></span></h3>
+                        <h3 class="posts__title"> <a href="{{ route('articles',$slts->id) }}"> <span class="posts__title-higlight" >{{str_limit($slts->titre, $limit = 20, $end = '...')}}</span></a></h3>
                         <div class="post-author">
                           <figure class="post-author__avatar">
-                            <img src="../../front/assets/images/samples/avatar-4.jpg" alt="Post Author Avatar">
+                            
                           </figure>
                           <div class="post-author__info">
                             <h4 class="post-author__name"></h4>
@@ -133,12 +120,13 @@
                           </div>
                         </div>
                       </div>
-                      @endforeach
+                      
                     
                   </div>
 @endforeach
-
-                  
+@else
+@endif
+ <!-- ================================================FIN DU SLIDE 4 derniers articles================================================ -->                 
                 </div>
                 <!-- Slider / End -->
 
@@ -150,7 +138,7 @@
             <!-- Post Area 1 -->
 
             <div class="posts posts--cards post-grid row">
-
+ <!-- ================================================LES 4 PREMIERS articles================================================ -->                 
 @foreach($article4 as $art4)
             <div class="col-sm-6">
             <div class="posts posts--cards post-grid">
@@ -168,7 +156,7 @@
                     <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
                     <h6 class="posts__title"><a href="{{ route('articles',$art4->id) }}">{{str_limit($art4->titre, $limit = 20, $end = '...')}}</a></h6>
                     <div class="posts__excerpt">
-                    {{str_limit($art4->contenu, $limit = 40, $end = '...')}}
+                    {{str_limit($art4->contenu, $limit = 36, $end = '...')}}
                     </div>
                   </div>
                   <footer class="posts__footer card__footer">
@@ -192,7 +180,7 @@
             </div>
           </div>
 @endforeach
-
+ <!-- ================================================FIN LES 4 PREMIERS articles================================================ -->                 
             </div>
             <!-- Post Area 1 / End -->
 
@@ -206,29 +194,32 @@
 
 
 
-
+ <!--============================================ PUB Numero 3 ====================================================-->
+ @if(!is_null($pub3))
             <div id="hero-wrapper">
             <div class="carousel-wrapper">
               <div id="hero-carousel" class="carousel slide carousel-fade">
-                
-                <div class="carousel-inner">
-                @foreach($pub3 as $pb3)
+              
+              <div class="carousel-inner">
+             
                   <div class="item active">
-                      <img src="../../app/photos/{{$pb3->url}}">
-                  </div>
-                  @endforeach
-                @foreach(explode('|',$pub3url->url) as $key => $url)
-                  <div class="item">
-                    <img src="../../app/photos/{{$url}}">
+                      <img src="../../app/photos/{{$pub3->url}}">
                   </div>
 
-                @endforeach  
+                @for($a=1; $a<count($pub3url); $a++)
+                  <div class="item">
+
+                    <img src="../../app/photos/{{$pub3url[$a]->url}}">
+                  </div>
+                @endfor  
                 </div>
-                
+
               </div>
             </div>
           </div>
-
+          @else
+@endif
+ <!--============================================Fin PUB Numero 3 ====================================================-->
 
 
 
@@ -467,7 +458,7 @@
             <!-- Widget: Social Buttons -->
             <aside class="widget widget--sidebar widget-social">
 
-              <a href="#" class="btn-social-counter btn-social-counter--fb" target="_blank">
+              <a href="" class="btn-social-counter btn-social-counter--fb" target="_blank">
                 <div class="btn-social-counter__icon">
                   <i class="fa fa-facebook"></i>
                 </div>
@@ -526,47 +517,7 @@
             
 
             <!-- Widget: Featured Player -->
-            <aside class="widget card widget--sidebar widget-player">
-              <div class="widget__content card__content">
-                <div class="widget-player__team-logo">
-                  <img src="../../front/assets/images/logo.png" alt="">
-                </div>
-                <figure class="widget-player__photo">
-                  <img src="../../front/assets/images/samples/widget-featured-player.png" alt="">
-                </figure>
-                <header class="widget-player__header clearfix">
-                  <div class="widget-player__number">38</div>
-                  <h4 class="widget-player__name">
-                    <span class="widget-player__first-name">James</span>
-                    <span class="widget-player__last-name">Girobili</span>
-                  </h4>
-                </header>
-                <div class="widget-player__content">
-                  <div class="widget-player__content-inner">
-                    <div class="widget-player__stat widget-player__assists">
-                      <h6 class="widget-player__stat-label">Assists</h6>
-                      <div class="widget-player__stat-number">16.9</div>
-                      <div class="widget-player__stat-legend">AVG</div>
-                    </div>
-                    <div class="widget-player__stat widget-player__steals">
-                      <h6 class="widget-player__stat-label">Steals</h6>
-                      <div class="widget-player__stat-number">7.2</div>
-                      <div class="widget-player__stat-legend">AVG</div>
-                    </div>
-                    <div class="widget-player__stat widget-player__blocks">
-                      <h6 class="widget-player__stat-label">Blocks</h6>
-                      <div class="widget-player__stat-number">12.4</div>
-                      <div class="widget-player__stat-legend">AVG</div>
-                    </div>
-                  </div>
-                </div>
-                <footer class="widget-player__footer">
-                  <span class="widget-player__footer-txt">
-                    <i class="fa fa-star"></i> Featured Player
-                  </span>
-                </footer>
-              </div>
-            </aside>
+           
             <!-- Widget: Featured Player / End -->
             
 
@@ -766,226 +717,52 @@
             
 
             <!-- Widget: Trending News -->
+            @if(!is_null($pub2))
             <aside class="widget widget--sidebar card widget-tabbed">
-              <div class="widget__title card__header">
-                <h4>Top Trending News</h4>
-              </div>
+              
               <div class="widget__content card__content">
                 <div class="widget-tabbed__tabs">
                   <!-- Widget Tabs -->
-                  <ul class="nav nav-tabs nav-justified widget-tabbed__nav" role="tablist">
-                    <li role="presentation" class="active"><a href="#widget-tabbed-newest" aria-controls="widget-tabbed-newest" role="tab" data-toggle="tab">Newest</a></li>
-                    <li role="presentation"><a href="#widget-tabbed-commented" aria-controls="widget-tabbed-commented" role="tab" data-toggle="tab">Most Commented</a></li>
-                    <li role="presentation"><a href="#widget-tabbed-popular" aria-controls="widget-tabbed-popular" role="tab" data-toggle="tab">Popular</a></li>
-                  </ul>
+                  
             
                   <!-- Widget Tab panes -->
                   <div class="tab-content widget-tabbed__tab-content">
                     <!-- Newest -->
                     <div role="tabpanel" class="tab-pane fade in active" id="widget-tabbed-newest">
-                      <ul class="posts posts--simple-list">
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">Jake Dribbler Announced that he is retiring next mnonth</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
+                      <!--============================== PUB2 ====================================-->
+
+                      <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="9000">
+                        <div class="carousel-inner vertical">
+                                
+                                  <div class="active item">
+                                      <img src="../../app/photos/{{$pub2->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="0">
+                                  </div>
+                                  
+                                  @for($a = 1; $a<count($pub2url); $a++)
+                                  <div class="item">
+                                      <img src="../../app/photos/{{$pub2url[$a]->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="{{$a}}">
+                                  </div>
+                                  @endfor
+                              </div>
+                              
+                              <!-- Controls -->
+                              
                           </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Alchemists news coach is bringin a new shooting guard</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">This Saturday starts the intensive training for the Final</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-3">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">Playoffs</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">New York Islanders are now flying to California for the big game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Female Division is growing strong after their third game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- Commented -->
-                    <div role="tabpanel" class="tab-pane fade" id="widget-tabbed-commented">
-                      <ul class="posts posts--simple-list">
-                        <li class="posts__item posts__item--category-3">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">Playoffs</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">New York Islanders are now flying to California for the big game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Female Division is growing strong after their third game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Alchemists news coach is bringin a new shooting guard</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">This Saturday starts the intensive training for the Final</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">Jake Dribbler Announced that he is retiring next mnonth</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- Popular -->
-                    <div role="tabpanel" class="tab-pane fade" id="widget-tabbed-popular">
-                      <ul class="posts posts--simple-list">
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Alchemists news coach is bringin a new shooting guard</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">This Saturday starts the intensive training for the Final</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">Jake Dribbler Announced that he is retiring next mnonth</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-1">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">The Team</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">The Female Division is growing strong after their third game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                        <li class="posts__item posts__item--category-3">
-                          <div class="posts__inner">
-                            <div class="posts__cat">
-                              <span class="label posts__cat-label">Playoffs</span>
-                            </div>
-                            <h6 class="posts__title"><a href="#">New York Islanders are now flying to California for the big game</a></h6>
-                            <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
-                            <div class="posts__excerpt">
-                              Lorem ipsum dolor sit amet, consectetur adipisi ng elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
+
+                      <!--============================== PUB2 ====================================-->
                     </div>
                   </div>
             
                 </div>
               </div>
             </aside>
+            @else
+@endif
             <!-- Widget: Trending News / End -->
             
 
             <!-- Widget: Banner -->
-            <aside class="widget card widget--sidebar widget-banner">
+            <!--<aside class="widget card widget--sidebar widget-banner">
               <div class="widget__title card__header">
                 <h4>Advertisement</h4>
               </div>
@@ -994,25 +771,25 @@
                   <a href="../../marketplace.envato.com/index2d78.html?ref=dan_fisher"><img src="../../front/assets/images/samples/banner.jpg" alt="Banner"></a>
                 </figure>
               </div>
-            </aside>
+            </aside>-->
             <!-- Widget: Banner / End -->
             
 
             <!-- Widget: Newsletter -->
             <aside class="widget widget--sidebar card widget-newsletter">
               <div class="widget__title card__header">
-                <h4>Our Newsletter</h4>
+                <h4>E-Mail DE NOTIFICATION</h4>
               </div>
               <div class="widget__content card__content">
-                <h5 class="widget-newsletter__subtitle">Subscribe Now!</h5>
+                <h5 class="widget-newsletter__subtitle">Voulez - vous recevoir des e-mail de notifications?</h5>
                 <div class="widget-newsletter__desc">
-                  <p>Receive the latest news from the team: game reminders, new adquisitions and professional match results.</p>
+                  <p>Envoyer-nous votre adresse e-mail</p>
                 </div>
                 <form action="#" id="newsletter" class="inline-form">
                   <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Your email address...">
+                    <input type="email" class="form-control" placeholder="Adresse e-mail ici...">
                     <span class="input-group-btn">
-                      <button class="btn btn-lg btn-default" type="button">Send</button>
+                      <button class="btn btn-lg btn-default" type="button">Envoyer</button>
                     </span>
                   </div>
                 </form>

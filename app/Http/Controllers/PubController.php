@@ -24,7 +24,7 @@ class PubController extends Controller
 
     public function indexpub()
     {
-        $pub = Publicite::paginate(7);
+        $pub = Publicite::orderBy('created_at', 'desc')->paginate(7);
 
         return view('articles.pages.publicite',compact('pub'))->with('i', (request()->input('page', 1) - 1) * 7);
     }
@@ -54,16 +54,11 @@ class PubController extends Controller
         {
 
             
-            $images=array();
+            $files=Input::file('photos');
             
-            if($files=$request->file('photos')){
-              $i = 0; 
-              foreach($files as $file){ 
-                  $name=$file->getClientOriginalName(); 
-                  $file->move('app/photos',$name); 
-                  $images[$i++]=$name; 
-              }
-            }
+            $name=$files->getClientOriginalName(); 
+            $files->move('app/photos',$name); 
+            
     
 
               DB::table('publicites')->insert(array(
@@ -71,7 +66,7 @@ class PubController extends Controller
                 'statut'=>false,
                 'description'=>$request->description,
                 'contenu'=>$request->contenu,
-                'url'=> implode("|",$images),
+                'url'=> $name,
                 'updated_at' => date('Y-m-d H:i:s'),
                 'created_at' => date('Y-m-d H:i:s')
 

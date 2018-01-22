@@ -22,68 +22,80 @@
 
                                 <div class="product__img">
                                 <div class="product__img-holder">
-                                    <div class="product__bg-letters">SK</div>
+                                    
 
                                         <div class="product__slider">
                                             
-                                            <!--@foreach(explode('|',$images->urlimage) as $image)<div class="product__slide">
-                                                <div class="product__slide-img">
-                                                    <img src="../../../app/photos/{{$image}}" alt="">
-                                                </div>
-                                            </div>         @endforeach-->
+                                         
 
-                                            <div class="row">
-            <div class="col-sm-3" id="slider-thumbs">
-                <!-- Bottom switcher of slider -->
-                <ul class="hide-bullets">
-                   
-                @foreach(explode('|',$images->urlimage) as $key => $image)
-                    <li class="col-sm-12">
-                   
-                        <a class="thumbnail" id="carousel-selector-{{$key}}">
-                        
-                          <img src="../../../app/photos/{{$image}}">
-                        
-                        </a>
-                   
-                    </li>
-                    @endforeach
-                  
-                </ul>
-            </div>
-            <div class="col-sm-8">
-                <div class="col-xs-12" id="slider">
-                    <!-- Top part of the slider -->
-                    <div class="row">
-                        <div class="col-sm-12" id="carousel-bounding-box">
-                            <div class="carousel slide" id="myCarousel">
-                                <!-- Carousel items -->
-                                <div class="carousel-inner">
-                  
-                                @foreach(explode('|',$images->urlimage) as $key => $image)
-                                  
-                                    <div class="item" data-slide-number="{{$key}}">
-                                    
-                                      <img src="../../../app/photos/{{$image}}">
-                                    
-                                    </div>
-                                
-                                @endforeach
 
-                                </div>
-                                <!-- Carousel nav -->
-                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                                   
+
+
+                                            
+
+
+
+
+
+
+
+
+
+
+
+                                                    <div class="row">
+                                                      <div class="col-sm-3" id="slider-thumbs">
+                                                          <!-- Bottom switcher of slider -->
+                                                          <ul class="hide-bullets">
+                                                              <li class="col-sm-12">
+                                                                  <a class="thumbnail" id="carousel-selector-0">
+                                                                      <img src="../../../app/photos/{{$trop}}">
+                                                                  </a>
+                                                              </li>
+                                                              @for($a=1; $a<count($affimage); $a++)
+                                                              <li class="col-sm-12">
+                                                                  <a class="thumbnail" id="carousel-selector-{{$a}}"><img src="../../app/photos/{{$affimage[$a]}}"></a>
+                                                              </li>
+                                                              @endfor
+                                                              
+                                                          </ul>
+                                                      </div>
+                                                      <div class="col-sm-8">
+                                                          <div class="col-xs-12" id="slider">
+                                                              <!-- Top part of the slider -->
+                                                              <div class="row">
+                                                                  <div class="col-sm-12" id="carousel-bounding-box">
+                                                                      <div class="carousel slide" id="myCarousel">
+                                                                          <!-- Carousel items -->
+                                                                          <div class="carousel-inner">
+                                                                              <div class="active item" data-slide-number="0">
+                                                                                  <img src="../../../app/photos/{{$trop}}" style="height:400px;"></div>
+                                                                                  @for($a=1; $a<count($affimage); $a++)
+                                                                              <div class="item" data-slide-number="{{$a}}">
+                                                                                  <img src="../../app/photos/{{$affimage[$a]}}" style="height:400px;"></div>
+                                                                                  @endfor
+                                                                          </div>
+                                                                          <!-- Carousel nav -->
+                                                                          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                                              <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                          </a>
+                                                                          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                                              <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                          </a>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+
+
+
+
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +104,7 @@
 
                                 <header class="product__header">
                                     <div class="product__header-inner">
-                                    <span class="product__category">Sneakers</span>
+                                    <span class="product__category">{{$article->categorie}}</span>
                                     <h2 class="product__title"><a href="shop-product.html">{{$article->titre}}</a></h2>
                                     <div class="product__ratings">
                                         <i class="fa fa-star"></i>

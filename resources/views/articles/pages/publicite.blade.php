@@ -103,7 +103,7 @@
                                     </br></br>
                                         <div class="col-md-12">
                                         </br>
-                                                    <input type="file" class="form-control" id="images" name="photos[]" onchange="preview_images();" multiple/>
+                                                    <input type="file" class="form-control" id="images" name="photos" onchange="preview_images();" />
                                         </div>
                                     </div>
                                     <div class="row" id="image_preview"></div>                                    

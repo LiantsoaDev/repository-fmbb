@@ -225,7 +225,7 @@ input.header-mobile__search-control{margin-top:12px;}
 }
 .hero-unit__content{position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);left:0;right:0;text-align:center;}
 .hero-unit__title{color:#fff;margin-bottom:0.75em;font-size:30px;}
-@media (min-width:1199px){.hero-unit__title{font-size:64px;margin-bottom:0.25em;}
+@media (min-width:1199px){.hero-unit__title{font-size:47px;margin-bottom:0.25em;}
 }
 .hero-unit__subtitle{color:#fff;margin-bottom:0.25em;font-size:12px;}
 @media (min-width:992px){.hero-unit__subtitle{font-size:18px;}
@@ -237,7 +237,7 @@ input.header-mobile__search-control{margin-top:12px;}
 }
 @media (min-width:1199px){.hero-unit__desc{width:70%;}
 }
-.hero-unit__decor{display:block;color:#ffdc11;margin-bottom:5px;}
+.hero-unit__decor{display:block;color:#e46834;margin-bottom:5px;}
 @media (min-width:992px){.hero-unit__decor{margin-bottom:11px;}
 }
 .hero-unit__decor .fa{margin:0 6px;}
@@ -444,9 +444,9 @@ ul.posts:not(.post-grid){margin:0;}
 .posts__cat-label{background-color:#ffcc00;display:block;float:left;}
 .posts__cat-label + .posts__title{margin-top:0.55em;}
 .posts__item--category-1 .posts__cat-label,
-.posts__item--category-1 .posts__cta{background-color:#226fff;}
+.posts__item--category-1 .posts__cta{background-color:#3dadfd;}
 .posts__item--category-2 .posts__cat-label,
-.posts__item--category-2 .posts__cta{background-color:#a5009d;}
+.posts__item--category-2 .posts__cta{background-color:#009bca;}
 .posts__item--category-3 .posts__cat-label,
 .posts__item--category-3 .posts__cta{background-color:#ff9041;}
 .posts__thumb{float:left;margin:0 10px 0 0;}
@@ -2785,7 +2785,7 @@ td.team-leader__avg{text-align:center;}
 .info-block--header .header-cart__item--action .btn{width:48%;padding-left:0;padding-right:0;text-align:center;margin-top:0;-webkit-transition:background-color 0.3s ease;transition:background-color 0.3s ease;}
 .info-block--header .header-cart__item--action .btn:first-child{float:left;}
 .info-block--header .header-cart__item--action .btn:last-child{float:right;}
-.footer-widgets .info-block__item .df-icon{stroke:#ffdc11;}
+.footer-widgets .info-block__item .df-icon{stroke:#2dff11;}
 .info-block--horizontal{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-ms-flex-wrap:wrap;flex-wrap:wrap;width:100%;}
 @media (min-width:992px){.info-block--horizontal{-ms-flex-wrap:nowrap;flex-wrap:nowrap;width:auto;}
 }

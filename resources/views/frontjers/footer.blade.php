@@ -98,16 +98,7 @@
               <div class="col-sm-4 col-md-3">
                 <div class="footer-col-inner">
     
-                  <!-- Widget: Instagram -->
-                  <div class="widget widget--footer widget-instagram">
-                    <h4 class="widget__title">Instagram Widget</h4>
-                    <div class="widget__content">
-                      <ul id="instagram-feed" class="widget-instagram__list"></ul>
-                      <a href="../../www.instagram.com/dan.fisher.dev/index.html" class="btn btn-sm btn-instagram btn-icon-right">Follow Our Instagram <i class="icon-arrow-right"></i></a>
-                    </div>
-                  </div>
-                  <!-- Widget: Instagram / End -->
-                  
+                 
     
                 </div>
               </div>
@@ -226,32 +217,59 @@
   ================================================== -->
   <!-- Core JS -->
   <script>
+jQuery(document).ready(function($) {
+ 
+  $('#myCarousel').carousel({
+          interval: 5000
+  });
 
-        jQuery(document).ready(function($) {
-        
-        $('#myCarousel').carousel({
-                interval: 5000
-        });
+  //Handles the carousel thumbnails
+  $('[id^=carousel-selector-]').click(function () {
+  var id_selector = $(this).attr("id");
+  try {
+      var id = /-(\d+)$/.exec(id_selector)[1];
+      console.log(id_selector, id);
+      jQuery('#myCarousel').carousel(parseInt(id));
+  } catch (e) {
+      console.log('Regex failed!', e);
+  }
+});
+  // When the carousel slides, auto update the text
+  $('#myCarousel').on('slid.bs.carousel', function (e) {
+           var id = $('.item.active').data('slide-number');
+          $('#carousel-text').html($('#slide-content-'+id).html());
+  });
+});
+  </script>
 
-        //Handles the carousel thumbnails
-        $('[id^=carousel-selector-]').click(function () {
-        var id_selector = $(this).attr("id");
-        try {
-            var id = /-(\d+)$/.exec(id_selector)[1];
-            console.log(id_selector, id);
-            jQuery('#myCarousel').carousel(parseInt(id));
-        } catch (e) {
-            console.log('Regex failed!', e);
-        }
-        });
-        // When the carousel slides, auto update the text
-        $('#myCarousel').on('slid.bs.carousel', function (e) {
-                  var id = $('.item.active').data('slide-number');
-                $('#carousel-text').html($('#slide-content-'+id).html());
-        });
-        });
+
+  <script>
+  
+  //pour PUB2
+  $('.carousel .vertical .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=1;i<2;i++) {
+    next=next.next();
+    if (!next.length) {
+    	next = $(this).siblings(':first');
+  	}
+    
+    next.children(':first-child').clone().appendTo($(this));
+  }
+  });
+  //Fin pour PUB2
 
   </script>
+
+  <script>
+
+  </script>
+
   <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../front/assets/js/core-min.js"></script>
   
@@ -265,6 +283,9 @@
 
   <script src="../../front/assets/js/jquery.jscroll.js"></script>
   
+
+
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </body>
   
 <!-- Mirrored from alchemists.dan-fisher.com/basketball/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Aug 2017 21:04:47 GMT -->

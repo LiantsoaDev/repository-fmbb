@@ -114,7 +114,7 @@ public function depublication(Request $request,$id)
     
      public function index()
     {
-        $articles = Article::paginate(7);
+        $articles = Article::orderBy('created_at', 'desc')->paginate(7);
         
         return view('articles.pages.index',compact('articles'))->with('i', (request()->input('page', 1) - 1) * 7);
 
@@ -124,7 +124,7 @@ public function depublication(Request $request,$id)
 
     public function archive()
     {
-        $arch = Article::paginate(5);
+        $arch = Article::orderBy('created_at', 'desc')->paginate(5);
         return view('articles.pages.archivearticle',compact('arch'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function desarchive(Request $request,$id)
@@ -206,12 +206,16 @@ public function depublication(Request $request,$id)
                 ]);
 
                 
+                $insert = $request->all();
+                $tag = explode(",", $request->tag);
+        
 
                 $insert["images_id"] = $img->id;
                 $insert["statut"] = false;
-                $insert["archive"] = false;
-
-                Article::create($insert);  
+                $insert["archive"] = false; 
+        
+                $article = Article::create($insert);
+                $article->tag($tag);
                 
                 return redirect()->route('index')->with('success','article créer avec succes');
                 
@@ -293,9 +297,9 @@ public function depublication(Request $request,$id)
         $article = Article::find($id);
 
         $image = DB::table('images')
-            ->select('images.urlimage')
             ->where('images.id',$article->images_id)->get();
-
+            
+            //->select('images.urlimage')
 /**--------------------debut update image--------------------------- */
 
                 //$input=$request->all();
@@ -326,7 +330,7 @@ public function depublication(Request $request,$id)
         $article->seo = $request->seo;
         $article->categorie = $request->categorie;
         
-        $photo->id = $request->images_id;
+        $image->id = $request->images_id;
 
         $article->save();
         
@@ -339,7 +343,10 @@ public function depublication(Request $request,$id)
     }
 
     
+
+    /**Suppression de qlque images**/
     
+    /**Fin  Suppression de qlque images*/
     
     
     /**
@@ -358,6 +365,26 @@ public function depublication(Request $request,$id)
         $article->archive = true;
         $article->save();
         
+        return redirect()->route('index')->with('warning','Article supprimé et Archivé');
+
+    }
+
+
+    public function deletearchive(Request $request,$id)
+    {
+
+        $article = Article::find($id);
+        $img = DB::table('articles')->join('images','articles.images_id','=','images.id')
+        ->where('articles.id','=',$article->id)
+        ->select('images.urlimage')
+        ->first();
+        
+        
+        foreach(explode('|',$img) as $image)
+        {
+            File::delete('app/photos/'.$image);
+        }
+        Article::destroy($id);
         return redirect()->route('index')->with('warning','Article supprimé et Archivé');
 
     }

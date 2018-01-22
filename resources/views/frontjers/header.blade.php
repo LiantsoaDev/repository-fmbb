@@ -47,10 +47,11 @@
   <!-- Custom CSS-->
   <link href="../../front/assets/css/custom.css" rel="stylesheet">
   <style>
-    
-    .hero-unit{background:#27313b url("../../app/photos/{{$fond2}}") 50% 0 no-repeat;background-size:cover;}
+    @if(!is_null($fond2))
+    .hero-unit{background:#27313b url("../../app/photos/{{$fond2->url}}") 50% 0 no-repeat;background-size:cover;}
     .hero-unit__content--left-center{text-align:center;}
-    
+    @else
+    @endif
 
 
 
@@ -101,21 +102,7 @@
           <ul class="nav-account">
             <li class="nav-account__item"><a href="#" data-toggle="modal" data-target="#modal-login-register">Votre compte</a></li>
             <li class="nav-account__item nav-account__item--wishlist"><a href="shop-wishlist.html">Wishlist <span class="highlight">8</span></a></li>
-            <li class="nav-account__item"><a href="#">Currency: <span class="highlight">USD</span></a>
-              <ul class="main-nav__sub">
-                <li><a href="#">USD</a></li>
-                <li><a href="#">EUR</a></li>
-                <li><a href="#">GBP</a></li>
-              </ul>
-            </li>
-            <li class="nav-account__item"><a href="#">Language: <span class="highlight">EN</span></a>
-              <ul class="main-nav__sub">
-                <li><a href="#">English</a></li>
-                <li><a href="#">Spanish</a></li>
-                <li><a href="#">French</a></li>
-                <li><a href="#">German</a></li>
-              </ul>
-            </li>
+           
             <li class="nav-account__item nav-account__item--logout"><a href="#">Deconnection</a></li>
           </ul>
           <!-- Account Navigation / End -->
@@ -136,13 +123,6 @@
           </div>
           <!-- Header Search Form / End -->
           <ul class="info-block info-block--header">
-            <li class="info-block__item info-block__item--contact-primary">
-              <svg role="img" class="df-icon df-icon--jersey">
-                <use xlink:href="../../front/assets/images/icons-basket.svg#jersey"/>
-              </svg>
-              <h6 class="info-block__heading">Rejoignez Nos équipes!</h6>
-              <a class="info-block__link" href="mailto:tryouts@alchemists.com">tryouts@alchemists.com</a>
-            </li>
             <li class="info-block__item info-block__item--contact-secondary">
               <svg role="img" class="df-icon df-icon--basketball">
                 <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
@@ -150,100 +130,7 @@
               <h6 class="info-block__heading">Contactez-nous</h6>
               <a class="info-block__link" href="mailto:info@alchemists.com">info@alchemists.com</a>
             </li>
-            <li class="info-block__item info-block__item--shopping-cart">
-              <a href="#" class="info-block__link-wrapper">
-                <div class="df-icon-stack df-icon-stack--bag">
-                  <svg role="img" class="df-icon df-icon--bag">
-                    <use xlink:href="../../front/assets/images/icons-basket.svg#bag"/>
-                  </svg>
-                  <svg role="img" class="df-icon df-icon--bag-handle">
-                    <use xlink:href="../../front/assets/images/icons-basket.svg#bag-handle"/>
-                  </svg>
-                </div>
-                <h6 class="info-block__heading">Vos bagages (8 éléments)</h6>
-                <span class="info-block__cart-sum">$256,30</span>
-              </a>
-  
-              <!-- Dropdown Shopping Cart -->
-              <ul class="header-cart">
-                <li class="header-cart__item">
-                  <figure class="header-cart__product-thumb">
-                    <a href="shop-product.html">
-                      <img src="../../front/assets/images/samples/cart-sm-1.jpg" alt="">
-                    </a>
-                  </figure>
-                  <div class="header-cart__inner">
-                    <span class="header-cart__product-cat">Sneakers</span>
-                    <h5 class="header-cart__product-name"><a href="shop-product.html">Sundown Sneaker</a></h5>
-                    <div class="header-cart__product-ratings">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star empty"></i>
-                    </div>
-                    <div class="header-cart__product-sum">
-                      <span class="header-cart__product-price">$28.00</span> x <span class="header-cart__product-count">2</span>
-                    </div>
-                    <div class="fa fa-times header-cart__close"></div>
-                  </div>
-                </li>
-                <li class="header-cart__item">
-                  <figure class="header-cart__product-thumb">
-                    <a href="shop-product.html">
-                      <img src="../../front/assets/images/samples/cart-sm-2.jpg" alt="">
-                    </a>
-                  </figure>
-                  <div class="header-cart__inner">
-                    <span class="header-cart__product-cat">Sneakers</span>
-                    <h5 class="header-cart__product-name"><a href="shop-product.html">Atlantik Sneaker</a></h5>
-                    <div class="header-cart__product-ratings">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <div class="header-cart__product-sum">
-                      <span class="header-cart__product-price">$30.00</span> x <span class="header-cart__product-count">4</span>
-                    </div>
-                    <div class="fa fa-times header-cart__close"></div>
-                  </div>
-                </li>
-                <li class="header-cart__item">
-                  <figure class="header-cart__product-thumb">
-                    <a href="shop-product.html">
-                      <img src="../../front/assets/images/samples/cart-sm-3.jpg" alt="">
-                    </a>
-                  </figure>
-                  <div class="header-cart__inner">
-                    <span class="header-cart__product-cat">Sneakers</span>
-                    <h5 class="header-cart__product-name"><a href="shop-product.html">Aquarium Sneaker</a></h5>
-                    <div class="header-cart__product-ratings">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star empty"></i>
-                      <i class="fa fa-star empty"></i>
-                    </div>
-                    <div class="header-cart__product-sum">
-                      <span class="header-cart__product-price">$26.00</span> x <span class="header-cart__product-count">1</span>
-                    </div>
-                    <div class="fa fa-times header-cart__close"></div>
-                  </div>
-                </li>
-                <li class="header-cart__item header-cart__item--subtotal">
-                  <span class="header-cart__subtotal">Cart Subtotal</span>
-                  <span class="header-cart__subtotal-sum">$282.00</span>
-                </li>
-                <li class="header-cart__item header-cart__item--action">
-                  <a href="shop-cart.html" class="btn btn-default btn-block">Go to Cart</a>
-                  <a href="shop-checkout.html" class="btn btn-primary-inverse btn-block">Checkout</a>
-                </li>
-              </ul>
-              <!-- Dropdown Shopping Cart / End -->
-  
-            </li>
+
           </ul>
         </div>
       </div>
@@ -391,7 +278,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class=""><a href="#">Nouveaux</a>
+                <li class=""><a href="#">Nouveauté</a>
                   <ul class="main-nav__sub">
                     <li><a href="blog-1.html">News - version 1</a></li>
                     <li><a href="blog-2.html">News - version 2</a></li>
@@ -424,14 +311,9 @@
               <!-- Social Links -->
               <ul class="social-links social-links--inline social-links--main-nav">
                 <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                  <a href="https://www.facebook.com/madagascarbasketball/" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
                 </li>
-                <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus"></i></a>
-                </li>
+                
               </ul>
               <!-- Social Links / End -->
   
@@ -574,15 +456,18 @@
             <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
           </span>
           <h5 class="hero-unit__subtitle">We are BasketBall</h5>
-          <h1 class="hero-unit__title">MADAGASCAR <span class="text-primary">SPORTS</span></h1>
-          <div class="hero-unit__desc">Féderation Malagasy de BasketBall .</div>
-          <a href="#" class="btn btn-inverse btn-sm btn-outline btn-icon-right btn-condensed hero-unit__btn">Voir Plus <i class="fa fa-plus text-primary"></i></a>
+          <h1 class="hero-unit__title">Féderation Malagasy <span class="text-primary">de BasketBall</span></h1>
+          <div class="hero-unit__desc">MADAGASCAR SPORTS</div>
+
         </div>
-    
+ @if(!is_null($fond1))   
         <figure class="hero-unit__img">
-          <img src="../../app/photos/{{$fond1}}" style="height:500px" alt="Hero Unit Image">
+         
+          <img src="../../app/photos/{{$fond1->url}}" style="height:500px" alt="Hero Unit Image">
+        
         </figure>
-      
+      @else
+      @endif
       </div>
     </div>
     

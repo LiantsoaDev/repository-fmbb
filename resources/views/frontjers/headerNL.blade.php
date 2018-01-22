@@ -48,7 +48,7 @@
   <link href="../../front/assets/css/custom.css" rel="stylesheet">
   <style>
     
-    .hero-unit{background:#27313b url("../../app/photos/{{$fond2}}") 50% 0 no-repeat;background-size:cover;}
+    
     .hero-unit__content--left-center{text-align:center;}
     
 
@@ -66,7 +66,38 @@
     }
 
 
+    /*pour l'affichage du publicité*/
 
+    #myCarousel .nav a small {
+    display:block;
+}
+#myCarousel .nav {
+	background:#eee;
+}
+#myCarousel .nav a {
+    border-radius:0px;
+}
+
+
+/*afficher slide de l'article*/
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+#slider-thumbs {
+    height: 565px;
+    overflow-y: scroll;
+    white-space: nowrap;
+}
   </style>
 
 </head>
@@ -102,21 +133,7 @@
           <ul class="nav-account">
             <li class="nav-account__item"><a href="#" data-toggle="modal" data-target="#modal-login-register">Votre compte</a></li>
             <li class="nav-account__item nav-account__item--wishlist"><a href="shop-wishlist.html">Wishlist <span class="highlight">8</span></a></li>
-            <li class="nav-account__item"><a href="#">Currency: <span class="highlight">USD</span></a>
-              <ul class="main-nav__sub">
-                <li><a href="#">USD</a></li>
-                <li><a href="#">EUR</a></li>
-                <li><a href="#">GBP</a></li>
-              </ul>
-            </li>
-            <li class="nav-account__item"><a href="#">Language: <span class="highlight">EN</span></a>
-              <ul class="main-nav__sub">
-                <li><a href="#">English</a></li>
-                <li><a href="#">Spanish</a></li>
-                <li><a href="#">French</a></li>
-                <li><a href="#">German</a></li>
-              </ul>
-            </li>
+           
             <li class="nav-account__item nav-account__item--logout"><a href="#">Deconnection</a></li>
           </ul>
           <!-- Account Navigation / End -->
