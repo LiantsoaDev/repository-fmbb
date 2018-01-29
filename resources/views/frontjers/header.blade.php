@@ -15,9 +15,9 @@
 
   <!-- Favicons
   ================================================== -->
-  <link rel="shortcut icon" href="../../front/assets/images/favicons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="120x120" href="../../front/assets/images/favicons/favicon-120.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="../../front/assets/images/favicons/favicon-152.png">
+  <link rel="shortcut icon" href="../front/assets/images/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="120x120" href="../front/assets/images/favicons/favicon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../front/assets/images/favicons/favicon-152.png">
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -25,30 +25,30 @@
 
   <!-- Google Web Fonts
   ================================================== -->
-  <link href="../../fonts.googleapis.com/css295c.css?family=Montserrat:400,700%7CSource+Sans+Pro:400,700" rel="stylesheet">
+  <link href="../fonts.googleapis.com/css295c.css?family=Montserrat:400,700%7CSource+Sans+Pro:400,700" rel="stylesheet">
 
   <!-- CSS
   ================================================== -->
   <!-- Preloader CSS -->
-  <link href="../../front/assets/css/preloader.css" rel="stylesheet">
+  <link href="../front/assets/css/preloader.css" rel="stylesheet">
 
   <!-- Vendor CSS -->
-  <link href="../../front/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../front/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../../front/assets/fonts/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-  <link href="../../front/assets/vendor/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
-  <link href="../../front/assets/vendor/slick/slick.css" rel="stylesheet">
+  <link href="../front/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../front/assets/fonts/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="../front/assets/vendor/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+  <link href="../front/assets/vendor/slick/slick.css" rel="stylesheet">
 
   <!-- Template CSS-->
-  <link href="../../front/assets/css/content.css" rel="stylesheet">
-  <link href="../../front/assets/css/components.css" rel="stylesheet">
-  <link href="../../front/assets/css/style.css" rel="stylesheet">
+  <link href="../front/assets/css/content.css" rel="stylesheet">
+  <link href="../front/assets/css/components.css" rel="stylesheet">
+  <link href="../front/assets/css/style.css" rel="stylesheet">
 
   <!-- Custom CSS-->
-  <link href="../../front/assets/css/custom.css" rel="stylesheet">
+  <link href="../front/assets/css/custom.css" rel="stylesheet">
   <style>
     @if(!is_null($fond2))
-    .hero-unit{background:#27313b url("../../app/photos/{{$fond2->url}}") 50% 0 no-repeat;background-size:cover;}
+    .hero-unit{background:#27313b url("../app/photos/{{$fond2->url}}") 50% 0 no-repeat;background-size:cover;}
     .hero-unit__content--left-center{text-align:center;}
     @else
     @endif
@@ -83,7 +83,7 @@
     <!-- Header Mobile -->
     <div class="header-mobile clearfix" id="header-mobile">
       <div class="header-mobile__logo">
-        <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="header-mobile__logo-img"></a>
+        <a href="index.html"><img src="../front/assets/images/logo.png" srcset="../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="header-mobile__logo-img"></a>
       </div>
       <div class="header-mobile__inner">
         <a id="header-mobile__toggle" class="burger-menu-icon"><span class="burger-menu-icon__line"></span></a>
@@ -125,7 +125,7 @@
           <ul class="info-block info-block--header">
             <li class="info-block__item info-block__item--contact-secondary">
               <svg role="img" class="df-icon df-icon--basketball">
-                <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
+                <use xlink:href="../front/assets/images/icons-basket.svg#basketball"/>
               </svg>
               <h6 class="info-block__heading">Contactez-nous</h6>
               <a class="info-block__link" href="mailto:info@alchemists.com">info@alchemists.com</a>
@@ -142,7 +142,7 @@
           <div class="header__primary-inner">
             <!-- Header Logo -->
             <div class="header-logo">
-              <a href="index.html"><img src="../../front/assets/images/logo.png" alt="Alchemists" srcset="../../front/assets/images/logo@2x.png 2x" class="header-logo__img"></a>
+              <a href="#"><img src="../app/photos/logofmbb.png" alt="Alchemists" srcset="../front/assets/images/logo@2x.png 2x" class="header-logo__img"></a>
             </div>
             <!-- Header Logo / End -->
   
@@ -193,7 +193,7 @@
                           <div class="posts__footer card__footer">
                             <div class="post-author">
                               <figure class="post-author__avatar">
-                                <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+                                <img src="../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
                               </figure>
                               <div class="post-author__info">
                                 <h4 class="post-author__name">James Spiegel</h4>
@@ -212,7 +212,7 @@
                       <ul class="posts posts--simple-list">
                         <li class="posts__item posts__item--category-1">
                           <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img3-xs.jpg" alt=""></a>
+                            <a href="#"><img src="../front/assets/images/samples/post-img3-xs.jpg" alt=""></a>
                           </figure>
                           <div class="posts__inner">
                             <div class="posts__cat">
@@ -224,7 +224,7 @@
                         </li>
                         <li class="posts__item posts__item--category-2">
                           <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img1-xs.jpg" alt=""></a>
+                            <a href="#"><img src="../front/assets/images/samples/post-img1-xs.jpg" alt=""></a>
                           </figure>
                           <div class="posts__inner">
                             <div class="posts__cat">
@@ -236,7 +236,7 @@
                         </li>
                         <li class="posts__item posts__item--category-1">
                           <figure class="posts__thumb">
-                            <a href="#"><img src="../../front/assets/images/samples/post-img4-xs.jpg" alt=""></a>
+                            <a href="#"><img src="../front/assets/images/samples/post-img4-xs.jpg" alt=""></a>
                           </figure>
                           <div class="posts__inner">
                             <div class="posts__cat">
@@ -337,7 +337,7 @@
       <div class="pushy-panel__inner">
         <header class="pushy-panel__header">
           <div class="pushy-panel__logo">
-            <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists"></a>
+            <a href="index.html"><img src="../front/assets/images/logo.png" srcset="../front/assets/images/logo@2x.png 2x" alt="Alchemists"></a>
           </div>
         </header>
         <div class="pushy-panel__content">
@@ -360,7 +360,7 @@
                   <footer class="posts__footer card__footer">
                     <div class="post-author">
                       <figure class="post-author__avatar">
-                        <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+                        <img src="../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
                       </figure>
                       <div class="post-author__info">
                         <h4 class="post-author__name">James Spiegel</h4>
@@ -433,7 +433,7 @@
           <aside class="widget widget--side-panel widget-banner">
             <div class="widget__content">
               <figure class="widget-banner__img">
-                <a href="#"><img src="../../front/assets/images/samples/banner.jpg" alt="Banner"></a>
+                <a href="#"><img src="../front/assets/images/samples/banner.jpg" alt="Banner"></a>
               </figure>
             </div>
           </aside>
@@ -463,7 +463,7 @@
  @if(!is_null($fond1))   
         <figure class="hero-unit__img">
          
-          <img src="../../app/photos/{{$fond1->url}}" style="height:500px" alt="Hero Unit Image">
+          <img src="../app/photos/{{$fond1->url}}" style="height:500px" alt="Hero Unit Image">
         
         </figure>
       @else

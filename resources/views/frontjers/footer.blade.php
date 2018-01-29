@@ -12,7 +12,7 @@
     
                   <!-- Footer Logo -->
                   <div class="footer-logo">
-                    <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="footer-logo__img"></a>
+                    <a href="index.html"><img src="../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="footer-logo__img"></a>
                   </div>
                   <!-- Footer Logo / End -->
     
@@ -30,14 +30,14 @@
                       <div class="widget-contact-info__body info-block">
                         <div class="info-block__item">
                           <svg role="img" class="df-icon df-icon--basketball">
-                            <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
+                            <use xlink:href="../front/assets/images/icons-basket.svg#basketball"/>
                           </svg>
                           <h6 class="info-block__heading">Contact Us</h6>
                           <a class="info-block__link" href="mailto:info@alchemists.com">info@alchemists.com</a>
                         </div>
                         <div class="info-block__item">
                           <svg role="img" class="df-icon df-icon--jersey">
-                            <use xlink:href="../../front/assets/images/icons-basket.svg#jersey"/>
+                            <use xlink:href="../front/assets/images/icons-basket.svg#jersey"/>
                           </svg>
                           <h6 class="info-block__heading">Join Our Team!</h6>
                           <a class="info-block__link" href="mailto:tryouts@alchemists.com">tryouts@alchemists.com</a>
@@ -270,18 +270,18 @@ jQuery(document).ready(function($) {
 
   </script>
 
-  <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../../front/assets/js/core-min.js"></script>
+  <script src="../front/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../front/assets/js/core-min.js"></script>
   
   <!-- Vendor JS -->
-  <script src="../../front/assets/vendor/twitter/jquery.twitter.js"></script>
+  <script src="../front/assets/vendor/twitter/jquery.twitter.js"></script>
   
   
   <!-- Template JS -->
-  <script src="../../front/assets/js/init.js"></script>
-  <script src="../../front/assets/js/custom.js"></script>
+  <script src="../front/assets/js/init.js"></script>
+  <script src="../front/assets/js/custom.js"></script>
 
-  <script src="../../front/assets/js/jquery.jscroll.js"></script>
+  <script src="../front/assets/js/jquery.jscroll.js"></script>
   
 
 

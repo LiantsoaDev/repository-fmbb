@@ -29,7 +29,42 @@ Route::prefix('authent')->group(function(){
 
 Route::prefix('articles')->group(function(){
     
-        Route::get('/index',array('as'=>'index','uses'=>'ArticlesController@index')); 
+       
+
+/*-------------------------------------------------------------------------*/
+    
+    });
+
+
+/*-----------------------------Backoffice admin lints-------------------------------------------- */
+
+Route::prefix('admin')->group(function () {
+
+    Route::get('listes-evenements',['as' => 'show.event', 'uses' => 'EventsController@showevents']);
+    Route::get('ajout-evenement',['as' => 'add.event', 'uses' => 'EventsController@addevents']);
+    Route::get('insertion-equipe',['as' => 'add.team', 'uses' => 'EventsController@addteams']);
+    Route::post('formaddevents',['as' => 'method.addevent', 'uses' => 'EventsController@ajoutevenement']);
+    Route::post('formaddteams',['as' => 'method.addteam', 'uses' => 'EventsController@ajoutequipevent']);
+    Route::get('update-event/{id}',['as' => 'event.showupdate', 'uses' => 'EventsController@showupdate'])->where('id','[0-9]+')->middleware('verifyid');
+    Route::post('form-update',['as' => 'form.update.event', 'uses' => 'EventsController@formupdatevent']);
+    Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
+    Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
+
+    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch'])->middleware('verifyequipe');
+
+    Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
+    Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
+
+    Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
+    Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+'); 
+    Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
+    Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
+    Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
+    Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
+
+    /*-------------------------------------- Backoffice articles JERSAM ---------------------------------------------------------------------------- */
+
+     Route::get('/index',array('as'=>'index','uses'=>'ArticlesController@index')); 
         Route::get('/show/{id}',array('as'=>'show','uses'=>'ArticlesController@show'));
         Route::get('/create',array('as'=>'create','uses'=>'ArticlesController@create'));
         Route::post('/store',array('as'=>'store','uses'=>'ArticlesController@store'));
@@ -67,37 +102,6 @@ Route::prefix('articles')->group(function(){
 
         //publier Images de fond
         Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));
-
-/*-------------------------------------------------------------------------*/
-    
-    });
-
-
-/*-----------------------------Backoffice admin lints-------------------------------------------- */
-
-Route::prefix('admin')->group(function () {
-
-    Route::get('listes-evenements',['as' => 'show.event', 'uses' => 'EventsController@showevents']);
-    Route::get('ajout-evenement',['as' => 'add.event', 'uses' => 'EventsController@addevents']);
-    Route::get('insertion-equipe',['as' => 'add.team', 'uses' => 'EventsController@addteams']);
-    Route::post('formaddevents',['as' => 'method.addevent', 'uses' => 'EventsController@ajoutevenement']);
-    Route::post('formaddteams',['as' => 'method.addteam', 'uses' => 'EventsController@ajoutequipevent']);
-    Route::get('update-event/{id}',['as' => 'event.showupdate', 'uses' => 'EventsController@showupdate'])->where('id','[0-9]+')->middleware('verifyid');
-    Route::post('form-update',['as' => 'form.update.event', 'uses' => 'EventsController@formupdatevent']);
-    Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
-    Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
-
-    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch'])->middleware('verifyequipe');
-
-    Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
-    Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
-
-    Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
-    Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+'); 
-    Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
-    Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
-    Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
-    Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
         
 });
 

@@ -24,8 +24,8 @@ class MatchsController extends Controller
 
     public function __construct()
     {
-    	$this->match = new Match();
-    	$this->equipe = new Equipe();
+        $this->match = new Match();
+        $this->equipe = new Equipe();
         $this->region = new Region();
         $this->point = new Point();
 
@@ -38,21 +38,21 @@ class MatchsController extends Controller
     */
     public function showallmatchsbyEvent(Request $request , $phase='phase de groupe')
     {
-    	$brute = $this->match->getMatchsbyEvents( $request->session()->get('idevent') , $phase );
+        $brute = $this->match->getMatchsbyEvents( $request->session()->get('idevent') , $phase );
         if( !empty($phase) )
             $brute->encours = $phase;
 
-    	foreach($brute as $brt)
-    	{
-    		$brt->teamA =  $this->equipe->findequipe($brt->equipeA);
+        foreach($brute as $brt)
+        {
+            $brt->teamA =  $this->equipe->findequipe($brt->equipeA);
             $brt->teamA->REGION = $this->region->getregion($brt->teamA->IDREGION)->LIBELLE;
-    		$brt->teamB = $this->equipe->findequipe($brt->equipeB);
+            $brt->teamB = $this->equipe->findequipe($brt->equipeB);
             $brt->teamB->REGION = $this->region->getregion($brt->teamB->IDREGION)->LIBELLE;
 
             $evenement = new Event();
             $brt->statutencours = $evenement->scopeStatutEvent($brt->datematch, $brt->datematch);
-    	}
-    	return $brute;
+        }
+        return $brute;
     }
 
     /** 
@@ -192,7 +192,7 @@ class MatchsController extends Controller
                     foreach($array[$b] as $key => $value)
                     {
                         $previous = $b - 1;
-                        if( is_null($array[$b][$key]) && $array[$previous][$key] <= $scores[$b] )
+                        if( is_null($array[$b][$key] ) && $array[$previous][$key] <= $scores[$b] )
                         {
                             $array[$b][$key] = intval($scores[$b]);
                             break;

@@ -8,7 +8,7 @@
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
       
-            <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
+            <img src="../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
           @foreach($pub1 as $pubs1)
@@ -28,7 +28,7 @@
         <a href="#" class="posts__link-wrapper">
           <figure class="posts__thumb">
       
-            <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
+            <img src="../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
           @foreach($pub1 as $pubs1)
@@ -72,7 +72,7 @@
                     
                       <figure class="posts__thumb">
                       <a href="{{ route('articles',$slts->id) }}"> 
-                        <img src="../../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt=""><!-- class="posts__link-wrapper" -->
+                        <img src="../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt=""><!-- class="posts__link-wrapper" -->
 </a>
                       </figure>
                       
@@ -101,7 +101,7 @@
                     
                       <figure class="posts__thumb">
                       <a href="{{ route('articles',$slts->id) }}">
-                        <img src="../../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt="">
+                        <img src="../app/photos/{{$slts->urlimage}}" style="height:500px;width:800px;" alt="">
 </a>
                       </figure>
                       
@@ -149,7 +149,7 @@
                     <div class="posts__cat">
                       <span class="label posts__cat-label">{{str_limit($art4->categorie, $limit = 15, $end = '...')}}</span>
                     </div>
-                    <img src="../../app/photos/{{$art4->urlimage}}" style="height:260px;" alt="">
+                    <img src="../app/photos/{{$art4->urlimage}}" style="height:260px;" alt="">
                   </figure>
                   <div class="posts__inner card__content">
                     <a href="#" class="posts__cta"></a>
@@ -162,7 +162,7 @@
                   <footer class="posts__footer card__footer">
                     <div class="post-author">
                       <figure class="post-author__avatar">
-                        <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+                        <img src="../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
                       </figure>
                       <div class="post-author__info">
                         <h4 class="post-author__name">James Spiegel</h4>
@@ -203,13 +203,13 @@
               <div class="carousel-inner">
              
                   <div class="item active">
-                      <img src="../../app/photos/{{$pub3->url}}">
+                      <img src="../app/photos/{{$pub3->url}}">
                   </div>
 
                 @for($a=1; $a<count($pub3url); $a++)
                   <div class="item">
 
-                    <img src="../../app/photos/{{$pub3url[$a]->url}}">
+                    <img src="../app/photos/{{$pub3url[$a]->url}}">
                   </div>
                 @endfor  
                 </div>
@@ -253,7 +253,7 @@
                       <figure class="posts__thumb">
 
                                       
-                                          <img src="../../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
+                                          <img src="../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
                                       
                       
                       </figure>
@@ -271,7 +271,7 @@
                         <footer class="posts__footer card__footer">
                           <div class="post-author">
                             <figure class="post-author__avatar">
-                              <img src="../../front/assets/images/samples/avatar-2.jpg" alt="Post Author Avatar">
+                              <img src="../front/assets/images/samples/avatar-2.jpg" alt="Post Author Avatar">
                             </figure>
                             <div class="post-author__info">
                               <h4 class="post-author__name">Jessica Hoops</h4>
@@ -323,7 +323,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/pirates_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/pirates_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">L.A Pirates</h6>
@@ -339,7 +339,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/sharks_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/sharks_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Sharks</h6>
@@ -355,7 +355,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/alchemists_b_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/alchemists_b_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">The Alchemists</h6>
@@ -371,7 +371,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/ocean_kings_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/ocean_kings_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Ocean Kings</h6>
@@ -387,7 +387,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/red_wings_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/red_wings_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Red Wings</h6>
@@ -403,7 +403,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/lucky_clovers_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/lucky_clovers_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Lucky Clovers</h6>
@@ -419,7 +419,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/draconians_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/draconians_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Draconians</h6>
@@ -435,7 +435,7 @@
                         <td>
                           <div class="team-meta">
                             <figure class="team-meta__logo">
-                              <img src="../../front/assets/images/samples/logos/bloody_wave_shield.png" alt="">
+                              <img src="../front/assets/images/samples/logos/bloody_wave_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
                               <h6 class="team-meta__name">Bloody Wave</h6>
@@ -495,7 +495,7 @@
                   <a href="{{ route('articles',$art->id) }}">
                   <li class="posts__item posts__item--category-2">
                     <figure class="posts__thumb">
-                      <a href="{{ route('articles',$art->id) }}"><img src="../../app/photos/{{$art->urlimage}}" style="height:100px;width:120px;" alt=""></a>
+                      <a href="{{ route('articles',$art->id) }}"><img src="../app/photos/{{$art->urlimage}}" style="height:100px;width:120px;" alt=""></a>
                     </figure>
                     <div class="posts__inner">
                       <div class="posts__cat">
@@ -540,7 +540,7 @@
                       <!-- 1st Team -->
                       <div class="widget-game-result__team widget-game-result__team--first">
                         <figure class="widget-game-result__team-logo">
-                          <a href="#"><img src="../../front/assets/images/samples/logos/alchemists_last_game_results_small.png" alt=""></a>
+                          <a href="#"><img src="../front/assets/images/samples/logos/alchemists_last_game_results_small.png" alt=""></a>
                         </figure>
                         <div class="widget-game-result__team-info">
                           <h5 class="widget-game-result__team-name">Alchemists</h5>
@@ -559,7 +559,7 @@
                       <!-- 2nd Team -->
                       <div class="widget-game-result__team widget-game-result__team--second">
                         <figure class="widget-game-result__team-logo">
-                          <a href="#"><img src="../../front/assets/images/samples/logos/sharks_last_game_results_small.png" alt=""></a>
+                          <a href="#"><img src="../front/assets/images/samples/logos/sharks_last_game_results_small.png" alt=""></a>
                         </figure>
                         <div class="widget-game-result__team-info">
                           <h5 class="widget-game-result__team-name">Sharks</h5>
@@ -683,7 +683,7 @@
                     <div class="player-details">
                       <div class="player-details__info">
                         <figure class="player-details__photo">
-                          <a href="#"><img src="../../front/assets/images/samples/stats_player_02.jpg" alt=""></a>
+                          <a href="#"><img src="../front/assets/images/samples/stats_player_02.jpg" alt=""></a>
                         </figure>
                         <div class="player-details__info-holder">
                           <h5 class="player-details__name"><a href="#">Mark Stevens</a></h5>
@@ -735,12 +735,12 @@
                         <div class="carousel-inner vertical">
                                 
                                   <div class="active item">
-                                      <img src="../../app/photos/{{$pub2->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="0">
+                                      <img src="../app/photos/{{$pub2->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="0">
                                   </div>
                                   
                                   @for($a = 1; $a<count($pub2url); $a++)
                                   <div class="item">
-                                      <img src="../../app/photos/{{$pub2url[$a]->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="{{$a}}">
+                                      <img src="../app/photos/{{$pub2url[$a]->url}}" style="height:300px;width:380px;" class="img-responsive" data-target="#carousel-main" data-slide-to="{{$a}}">
                                   </div>
                                   @endfor
                               </div>
@@ -817,7 +817,7 @@
                       <!-- 1st Team -->
                       <div class="match-preview__team match-preview__team--first">
                         <figure class="match-preview__team-logo">
-                          <img src="../../front/assets/images/samples/logo-alchemists--sm.png" alt="">
+                          <img src="../front/assets/images/samples/logo-alchemists--sm.png" alt="">
                         </figure>
                         <h5 class="match-preview__team-name">Alchemists</h5>
                         <div class="match-preview__team-info">Elric Bros School</div>
@@ -835,7 +835,7 @@
                       <!-- 2nd Team -->
                       <div class="match-preview__team match-preview__team--second">
                         <figure class="match-preview__team-logo">
-                          <img src="../../front/assets/images/samples/logo-l-clovers--sm.png" alt="">
+                          <img src="../front/assets/images/samples/logo-l-clovers--sm.png" alt="">
                         </figure>
                         <h5 class="match-preview__team-name">Clovers</h5>
                         <div class="match-preview__team-info">ST Paddy's Institute</div>
