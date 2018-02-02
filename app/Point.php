@@ -40,9 +40,9 @@ class Point extends Model
     * @param integer idmatch 
     * @return Collection Object Point
     */
-    public function getAllQuarts($idmatch,$requete)
+    public function getAllQuarts($idrequete,$requete)
     {
-        $query = DB::table('points')->select('quart1','quart2','quart3','quart4')->where($requete,$idmatch)->get();
+        $query = DB::table('points')->select('quart1','quart2','quart3','quart4')->where($requete,$idrequete)->get();
         //->toArray()
         //return self::hydrate($query);
         return $query;
@@ -63,9 +63,9 @@ class Point extends Model
     * @param integer idmatch, integer newScore,
     * @return Collection Object Point
     */
-    public function updateTotal($idmatch, $newScore)
+    public function updateTotal($idmatch, $idequipe,$scoreTotal)
     {
-        return self::where('idmatch',$idmatch)->update(['total' => $newScore]);
+        return self::where('idmatch',$idmatch)->where('idequipe',$idequipe)->update(['total' => $scoreTotal]);
     }
 
     /** 

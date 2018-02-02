@@ -79,8 +79,9 @@ class CalendriersController extends Controller
     * @param integer idmatch
     * @return Collection Object
     */
-    public function showupdatematch($idmatch)
+    public function showupdatematch(Request $request , $idmatch)
     {
+        $idevent = $request->session()->get('idevent');
         $matchinstance = new MatchsController();
         if( $this->calendrier->verifictionModifiableMatch($idmatch) )
         {
@@ -93,7 +94,7 @@ class CalendriersController extends Controller
            {
                 $result = $matchinstance->getResultatMatch($idmatch);
            }   
-           return view('admin.showmatch',compact('result')); 
+           return view('admin.showmatch',compact('result','idevent')); 
         }
         else
         {

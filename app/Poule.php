@@ -48,4 +48,17 @@ class Poule extends Model
                 ->where('idequipes','like', '%' . $equipe2 . '%' )->first();
     }
 
+    /** 
+    * fonction getter l'id d'une poule d'un évenemnt par rapport idequipe
+    * @param integer idequipe, integer idevent 
+    * @return Collection Object Poule
+    */
+    public function getidpouleEquipeByevent($idequipe, $idevent)
+    {
+        return DB::table('poules')
+            ->select('poules.idpoule')->join('equipe_poules','poules.idpoule','=','equipe_poules.idpoule')
+            ->where('poules.idevent',$idevent)->where('equipe_poules.idequipes','like','%' . $idequipe . '%')->first();
+    }
+
+
 }

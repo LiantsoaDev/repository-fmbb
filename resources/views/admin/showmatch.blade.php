@@ -40,7 +40,23 @@
                              <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 @include('admin.notification')
                              </div>
+                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Contrôles</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--Buttons with label-->
+                                        <!--===================================================-->
+                                        <a href="{{route('show.event')}}" class="btn btn-primary btn-rounded btn-labeled fa fa-home">Listes évenements</a>
+                                        <a href="{{route('admin.calendrier',$idevent)}}" class="btn btn-success btn-labeled fa fa-reply-all">Phase</a>
+                                         <a href="javascript:history.back()" class="btn btn-warning btn-rounded btn-labeled fa fa-reply">Retour</a>
+                                        <!--===================================================-->
+                                    </div>
+                                </div>
+                            </div>
         </div>
+
         @foreach($result->boucle as $bcl)
         <div class="row">
             <div class="col-xs-8">
@@ -103,7 +119,7 @@
                                       </div>
                                       <div class="col-xs-2">
                                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
-                                               <button typ="submit" class="btn btn-success btn-labeled fa fa-check-circle">Valider le Quart temps</button> <br>   
+                                               <button typ="submit" class="btn btn-success btn-labeled fa fa-check-circle">Cliquer <u>ici</u> <br>pour valider le Quart temps</button> <br>   
                                              </div>
                                       </div>
                                       <div class="col-xs-5">
@@ -124,7 +140,7 @@
             <div class="col-lg-8">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Monthly Statistics <small> based on the User Activities </small></h3>
+                                        <h3 class="panel-title">Classement des équipes <small><code>Poule A</code></small></h3>
                                     </div>
                                     <div class="panel-body pad-no">
                                         <!--Default Accordion--> 
@@ -135,7 +151,7 @@
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title"> 
                                                         <a data-parent="#statistics" data-toggle="collapse"> 
-                                                        <i class="fa fa-calendar"></i> Age Group </a> 
+                                                        <i class="fa fa-calendar"></i> Classements </a> 
                                                     </h4>
                                                 </div>
                                                 <!--Accordion content-->
@@ -144,35 +160,50 @@
                                                         <table class="table mar-no bg-light-gray">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="text-center">Gender</th>
-                                                                    <th>Unique User</th>
-                                                                    <th>Percentage</th>
-                                                                    <th class="text-center">Changes</th>
+                                                                    <th>Rang #</th>
+                                                                    <th class="text-center">Genre</th>
+                                                                    <th>Nom de l'équipe</th>
+                                                                    <th>Victoire</th>
+                                                                    <th>Défaite</th>
+                                                                    <th>Points</th>
+                                                                    <th class="text-center">Position</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
+                                                                    <td>#1</td>
                                                                     <td class="text-center text-azure"><i class="fa fa-male"></i></td>
                                                                     <td>18 to 25 year old</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
                                                                     <td class="center">25%</td>
                                                                     <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>#1</td>
                                                                     <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>26 to 35 year old</td>
-                                                                    <td class="center">35%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-down text-danger fa-2x"></i></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>36 to 45 year old</td>
-                                                                    <td class="center">45%</td>
+                                                                    <td>18 to 25 year old</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
                                                                     <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>#1</td>
                                                                     <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>46 to 55 year old</td>
-                                                                    <td class="center">40%</td>
+                                                                    <td>18 to 25 year old</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="text-center"><i class="fa fa-caret-down text-danger fa-2x"></i></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>#1</td>
+                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
+                                                                    <td>18 to 25 year old</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
+                                                                    <td class="center">25%</td>
                                                                     <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
                                                             </tbody>

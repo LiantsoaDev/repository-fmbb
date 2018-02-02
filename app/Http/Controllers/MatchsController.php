@@ -8,7 +8,9 @@ use App\Equipe;
 use App\Region;
 use App\Point;
 use App\Event;
+use App\Poule;
 use App\Http\Controllers\EquipesController;
+use App\Http\Controllers\ClassementsController;
 
 class MatchsController extends Controller
 {
@@ -16,6 +18,8 @@ class MatchsController extends Controller
     private $equipe;
     private $region;
     private $point;
+    private $classement;
+    private $poule;
 
     public $score;
     public $periode;
@@ -28,6 +32,8 @@ class MatchsController extends Controller
         $this->equipe = new Equipe();
         $this->region = new Region();
         $this->point = new Point();
+        $this->poule = new Poule();
+        $this->classement = new ClassementsController();
 
     }
 
@@ -145,7 +151,6 @@ class MatchsController extends Controller
         }
         else
             return false;
-       
     }
 
     /**
@@ -191,15 +196,17 @@ class MatchsController extends Controller
                 {
                     foreach($array[$b] as $key => $value)
                     {
-                        $previous = $b - 1;
-                        if( is_null($array[$b][$key] ) && $array[$previous][$key] <= $scores[$b] )
+                        if( is_null($array[$b][$key] ) )
                         {
-                            $array[$b][$key] = intval($scores[$b]);
-                            break;
-                        }
-                        else
-                        {
-                            return redirect()->route('admin.show-update-match',$request->post('matchref'))->with('error','La valeur entrée n\'est pas acceptée ! ');
+                            $previous_key = array_search($key , $periodes) - 1;
+                            if( $array[$b][ $periodes[$previous_key] ] <= $scores[$b] )
+                            {
+                                $array[$b][$key] = intval($scores[$b]);
+                                break;
+                            }
+                            else
+                                return redirect()->route('admin.show-update-match',$request->post('matchref'))->with('error','La valeur entrée n\'est pas acceptée ! ');
+                            
                         }
                     }
                 }
@@ -207,7 +214,9 @@ class MatchsController extends Controller
              //inserer dans Point ( 2 Teams )
             for($e=0; $e<count($listes); $e++)
                 $this->point->updatePoint( $request->post('matchref') , $listes[$e] , $array[$e] );
+
         }
+
         //afficher les scores du match de chaque periode
         $resultatPoint[] = Point::where('idmatch', $request->post('matchref') )->get(['idequipe','quart1','quart2','quart3','quart4']);
    
@@ -215,6 +224,14 @@ class MatchsController extends Controller
         
         $result = json_decode(json_encode($resultats), false );
 
+        if( !is_null($scorepoint->quart2) )
+        {
+            //Premiere insertion dans Classement
+            for( $k=0; $k<count($listes); $k++ ){
+                $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],$request->session()->get('idevent'))->idpoule;
+                $this->classement->insertionClassement( $listes[$k], $getidpoule, [ $request->post('one') => $request->post('scoreTeam1'), $request->post('two') => $request->post('scoreTeam2')] );
+            }
+        }
         return view('admin.updatematchlive',compact('result'));
     }
 
@@ -272,7 +289,13 @@ class MatchsController extends Controller
                 $parser = json_decode(json_encode($result),false);
                 $boucle = $this->parserResultPoint($parser[0],$idmatch,$equipe1,$equipe2);
             }
-            
+            if( !is_null($this->point->getOneQuarts($idmatch,'idmatch')->quart4) )
+            {
+               $affichage = false;
+               $boucle[3]->start = '<button class="btn btn-danger btn-labeled fa fa-info">Terminer</button>';
+               $fin_du_match = $this->findumatch($parser,$idmatch);
+            }
+
             return array('equipe1' => $equipe1, 'equipe2' => $equipe2, 'affichage' => $affichage ,'boucle' => $boucle ,'idmatch' => $idmatch);
     }
 
@@ -333,5 +356,29 @@ class MatchsController extends Controller
          return json_decode(json_encode($tableau),false);
     }
 
+    /**
+    * Fonction fin du match 
+    * @param Object $parser, integer $idmatch
+    * @return Array $boucle
+    */
+    public function findumatch($parser, $idmatch)
+    {
+        try
+        {
+           foreach($parser as $key => $value)
+           {
+                foreach($value as $cle => $valeurs )
+                {
+                    $update_total = $this->point->updateTotal($idmatch, $valeurs->idequipe, $valeurs->quart4);
+                }
+           }
+           return true;
+        }
+        catch (Exception $e)
+        {
+            echo 'Exception reçue : ',  $e->getMessage(), "\n";
+        }
+        
+    }
 
 }

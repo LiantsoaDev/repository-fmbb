@@ -28,40 +28,31 @@
 
              <div class="panel-body">
                     <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                                <div class="userWidget-1">
-                                    <div class="avatar bg-{{$color}}">
-                                        <img src="{{LINK}}/images/{{$info->teamA->LOGOURL}}" alt="avatar">
-                                        <div class="name osLight"> {{$info->teamA->SIGLE}} </div>
-                                         <div class="col-sm-3 pull-right"><h1>100<small>pts</small></h1></div>
-                                    </div>
-                                    <div class="title"> {!!$info->teamA->NAME!!} </div>
-                                    <div class="address"> {{$info->teamA->REGION}} </div>
-                                    <ul class="fullstats">
-                                        <li> <span>0</span>Victoires </li>
-                                        <li> <span>0</span>Défaites </li>
-                                        <li> <span>0</span>Points </li>
-                                    </ul>
-                                    <div class="clearfix"> </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                                <div class="userWidget-1">
-                                    <div class="avatar bg-{{$color}}">
-                                        <img src="{{LINK}}/images/{{$info->teamB->LOGOURL}}" alt="avatar">
-                                        <div class="name osLight"> {{$info->teamB->SIGLE}} </div>
-                                         <div class="col-sm-3 pull-right"><h1>89<small>pts</small></h1></div>
-                                    </div>
-                                    <div class="title"> {!!$info->teamB->NAME!!} </div>
-                                    <div class="address"> {{$info->teamB->REGION}} </div>
-                                    <ul class="fullstats">
-                                        <li> <span>0</span>Victoires </li>
-                                        <li> <span>0</span>Défaites </li>
-                                        <li> <span>0</span>Points </li>
-                                    </ul>
-                                    <div class="clearfix"> </div>
-                                </div>
-                            </div>
+                            <div class="col-xs-5">
+                                            <div class="col-xs-6">
+                                                <div class="media-object center"> <img src="{{LINK}}/images/{{$info->teamA->LOGOURL}}" width="80px" height="80px" alt="" class="img-circle"> </div>
+                                            </div>
+                                             <div class="col-xs-6">
+                                                <div class="col-sm-3 pull-right"><h1>00</h1></div>
+                                                <h3>{{$info->teamA->SIGLE}}</h3>
+                                                 <h6>{{$info->teamA->REGION}}</h6>
+                                             </div>  
+                                      </div>
+                                      <div class="col-xs-2">
+                                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
+                                                <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VS</h3>
+                                                 <br>   
+                                             </div>
+                                      </div>
+                                      <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <div class="col-sm-3 pull-right"><h3>{{$info->teamB->SIGLE}}</h3> <h6>{{$info->teamB->REGION}}</h6></div>
+                                                        <h1>00</h1>
+                                                    </div>
+                                             <div class="col-xs-6">
+                                                <div class="media-object pull-right"> <img src="{{LINK}}/images/{{$info->teamB->LOGOURL}}" width="80px" height="80px" alt="" class="img-circle"> </div>
+                                            </div>
+                                      </div>
 					</div>
 
                     <div class="row">

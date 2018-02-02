@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Imagefonds extends Migration
+class AddColumnTimestampToResultat extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class Imagefonds extends Migration
      */
     public function up()
     {
-        $table->increments('id');
-        $table->integer('numpub')->nullable();
-        $table->integer('numfond')->nullable();
-        $table->boolean('statut');
-        $table->string('url');
-        $table->timestamps();
+        Schema::table('resultats', function (Blueprint $table) {
+             $table->timestamps();
+        });
     }
 
     /**
@@ -28,6 +25,8 @@ class Imagefonds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagefonds');
+        Schema::table('resultats', function (Blueprint $table) {
+            //
+        });
     }
 }
