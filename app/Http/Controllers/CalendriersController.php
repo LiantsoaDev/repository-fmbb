@@ -82,6 +82,7 @@ class CalendriersController extends Controller
     public function showupdatematch(Request $request , $idmatch)
     {
         $idevent = $request->session()->get('idevent');
+
         $matchinstance = new MatchsController();
         if( $this->calendrier->verifictionModifiableMatch($idmatch) )
         {

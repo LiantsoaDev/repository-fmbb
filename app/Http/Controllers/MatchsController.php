@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Match;
 use App\Equipe;
 use App\Region;
@@ -107,7 +108,6 @@ class MatchsController extends Controller
             $this->periode = '<button class="btn btn-default btn-labeled fa fa-thumbs-o-up">Prêt</button>';
             $this->demarrage = ' <a href='. route('admin.declencheur',$idmatch).' class="btn btn-success btn-labeled fa fa-play-circle">Jouer le match</a>';
             $this->affichage = false;
-            
             return true;
         }
         else
@@ -168,6 +168,8 @@ class MatchsController extends Controller
             'scoreTeam2' => 'required|numeric'
         ]);
 
+        //get idevent
+        $idevent = $request->session()->get('idevent');
         //verifier que superieur ou egal précedent score 
         //listes : id des equipes
         $listes = [ $request->post('one') , $request->post('two') ];
@@ -206,7 +208,6 @@ class MatchsController extends Controller
                             }
                             else
                                 return redirect()->route('admin.show-update-match',$request->post('matchref'))->with('error','La valeur entrée n\'est pas acceptée ! ');
-                            
                         }
                     }
                 }
@@ -224,15 +225,7 @@ class MatchsController extends Controller
         
         $result = json_decode(json_encode($resultats), false );
 
-        if( !is_null($scorepoint->quart2) )
-        {
-            //Premiere insertion dans Classement
-            for( $k=0; $k<count($listes); $k++ ){
-                $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],$request->session()->get('idevent'))->idpoule;
-                $this->classement->insertionClassement( $listes[$k], $getidpoule, [ $request->post('one') => $request->post('scoreTeam1'), $request->post('two') => $request->post('scoreTeam2')] );
-            }
-        }
-        return view('admin.updatematchlive',compact('result'));
+        return view('admin.updatematchlive',compact('result','idevent'));
     }
 
     /**
@@ -251,7 +244,6 @@ class MatchsController extends Controller
             //result 2 : Match déjà en cours
             $main = $this->main($idmatch, $rencontre->EQUIPE_ID1, $rencontre->EQUIPE_ID2);
             $resultat[] = Point::where('idmatch', $idmatch )->get(['idequipe','quart1','quart2','quart3','quart4']);
-
             $arrayScore = $this->affichageScoreMatch($main, $idmatch, $team1, $team2, $resultat);   
             
             return json_decode(json_encode($arrayScore),false);
@@ -259,7 +251,7 @@ class MatchsController extends Controller
 
     /** 
     * Fonction Affichage resultat Score Match
-    * @param integer idmatch
+    * @param Array $main , integer $idmatch, Object instance Equipe $team1,  Object instance Equipe $team2, Array $result
     * @return Array scoreMatch
     */
     public function affichageScoreMatch($main=null, $idmatch, $team1, $team2, $result=null)
@@ -279,21 +271,44 @@ class MatchsController extends Controller
 
             $affichage = $this->affichage;
 
-            if( is_null($this->point->getOneQuarts($idmatch,'idmatch')->quart1) )
+             //initialisation du Classement
+            $listes = array($equipe1->IDEQUIPE, $equipe2->IDEQUIPE);
+            $getquart = $this->point->getOneQuarts($idmatch,'idmatch');
+            if( !is_null($getquart) )
+            {
+                if( is_null($getquart->quart1) )
+                {
+                    $boucleArray = ['periode' => $this->periode ,'start' => $this->demarrage, 'equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
+                    $boucle[] = json_decode(json_encode($boucleArray));
+
+                    for( $k=0; $k<count($listes); $k++ )
+                        $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],\Session::get('idevent'))->idpoule;
+                    
+                     $this->classement->insertionClassement( $listes, $getidpoule, [ $equipe1->IDEQUIPE => $equipe1->score, $equipe2->IDEQUIPE => $equipe2->score ]);
+
+                }
+                elseif( !empty($result) )
+                {   
+                    $parser = json_decode(json_encode($result),false);
+                    $boucle = $this->parserResultPoint($parser[0],$idmatch,$equipe1,$equipe2);
+                }
+                if( !is_null($getquart->quart4) )
+                {
+                   $affichage = false;
+                   $boucle[3]->start = '<button class="btn btn-danger btn-labeled fa fa-info">Terminer</button>';
+                   $fin_du_match = $this->findumatch($parser,$idmatch);
+                  
+                   //Premiere insertion dans Classement
+                    for( $k=0; $k<count($listes); $k++ )
+                        $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],\Session::get('idevent'))->idpoule;
+                    
+                    $this->classement->insertionClassement($listes, $getidpoule, [ $equipe1->IDEQUIPE => $equipe1->score, $equipe2->IDEQUIPE => $equipe2->score ]);
+                }
+            }
+            else
             {
                 $boucleArray = ['periode' => $this->periode ,'start' => $this->demarrage, 'equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
                 $boucle[] = json_decode(json_encode($boucleArray));
-            }
-            elseif( !empty($result) )
-            {   
-                $parser = json_decode(json_encode($result),false);
-                $boucle = $this->parserResultPoint($parser[0],$idmatch,$equipe1,$equipe2);
-            }
-            if( !is_null($this->point->getOneQuarts($idmatch,'idmatch')->quart4) )
-            {
-               $affichage = false;
-               $boucle[3]->start = '<button class="btn btn-danger btn-labeled fa fa-info">Terminer</button>';
-               $fin_du_match = $this->findumatch($parser,$idmatch);
             }
 
             return array('equipe1' => $equipe1, 'equipe2' => $equipe2, 'affichage' => $affichage ,'boucle' => $boucle ,'idmatch' => $idmatch);

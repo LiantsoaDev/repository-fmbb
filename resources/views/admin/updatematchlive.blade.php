@@ -40,6 +40,23 @@
                              <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 @include('admin.notification')
                              </div>
+                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Contrôles</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--Buttons with label-->
+                                        <!--===================================================-->
+                                        <a href="{{route('show.event')}}" class="btn btn-primary btn-rounded btn-labeled fa fa-home">Listes évenements</a>
+                                        <a href="{{route('admin.calendrier',$idevent)}}" class="btn btn-success btn-labeled fa fa-reply-all">Phase</a>
+                                         <a href="javascript:history.back()" class="btn btn-warning btn-rounded btn-labeled fa fa-reply">Retour</a>
+                                        <!--===================================================-->
+                                    </div>
+                                </div>
+                            </div>
+
+                             
         </div>
         @foreach($result->boucle as $bcl)
         <div class="row">
@@ -103,7 +120,7 @@
                                       </div>
                                       <div class="col-xs-2">
                                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 text-center-xs"> 
-                                               <button typ="submit" class="btn btn-success btn-labeled fa fa-check-circle">Valider le Quart temps</button> <br>   
+                                               <button typ="submit" class="btn btn-success btn-labeled fa fa-check-circle">Cliquer <u>ici</u> <br>pour valider le Quart temps</button> <br>   
                                              </div>
                                       </div>
                                       <div class="col-xs-5">

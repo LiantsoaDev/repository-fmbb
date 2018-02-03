@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'investirenaustralie_session',
+    'cookie' => 'fmbb_session',
 
     /*
     'cookie' => env(

@@ -19,30 +19,35 @@ class ClassementsController extends Controller
 
     /**
     * fonction verification et insertion dans classement des équipes
-    * @param Array $idEquipes , Array $score
+    * @param Array $idequipes , Array $score
     * @return Boolean 
     */
-    public function insertionClassement($idequipe,$idpoule,$score)
+    public function insertionClassement($idequipes,$idpoule,$score)
     {
-    	$designationScore = $this->classificationScore($idequipe,$score);
-    	$resultat =  $this->result->getresultat($idequipe, $idpoule);
-    	if( $resultat == false )
+    	for( $a=0; $a<count($idequipes); $a++ )
     	{
-    		$this->result->insertResultat([
-    			'idequipe' => $idequipe,
-    			'pouleid' => $idpoule,
-    			'v' => intval(00),
-    			'd' => intval(00),
-    			'points' => intval(00),
-    			'scoreencaisse' => $designationScore['encaisse'],
-    			'scorecumule' => $designationScore['cumule'],
-    			'differencepoint' => $designationScore['differencepoint']
-    		]);
+    		$designationScore = $this->classificationScore($idequipes[$a],$score);
+	    	$resultat =  $this->result->getresultat($idequipes[$a], $idpoule);
+	    	if( $resultat == false )
+	    	{
+	    		$this->result->insertResultat([
+	    			'idequipe' => $idequipes[$a],
+	    			'pouleid' => $idpoule,
+	    			'v' => intval(00),
+	    			'd' => intval(00),
+	    			'points' => intval(00),
+	    			'scoreencaisse' => $designationScore['encaisse'],
+	    			'scorecumule' => $designationScore['cumule'],
+	    			'differencepoint' => $designationScore['differencepoint']
+	    		]);
+	    	}
+	    	else
+	    	{
+	    		$assignation_statut = $this->calculdespoints($score,$idpoule);
+	    		break;
+	    	}
     	}
-    	else
-    	{
-    		$assignation_statut = $this->calculdespoints($score,$idpoule);
-    	}
+    	return true;
     }
 
     /**
@@ -65,10 +70,14 @@ class ClassementsController extends Controller
     			$equipe2Object = json_decode(json_encode($equipe2),false);
     		}
     	}
+
     	if( $equipe1Object->score > $equipe2Object->score)
     		$updateScore = $this->updateVictoireOuDefaite($equipe1Object,$equipe2Object,$idpoule);
     	if( $equipe1Object->score < $equipe2Object->score)
     		$updateScore = $this->updateVictoireOuDefaite($equipe2Object,$equipe1Object,$idpoule);
+    	
+
+    	return true;
     }
 
     /**
@@ -80,6 +89,7 @@ class ClassementsController extends Controller
     {
     	//getresultat Equipe Victorieux :  victoire, defaite, points, scoreencaisse, scorecumule, differencepoint
     	$dataScore = $this->result->recupereResultat($equipeVictoire->id,$idpoule);
+
     	foreach ($dataScore as $datas )
     	{
     		$getV = $datas->v;
@@ -117,6 +127,7 @@ class ClassementsController extends Controller
     		'scorecumule' => $equipeDefaite->score,
     		'differencepoint' => intval($equipeDefaite->score) - intval($equipeVictoire->score)
     	];
+
     	$this->result->updateResultat($equipeDefaite->id, $idpoule, $updateQueryDefaite);
     	return true;
     }
@@ -125,8 +136,11 @@ class ClassementsController extends Controller
     * @param null
     * @return null
     */
+    public function positionnementsClassement(Equipe $equipe)
+    {
 
-    //... code ...
+    }
+   
 
     /**
     * fonction classification score de deux equipes
