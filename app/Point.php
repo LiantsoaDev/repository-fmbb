@@ -60,7 +60,7 @@ class Point extends Model
 
     /**
     * fonction update Total point pour un match
-    * @param integer idmatch, integer newScore,
+    * @param integer idmatch, integer  idequipe, integer scoreTotal
     * @return Collection Object Point
     */
     public function updateTotal($idmatch, $idequipe,$scoreTotal)
@@ -85,13 +85,18 @@ class Point extends Model
     */
     public function getlastPoint($idmatch,$idequipe)
     {
-        $lastpoint = null;
+        $lastpoint = 00;
         $points = DB::table('points')->select('quart1','quart2','quart3','quart4')->where('idmatch',$idmatch)->where('idequipe',$idequipe)->first();
-        foreach ($points as $key => $value)
+
+        if( !is_null($points) )
         {
-            if( !is_null($value) )
-                $lastpoint = $value;
+            foreach($points as $key => $value)
+            {
+                if( !is_null($value) )
+                    $lastpoint = $value;
+            }
         }
+        
         return $lastpoint;
     }
 

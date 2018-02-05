@@ -32,7 +32,7 @@ class Match extends Model
     public function getMatchsbyEvents($idevent, $phase)
     {
         return DB::table('matchs')
-                -> select('matchs.idmatch','matchs.idevent','calendriers.datematch','calendriers.heurematch','calendriers.lieumatch','poules.libellepoule','matchs.statut','matchs.phase','matchs.equipe_id1 as equipeA','matchs.equipe_id2 as equipeB')
+                -> select('matchs.idmatch','matchs.idevent','matchs.idpoint','calendriers.datematch','calendriers.heurematch','calendriers.lieumatch','poules.libellepoule','matchs.statut','matchs.phase','matchs.equipe_id1 as equipeA','matchs.equipe_id2 as equipeB')
                 ->join('calendriers','calendriers.idcalendrier','=','matchs.idcalendrier')
                 ->join('poules','poules.idpoule','=','matchs.idpoule')
                 ->where(['matchs.idevent' => $idevent ] , ['matchs.phase' , $phase ])->get();

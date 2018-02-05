@@ -43,7 +43,7 @@
                              <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Contrôles</h3>
+                                        <h3 class="panel-title">Retour sur page :</h3>
                                     </div>
                                     <div class="panel-body">
                                         <!--Buttons with label-->
@@ -140,7 +140,7 @@
             <div class="col-lg-8">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Classement des équipes <small><code>Poule A</code></small></h3>
+                                        <h3 class="panel-title">Classement des équipes <small><code>Poule {{$rang[0]->libellepoule}}</code></small></h3>
                                     </div>
                                     <div class="panel-body pad-no">
                                         <!--Default Accordion--> 
@@ -170,42 +170,25 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+
+                                                            @for( $r=0; $r<count($rang); $r++ )
                                                                 <tr>
-                                                                    <td>#1</td>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>18 to 25 year old</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
+                                                                    <td>#{{$r+1}}</td>
+                                                                    <td class="text-center text-azure">
+                                                                        @if( $rang[$r]->sexe == 'Homme')
+                                                                            <i class="fa fa-male"></i>
+                                                                        @else
+                                                                            <i class="fa fa-female"></i>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{$rang[$r]->sigle}}</td>
+                                                                    <td class="center">{{$rang[$r]->v}}</td>
+                                                                    <td class="center">{{$rang[$r]->d}}</td>
+                                                                    <td class="center">{{$rang[$r]->points}}</td>
                                                                     <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>#1</td>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>18 to 25 year old</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>#1</td>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>18 to 25 year old</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-down text-danger fa-2x"></i></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>#1</td>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>18 to 25 year old</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="center">25%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
-                                                                </tr>
+                                                            @endfor
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>

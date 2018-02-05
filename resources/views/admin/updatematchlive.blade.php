@@ -43,7 +43,7 @@
                              <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Contrôles</h3>
+                                        <h3 class="panel-title">Retour sur page : </h3>
                                     </div>
                                     <div class="panel-body">
                                         <!--Buttons with label-->
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                             
+
         </div>
         @foreach($result->boucle as $bcl)
         <div class="row">
@@ -156,42 +156,40 @@
                                                     </h4>
                                                 </div>
                                                 <!--Accordion content-->
-                                                <div class="panel-collapse collapse in">
+                                                 <div class="panel-collapse collapse in">
                                                     <div class="panel-body pad-no">
                                                         <table class="table mar-no bg-light-gray">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="text-center">Gender</th>
-                                                                    <th>Unique User</th>
-                                                                    <th>Percentage</th>
-                                                                    <th class="text-center">Changes</th>
+                                                                    <th>Rang #</th>
+                                                                    <th class="text-center">Genre</th>
+                                                                    <th>Nom de l'équipe</th>
+                                                                    <th>Victoire</th>
+                                                                    <th>Défaite</th>
+                                                                    <th>Points</th>
+                                                                    <th class="text-center">Position</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+
+                                                            @for( $r=0; $r<count($rang); $r++ )
                                                                 <tr>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>18 to 25 year old</td>
-                                                                    <td class="center">25%</td>
+                                                                    <td>#{{$r+1}}</td>
+                                                                    <td class="text-center text-azure">
+                                                                        @if( $rang[$r]->sexe == 'Homme')
+                                                                            <i class="fa fa-male"></i>
+                                                                        @else
+                                                                            <i class="fa fa-female"></i>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{$rang[$r]->sigle}}</td>
+                                                                    <td class="center">{{$rang[$r]->v}}</td>
+                                                                    <td class="center">{{$rang[$r]->d}}</td>
+                                                                    <td class="center">{{$rang[$r]->points}}</td>
                                                                     <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>26 to 35 year old</td>
-                                                                    <td class="center">35%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-down text-danger fa-2x"></i></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>36 to 45 year old</td>
-                                                                    <td class="center">45%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-center text-azure"><i class="fa fa-male"></i></td>
-                                                                    <td>46 to 55 year old</td>
-                                                                    <td class="center">40%</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
-                                                                </tr>
+                                                            @endfor
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>

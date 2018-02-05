@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Point;
 use App\Resultat;
+use App\Match;
 
 class ClassementsController extends Controller
 {
@@ -15,6 +16,7 @@ class ClassementsController extends Controller
     {
     	$this->result = new Resultat();
     	$this->point = new Point();
+    	$this->match = new Match();
     }
 
     /**
@@ -22,7 +24,7 @@ class ClassementsController extends Controller
     * @param Array $idequipes , Array $score
     * @return Boolean 
     */
-    public function insertionClassement($idequipes,$idpoule,$score)
+    public function insertionClassement($idequipes,$idpoule,$idmatch,$score)
     {
     	for( $a=0; $a<count($idequipes); $a++ )
     	{
@@ -43,8 +45,12 @@ class ClassementsController extends Controller
 	    	}
 	    	else
 	    	{
-	    		$assignation_statut = $this->calculdespoints($score,$idpoule);
-	    		break;
+	    		$match_statut = $this->match->getmatchbyid($idmatch)->STATUT;
+	    		if( $match_statut != 'Terminer')
+	    		{	
+		    		$assignation_statut = $this->calculdespoints($score,$idpoule);
+		    		break;
+	    		}
 	    	}
     	}
     	return true;
@@ -136,11 +142,12 @@ class ClassementsController extends Controller
     * @param null
     * @return null
     */
-    public function positionnementsClassement(Equipe $equipe)
+    public function positionnementsClassement($idpoule)
     {
-
+    	$classement_poule = $this->result->getResultatByPoule($idpoule);
+        //$this->variationPoistionnement($classement_poule);
+        return $classement_poule;
     }
-   
 
     /**
     * fonction classification score de deux equipes
@@ -161,6 +168,25 @@ class ClassementsController extends Controller
     	}
     	$score['differencepoint'] = $score['cumule'] - $score['encaisse'];
     	return $score;
+    }
+
+    /**
+    * fonction de positionnement de classement 
+    * @param Array $classement
+    * @return array 
+    */
+    public function variationPoistionnement(Request $request, $classement)
+    {
+        foreach ($classement as $key => $value)
+        {
+            $prime[] = array($value->sigle , $value->points);
+        }
+        
+        if( !is_null($prime) ){
+            $request->session()->flash('flash_position',$prime);
+            return true;
+        }
+
     }
 
 }

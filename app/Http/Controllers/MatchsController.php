@@ -46,6 +46,7 @@ class MatchsController extends Controller
     public function showallmatchsbyEvent(Request $request , $phase='phase de groupe')
     {
         $brute = $this->match->getMatchsbyEvents( $request->session()->get('idevent') , $phase );
+        
         if( !empty($phase) )
             $brute->encours = $phase;
 
@@ -53,8 +54,11 @@ class MatchsController extends Controller
         {
             $brt->teamA =  $this->equipe->findequipe($brt->equipeA);
             $brt->teamA->REGION = $this->region->getregion($brt->teamA->IDREGION)->LIBELLE;
+            $brt->teamA->score = $this->point->getlastPoint($brt->idmatch,$brt->teamA->IDEQUIPE);
+
             $brt->teamB = $this->equipe->findequipe($brt->equipeB);
             $brt->teamB->REGION = $this->region->getregion($brt->teamB->IDREGION)->LIBELLE;
+            $brt->teamB->score = $this->point->getlastPoint($brt->idmatch,$brt->teamB->IDEQUIPE);
 
             $evenement = new Event();
             $brt->statutencours = $evenement->scopeStatutEvent($brt->datematch, $brt->datematch);
@@ -223,9 +227,11 @@ class MatchsController extends Controller
    
         $resultats = $this->affichageScoreMatch(null, $request->post('matchref') , new EquipesController($request->post('one')), new EquipesController($request->post('two')), $resultatPoint);   
         
-        $result = json_decode(json_encode($resultats), false );
-
-        return view('admin.updatematchlive',compact('result','idevent'));
+        /*$result = json_decode(json_encode($resultats), false );
+        $rang = $result->rang;
+        unset($result->rang);
+        return view('admin.updatematchlive',compact('result','idevent','rang'));*/
+        return redirect()->route('admin.show-update-match',$request->post('matchref'));
     }
 
     /**
@@ -270,7 +276,8 @@ class MatchsController extends Controller
             }
 
             $affichage = $this->affichage;
-
+            //get idpoule
+             $getidpoule = $this->poule->getidpouleEquipeByevent($equipe1->IDEQUIPE,\Session::get('idevent'))->idpoule;
              //initialisation du Classement
             $listes = array($equipe1->IDEQUIPE, $equipe2->IDEQUIPE);
             $getquart = $this->point->getOneQuarts($idmatch,'idmatch');
@@ -281,10 +288,7 @@ class MatchsController extends Controller
                     $boucleArray = ['periode' => $this->periode ,'start' => $this->demarrage, 'equipe1' => $team1->convertToObject() , 'equipe2' => $team2->convertToObject() ];  
                     $boucle[] = json_decode(json_encode($boucleArray));
 
-                    for( $k=0; $k<count($listes); $k++ )
-                        $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],\Session::get('idevent'))->idpoule;
-                    
-                     $this->classement->insertionClassement( $listes, $getidpoule, [ $equipe1->IDEQUIPE => $equipe1->score, $equipe2->IDEQUIPE => $equipe2->score ]);
+                     $this->classement->insertionClassement($listes,$getidpoule,$idmatch,[ $equipe1->IDEQUIPE=>$equipe1->score,$equipe2->IDEQUIPE=>$equipe2->score ]);
 
                 }
                 elseif( !empty($result) )
@@ -296,13 +300,11 @@ class MatchsController extends Controller
                 {
                    $affichage = false;
                    $boucle[3]->start = '<button class="btn btn-danger btn-labeled fa fa-info">Terminer</button>';
-                   $fin_du_match = $this->findumatch($parser,$idmatch);
-                  
+                
                    //Premiere insertion dans Classement
-                    for( $k=0; $k<count($listes); $k++ )
-                        $getidpoule = $this->poule->getidpouleEquipeByevent($listes[$k],\Session::get('idevent'))->idpoule;
-                    
-                    $this->classement->insertionClassement($listes, $getidpoule, [ $equipe1->IDEQUIPE => $equipe1->score, $equipe2->IDEQUIPE => $equipe2->score ]);
+                    $this->classement->insertionClassement($listes,$getidpoule,$idmatch,[ $equipe1->IDEQUIPE => $equipe1->score, $equipe2->IDEQUIPE => $equipe2->score ]);
+                    //Assignation fin de match
+                    $fin_du_match = $this->findumatch($parser,$idmatch);
                 }
             }
             else
@@ -311,7 +313,10 @@ class MatchsController extends Controller
                 $boucle[] = json_decode(json_encode($boucleArray));
             }
 
-            return array('equipe1' => $equipe1, 'equipe2' => $equipe2, 'affichage' => $affichage ,'boucle' => $boucle ,'idmatch' => $idmatch);
+            //affichage du classement
+            $rang = $this->classement->positionnementsClassement($getidpoule);
+
+            return array('equipe1' => $equipe1, 'equipe2' => $equipe2, 'affichage' => $affichage ,'boucle' => $boucle ,'idmatch' => $idmatch,'rang' => $rang);
     }
 
     /**
@@ -372,7 +377,7 @@ class MatchsController extends Controller
     }
 
     /**
-    * Fonction fin du match 
+    * Fonction fin du match : inserer le score final du match ( Total )
     * @param Object $parser, integer $idmatch
     * @return Array $boucle
     */
@@ -385,6 +390,7 @@ class MatchsController extends Controller
                 foreach($value as $cle => $valeurs )
                 {
                     $update_total = $this->point->updateTotal($idmatch, $valeurs->idequipe, $valeurs->quart4);
+                    $update_match = $this->match->updateMatch($idmatch, ['statut' => 'Terminer']);
                 }
            }
            return true;

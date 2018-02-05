@@ -53,4 +53,19 @@ class Resultat extends Model
     {
     	return self::where('idequipe',$idequipe)->where('pouleid',$idpoule)->get(['v','d','points','scoreencaisse','scorecumule','differencepoint']);
     }
+
+    /**
+    * fonction getResultat by poule
+    * @param integer idpoule
+    * @return Collection Object Resultat 
+    */
+    public function getResultatByPoule($idpoule)
+    {
+        return DB::table('resultats')
+                ->select('equipes.sigle','equipes.sexe','equipes.logourl','resultats.v','resultats.d','resultats.points','resultats.scoreencaisse','resultats.scorecumule','resultats.differencepoint','poules.libellepoule')
+                ->join('equipes','equipes.idequipe','=','resultats.idequipe')
+                ->join('poules','poules.idpoule','=','resultats.pouleid')
+                ->where('resultats.pouleid',$idpoule)->orderBy('points','desc')->orderBy('differencepoint','desc')->get();
+    }
+
 }

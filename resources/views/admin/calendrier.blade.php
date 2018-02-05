@@ -33,7 +33,7 @@
                                                 <div class="media-object center"> <img src="{{LINK}}/images/{{$info->teamA->LOGOURL}}" width="80px" height="80px" alt="" class="img-circle"> </div>
                                             </div>
                                              <div class="col-xs-6">
-                                                <div class="col-sm-3 pull-right"><h1>00</h1></div>
+                                                <div class="col-sm-3 pull-right"><h1>{{$info->teamA->score}}</h1></div>
                                                 <h3>{{$info->teamA->SIGLE}}</h3>
                                                  <h6>{{$info->teamA->REGION}}</h6>
                                              </div>  
@@ -47,7 +47,7 @@
                                       <div class="col-xs-5">
                                                 <div class="col-xs-6">
                                                     <div class="col-sm-3 pull-right"><h3>{{$info->teamB->SIGLE}}</h3> <h6>{{$info->teamB->REGION}}</h6></div>
-                                                        <h1>00</h1>
+                                                        <h1>{{$info->teamB->score}}</h1>
                                                     </div>
                                              <div class="col-xs-6">
                                                 <div class="media-object pull-right"> <img src="{{LINK}}/images/{{$info->teamB->LOGOURL}}" width="80px" height="80px" alt="" class="img-circle"> </div>
@@ -70,6 +70,7 @@
                             <button class="btn btn-warning btn-labeled fa fa-share" data-toggle="modal" data-target="#reporting">Reporter</button>
                             <a href="{{ route('admin.show-update-match',$info->idmatch) }}" class="btn btn-mint btn-rounded btn-labeled fa fa-pencil">Mettre à jour score</a>
                         </div>
+                        {!! $info->notification !!} 
                         <button class="btn btn-danger btn-rounded btn-labeled fa fa-video-camera pull-right"> {{ $info->statutencours }}</button>
                     </div>
 

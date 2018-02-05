@@ -9,6 +9,7 @@ use App\Poule;
 use App\Http\Controllers\PoulesController;
 use App\Http\Controllers\MatchsController;
 use App\Http\Controllers\EquipesController;
+use App\Http\Controllers\ClassementsController;
 use Carbon\Carbon;
 use App\Point;
 use App\Calendrier;
@@ -22,6 +23,7 @@ class CalendriersController extends Controller
     private $match;
     private $calendrier;
     private $point;
+    private $classement;
 
     public function __construct()
     {
@@ -31,6 +33,7 @@ class CalendriersController extends Controller
         $this->event = new Event();
         $this->match = new Match();
         $this->calendrier = new Calendrier();
+        $this->classement = new ClassementsController();
 
     }
 
@@ -70,8 +73,34 @@ class CalendriersController extends Controller
         $instancematch = new MatchsController();
         $information = $instancematch->showallmatchsbyEvent( $request );
         // verification poule
-        $color = $this->gestionColor($information->encours);
+        //$color = $this->gestionColor($information->encours);
+
+        foreach ( $information as $info ) {
+            if( !is_null($info->idpoint) )
+                $info->notification = $this->notificationScoreMatch($info->idmatch);
+            else
+                $info->notification = "";
+        }
     	return view('admin.calendrier',compact('information','color'));
+    }
+
+    /**
+    * fonction notification sur score incomplete
+    * @param integer idmatch 
+    * @return string $notification
+    */
+    public function notificationScoreMatch($idmatch)
+    {
+        $getpoint = $this->point->getAllQuarts($idmatch,'idmatch');
+
+        if( is_null($getpoint[0]->quart4) )
+        {
+            $notif = '<button class="btn btn-mint btn-labeled fa fa-exclamation-triangle pull-right">incomplet</button>';
+        }
+        else
+            $notif = "";
+
+        return $notif;
     }
 
     /** 
@@ -95,7 +124,9 @@ class CalendriersController extends Controller
            {
                 $result = $matchinstance->getResultatMatch($idmatch);
            }   
-           return view('admin.showmatch',compact('result','idevent')); 
+           $rang = $result->rang;
+           unset($result->rang);
+           return view('admin.showmatch',compact('result','idevent','rang')); 
         }
         else
         {
