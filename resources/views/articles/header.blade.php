@@ -333,7 +333,7 @@
                             <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                             <li id="dropdown-user" class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-                                    <span class="pull-right"> <img class="img-circle img-user media-object" src="../../back/img/av1.png" alt="Profile Picture"> </span>
+                                    <span class="pull-right"> <img class="img-circle img-user media-object" src="../../back/img/tahiry.jpg" alt="Profile Picture"> </span>
                                     <div class="username hidden-xs">Admin</div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right with-arrow">
@@ -346,10 +346,10 @@
                                             <a href="#">  <i class="fa fa-envelope fa-fw fa-lg"></i> Messages </a>
                                         </li>
                                         <li>
-                                            <a href="#">  <i class="fa fa-gear fa-fw fa-lg"></i> Settings </a>
+                                            <a href="#">  <i class="fa fa-gear fa-fw fa-lg"></i> Modification </a>
                                         </li>
                                         <li>
-                                            <a href="#"> <i class="fa fa-sign-out fa-fw"></i> Logout </a>
+                                            <a href="#"> <i class="fa fa-sign-out fa-fw"></i> Deconnection </a>
                                         </li>
                                     </ul>
                                 </div>

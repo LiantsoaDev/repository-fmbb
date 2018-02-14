@@ -13,5 +13,24 @@ class Article extends Model
     protected $fillable = [
         'titre','contenu','tag','slug','seo','categorie','statut','administrateurs_id','images_id','archive'
     ];
-    
+
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Reply');
+    }
 }

@@ -148,14 +148,44 @@
                                             {{ csrf_field() }}
                                             <div class="panel-body">
                                                 <div class="form-group">
-                                                &nbsp;&nbsp;<label for="description1">Description :</label>
-                                                    <input type="text" id="description1" name="description1" placeholder="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <input type="file" class="form-control" id="images" name="photos1" onchange="preview_images();"/>
+                                                <label for="description1" class="col-sm-3 control-label">Description :</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" id="description1" name="description1" placeholder="" />
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Emplacement du Fond dans le Site : </label>
+                                                    <div class="col-sm-6">
+                                                        <select class="form-control" name="fond">
+                                                            
+                                                                <option selected>avant</option>
+                                                                <option>arrière</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div
+
+                                                <div class="form-group">
+                                                <label for="description1" class="col-sm-3 control-label">Image :</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="file" class="form-control" id="images" name="photos1" onchange="preview_images();"/>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                <label for="description1" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6" id="image_preview"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                <label for="description1" class="col-sm-3 control-label"></label>
+                                                    <div class="col-sm-6">
+                                                        <input type="submit" class="btn btn-primary" name='submit_image' value="Uploader Image"/>
+                                                    </div>
+                                                </div>    
+
                                             </div>
                                             <div class="pull-right">
                                             <!-- <a class="btn btn-warning" href="{{ route('index') }}"> Retour</a>-->
@@ -165,45 +195,10 @@
                                         <!--End Block Styled Form -->
                                     </div>
                                 </div>
-                                <div class="col-sm-6 eq-box-sm">
-                                    <div class="panel">
-                                        <div class="panel-heading">
 
-                                            <h3 class="panel-title">Image du Fond</h3>
-                                        </div>
-                                        <!--Horizontal Form-->
-                                        <!--===================================================-->
-                                        <div class="form-horizontal">
-                                            <div class="panel-body">
-                                                <div class="form-group">
-                                                &nbsp;&nbsp;<label for="description2">Description :</label>
-                                                    <input type="text" id="description2" name="description2" placeholder="" />
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="file" class="form-control" id="images" name="photos2" onchange="preview_images();" />
-                                                </div>
-                                          
-                                        </div>
-                                        <div class="pull-right">
-                                        <!-- <a class="btn btn-warning" href="{{ route('index') }}"> Retour</a>-->
-                                        </div>
-                                    </div>
-                                    
-
-                                        <!--===================================================-->
-                                        <!--End Horizontal Form-->
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                                <div class="form-inline">      
-                                <div class="row" id="image_preview"></div>
-                                        <div class="col-md-16">
-                                                    <input type="submit" class="btn btn-primary" name='submit_image' value="Uploader Image"/>
-                                        </div>
-                                </div>        
-                        </div>
+                       
                     </form>
 
 

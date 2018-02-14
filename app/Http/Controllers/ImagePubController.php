@@ -42,7 +42,6 @@ class ImagePubController extends Controller
         
         
         $files1=Input::file('photos1');
-        $files2=Input::file('photos2');
         
         if(!is_null($files1))
         {
@@ -51,36 +50,32 @@ class ImagePubController extends Controller
               $files1->move('app/photos',$name1); 
               //$desc = $request->description1;
 
-              DB::table('imagefonds')->insert(array(
-                'description'=>$request->description1,
-                'numfond'=>'1',
-                'statut'=>false,
-                'url'=> $name1,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s')
+              if($request->fond == 'avant')
 
-              ));
-            return redirect()->route('fond')->with('success','Image inseré!! ');              
+                {              
+                        DB::table('imagefonds')->insert(array(
+                        'description'=>$request->description1,
+                        'numfond'=>'1',
+                        'statut'=>false,
+                        'url'=> $name1,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                        'created_at' => date('Y-m-d H:i:s')
+                    ));
+                    return redirect()->route('fond')->with('success','Image du devant inseré!! ');              
+                }
+              else
+                {              
+                    DB::table('imagefonds')->insert(array(
+                    'description'=>$request->description1,
+                    'numfond'=>'2',
+                    'statut'=>false,
+                    'url'=> $name1,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'created_at' => date('Y-m-d H:i:s')
+                ));
+                return redirect()->route('fond')->with('success','Image Fond inseré!! ');              
+                }
         }
-        
-        if(!is_null($files2))
-        {
-
-              $name2=$files2->getClientOriginalName(); 
-              $files2->move('app/photos',$name2); 
-
-
-              DB::table('imagefonds')->insert(array(
-                'description'=>$request->description2,
-                'numfond'=>'2',
-                'statut'=>false,
-                'url'=> $name2,
-                'updated_at' => date('Y-m-d H:i:s'),
-                'created_at' => date('Y-m-d H:i:s')
-              ));
-              return redirect()->route('fond')->with('success','Image inseré!! ');
-        }
-        
         else 
         {
             return redirect()->route('fond')->with('warning','pas d\'Image selectionné!! ');

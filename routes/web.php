@@ -69,6 +69,10 @@ Route::prefix('articles')->group(function(){
         Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));
 
 /*-------------------------------------------------------------------------*/
+
+
+/*------------------------------------Gestion Commentaire--------------------------------------------*/
+Route::get('/deletecomment/{id}',array('as'=>'deletecomment','uses'=>'CommentController@destroycom'));
     
     });
 
@@ -107,7 +111,36 @@ Route::prefix('front')->group(function(){
     
         Route::get('/accueil',array('as'=>'accueil','uses'=>'FrontController@index'));
         Route::get('/articles/{id}',array('as'=>'articles','uses'=>'FrontController@showarticles')); 
+
+
+        
+        /*----------------------------------------------------Facebook Authent------------------------------------------------*/
+
+        Route::get('/login/facebook', array('as'=>'facebook','uses'=>'Auth\LoginController@redirectToProvider'));
+        Route::get('login/facebook/callback', array('as'=>'callback','uses'=>'Auth\LoginController@handleProviderCallback'));
+
+        /*---------------------------------------------Fin facebook Authent--------------------------------------------------*/
+
+
+        /*----------------------------------------------------google Authent------------------------------------------------*/
+
+        Route::get('/login/google', array('as'=>'google','uses'=>'Auth\LoginController@redirectToProvide'));
+        Route::get('/login/google/callback', array('as'=>'googleback','uses'=>'Auth\LoginController@handleProviderCallbac'));
+
+        /*---------------------------------------------Fin google Authent--------------------------------------------------*/
+
+
+                /*----------------------------------------------------Commentaires------------------------------------------------*/
+
+                Route::post('/comment', array('as'=>'commenter','uses'=>'CommentController@store'));
+                Route::post('/reply/{id}', array('as'=>'reply','uses'=>'CommentController@storeReply'));
+                // Route::get('/comment/', array('as'=>'googleback','uses'=>'Auth\LoginController@handleProviderCallbac'));
+        
+                /*---------------------------------------------Fin Commentaires--------------------------------------------------*/
        
     });
 
 /**----------------------------------------------Fin Front-end jersam--------------------------------------------------*/
+
+
+

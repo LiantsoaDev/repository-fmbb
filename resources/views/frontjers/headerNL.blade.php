@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from alchemists.dan-fisher.com/basketball/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Aug 2017 21:03:31 GMT -->
 <head>
 
   <!-- Basic Page Needs
@@ -46,6 +45,8 @@
 
   <!-- Custom CSS-->
   <link href="../../front/assets/css/custom.css" rel="stylesheet">
+
+
   <style>
     
     
@@ -132,8 +133,6 @@
           <!-- Account Navigation -->
           <ul class="nav-account">
             <li class="nav-account__item"><a href="#" data-toggle="modal" data-target="#modal-login-register">Votre compte</a></li>
-            <li class="nav-account__item nav-account__item--wishlist"><a href="shop-wishlist.html">Wishlist <span class="highlight">8</span></a></li>
-           
             <li class="nav-account__item nav-account__item--logout"><a href="#">Deconnection</a></li>
           </ul>
           <!-- Account Navigation / End -->

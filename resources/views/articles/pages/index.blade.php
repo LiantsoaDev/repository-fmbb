@@ -69,7 +69,7 @@
                         <th>Réference</th>
                         <th>Titre</th>
                         <th>tag</th>
-                        <th>Seo</th>
+                        <th></th>
                         <th>Date d'insertion</th>
                         <th>Statuts</th>
                         <th>Publication</th>
@@ -85,9 +85,11 @@
                             
                             <td> {{str_limit($article->titre, $limit = 20, $end = '...')}} </td>
                             
-                            <td>{{str_limit($article->tag, $limit = 20, $end = '...')}}</td>
+                            <td>{{str_limit($article->tag, $limit = 17, $end = '...')}}</td>
                             
-                            <td>{{str_limit($article->seo, $limit = 20, $end = '...')}}</td>
+                            <td>
+                               
+                            </td>
                             
                             <td><span class="text-muted"><i class="fa fa-clock-o"> </i>  {{ $article->created_at->format('d-m-Y') }}</span></td>
                             

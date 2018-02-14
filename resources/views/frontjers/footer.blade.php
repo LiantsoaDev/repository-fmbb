@@ -32,27 +32,24 @@
                           <svg role="img" class="df-icon df-icon--basketball">
                             <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
                           </svg>
-                          <h6 class="info-block__heading">Contact Us</h6>
-                          <a class="info-block__link" href="mailto:info@alchemists.com">info@alchemists.com</a>
+                          <h6 class="info-block__heading">Contactez-nous</h6>
+
                         </div>
                         <div class="info-block__item">
                           <svg role="img" class="df-icon df-icon--jersey">
                             <use xlink:href="../../front/assets/images/icons-basket.svg#jersey"/>
                           </svg>
-                          <h6 class="info-block__heading">Join Our Team!</h6>
-                          <a class="info-block__link" href="mailto:tryouts@alchemists.com">tryouts@alchemists.com</a>
+
                         </div>
                         <div class="info-block__item info-block__item--nopadding">
                           <ul class="social-links">
                             <li class="social-links__item">
-                              <a href="#" class="social-links__link"><i class="fa fa-facebook"></i> Facebook</a>
+                              <a href="https://www.facebook.com/madagascarbasketball/" class="social-links__link"><i class="fa fa-facebook"></i> Facebook</a>
                             </li>
-                            <li class="social-links__item">
+                            <!--<li class="social-links__item">
                               <a href="#" class="social-links__link"><i class="fa fa-twitter"></i> Twitter</a>
-                            </li>
-                            <li class="social-links__item">
-                              <a href="#" class="social-links__link"><i class="fa fa-google-plus"></i> Google+</a>
-                            </li>
+                            </li>-->
+                            
                           </ul>
                         </div>
                       </div>
@@ -65,7 +62,7 @@
                 <div class="footer-col-inner">
                   <!-- Widget: Popular Posts / End -->
                   <div class="widget widget--footer widget-popular-posts">
-                    <h4 class="widget__title">Popular News</h4>
+                    <h4 class="widget__title">Les Articles récents</h4>
                     <div class="widget__content">
                       <ul class="posts posts--simple-list">
                         <li class="posts__item posts__item--category-2">
@@ -115,12 +112,12 @@
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <ul class="footer-nav">
-                  <li class="footer-nav__item"><a href="{{ route('accueil') }}">Home</a></li>
-                  <li class="footer-nav__item"><a href="#">Features</a></li>
-                  <li class="footer-nav__item"><a href="#">Statistics</a></li>
-                  <li class="footer-nav__item"><a href="#">The Team</a></li>
-                  <li class="footer-nav__item"><a href="#">News</a></li>
-                  <li class="footer-nav__item"><a href="#">Shop</a></li>
+                  <li class="footer-nav__item"><a href="{{ route('accueil') }}">Accueil</a></li>
+                  <li class="footer-nav__item"><a href="#">Classements</a></li>
+                  <li class="footer-nav__item"><a href="#">Calendriers</a></li>
+                  <li class="footer-nav__item"><a href="#">Nouveauté</a></li>
+                  <li class="footer-nav__item"><a href="#">Saison</a></li>
+                  
                 </ul>
               </div>
             </div>
@@ -146,20 +143,20 @@
     
                 <!-- Register Form -->
                 <form action="#" class="modal-form">
-                  <h5>Register Now!</h5>
+                  <h5>Inscrivez maintenant!</h5>
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter your email address...">
+                    <input type="email" class="form-control" placeholder="Entrer adress email...">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter your password...">
+                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe...">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Repeat your password...">
+                    <input type="password" class="form-control" placeholder="Confirmer les mots de passe...">
                   </div>
                   <div class="form-group form-group--submit">
-                    <a href="shop-account.html" class="btn btn-primary btn-block">Create Your Account</a>
+                    <a href="shop-account.html" class="btn btn-primary btn-block">Creer compte</a>
                   </div>
-                  <div class="modal-form--note">You’ll receive a confirmation email in your inbox with a link to activate your account. </div>
+                  <div class="modal-form--note"></div>
                 </form>
                 <!-- Register Form / End -->
     
@@ -168,34 +165,34 @@
     
                 <!-- Login Form -->
                 <form action="#" class="modal-form">
-                  <h5>Login to your account</h5>
+                  <h5>Login Avec votre Compte</h5>
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter your email address...">
+                    <input type="email" class="form-control" placeholder="Enter votre address email...">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter your password...">
+                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe...">
                   </div>
                   <div class="form-group form-group--pass-reminder">
                     <label class="checkbox checkbox-inline">
-                      <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Remember Me
+                      <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Se souvenir de moi
                       <span class="checkbox-indicator"></span>
                     </label>
-                    <a href="#">Forgot your password?</a>
+                    <a href="">Mot de passe oublié?</a>
                   </div>
                   <div class="form-group form-group--submit">
-                    <a href="shop-account.html" class="btn btn-primary-inverse btn-block">Enter to your account</a>
+                    <a href="shop-account.html" class="btn btn-primary-inverse btn-block">Login</a>
                   </div>
                   <div class="modal-form--social">
-                    <h6>or Login with your social profile:</h6>
+                    <h5>Login avec les profiles sociales:</h5>
                     <ul class="social-links social-links--btn text-center">
                       <li class="social-links__item">
                         <a href="#" class="social-links__link social-links__link--lg social-links__link--fb"><i class="fa fa-facebook"></i></a>
                       </li>
-                      <li class="social-links__item">
+                      <!--<li class="social-links__item">
                         <a href="#" class="social-links__link social-links__link--lg social-links__link--twitter"><i class="fa fa-twitter"></i></a>
-                      </li>
+                      </li>-->
                       <li class="social-links__item">
-                        <a href="#" class="social-links__link social-links__link--lg social-links__link--gplus"><i class="fa fa-google-plus"></i></a>
+                        <a href="{{ route('google') }}" class="social-links__link social-links__link--lg social-links__link--gplus"><i class="fa fa-google-plus"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -209,7 +206,64 @@
       </div>
     </div>
     <!-- Login/Register Modal / End -->
+
     
+        <!-- Login Modal fotsiny-->
+        <div class="modal fade" id="modal-login" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg modal--login" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+    
+            <div class="modal-account-holder">
+    
+              <div class="modal-account__item">
+    
+                <!-- Login Form -->
+                <form action="#" class="modal-form">
+                  <h5>Login Avec votre Compte</h5>
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Enter votre address email...">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe...">
+                  </div>
+                  <div class="form-group form-group--pass-reminder">
+                    <label class="checkbox checkbox-inline">
+                      <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Se souvenir de moi
+                      <span class="checkbox-indicator"></span>
+                    </label>
+                    <a href="">Mot de passe oublié?</a>
+                  </div>
+                  <div class="form-group form-group--submit">
+                    <a href="shop-account.html" class="btn btn-primary-inverse btn-block">Login</a>
+                  </div>
+                  <div class="modal-form--social">
+                    <h5>Login avec les profiles sociales:</h5>
+                    <ul class="social-links social-links--btn text-center">
+                      <li class="social-links__item">
+                        <a href="#" class="social-links__link social-links__link--lg social-links__link--fb"><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <!--<li class="social-links__item">
+                        <a href="#" class="social-links__link social-links__link--lg social-links__link--twitter"><i class="fa fa-twitter"></i></a>
+                      </li>-->
+                      <li class="social-links__item">
+                        <a href="{{ route('google') }}" class="social-links__link social-links__link--lg social-links__link--gplus"><i class="fa fa-google-plus"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </form>
+                <!-- Login Form / End -->
+    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Login Modal fotsiny/ End -->
     
   </div>
 
@@ -269,6 +323,8 @@ jQuery(document).ready(function($) {
   <script>
 
   </script>
+
+
 
   <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../front/assets/js/core-min.js"></script>

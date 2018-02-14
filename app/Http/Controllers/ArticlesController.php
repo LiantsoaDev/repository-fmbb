@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Article;
 use App\Image;
-
+use App\Comment;
 use File;
 
 use App\Http\Requests\UploadRequest;
@@ -127,6 +127,7 @@ public function depublication(Request $request,$id)
         $arch = Article::orderBy('created_at', 'desc')->paginate(5);
         return view('articles.pages.archivearticle',compact('arch'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
     public function desarchive(Request $request,$id)
     {
         $desarch = Article::find($id);
@@ -247,7 +248,9 @@ public function depublication(Request $request,$id)
 
         $images = Image::where('id',$article->images_id)->first();
 
-        return view('articles.pages.show',compact('article','images','id'));
+        $coms = Comment::where('article_id',$article->id)->get();
+
+        return view('articles.pages.show',compact('article','images','id','coms'));
 
     }
 
@@ -380,12 +383,12 @@ public function depublication(Request $request,$id)
         ->first();
         
         
-        foreach(explode('|',$img) as $image)
+        foreach(explode('|',$img->urlimage) as $image)
         {
             File::delete('app/photos/'.$image);
         }
         Article::destroy($id);
-        return redirect()->route('index')->with('warning','Article supprimé et Archivé');
+        return redirect()->route('archive')->with('warning','Article supprimé');
 
     }
 

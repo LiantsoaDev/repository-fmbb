@@ -1684,7 +1684,7 @@ td.team-leader__avg{text-align:center;}
 @media (min-width:375px) and (max-width:479px){.team-roster--grid .team-roster__item{width:50%;}
 }
 .team-roster--grid .team-roster__holder{position:relative;}
-.team-roster--grid .team-roster__holder:hover .team-roster__member-number{background-color:#ffdc11;}
+.team-roster--grid .team-roster__holder:hover .team-roster__member-number{background-color:#11a0ff;}
 .team-roster--grid .team-roster__img{position:relative;border-radius:4px;overflow:hidden;border:1px solid #e4e7ed;}
 .team-roster--grid .team-roster__img::before{content:"";display:block;position:absolute;left:0;right:0;bottom:0;height:50%;background-image:-webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.9));background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));}
 .team-roster--grid .team-roster__content{display:block;position:absolute;bottom:0;left:0;right:0;padding:24px 24px;}
@@ -3271,7 +3271,7 @@ td.team-leader__avg{text-align:center;}
 .album-load-more .btn{margin:0 auto;}
 @media (min-width:992px){.album-load-more .btn{width:calc(33.3% + 60px);}
 }
-.modal--login .modal-header{background-image:url("../images/login_register_bg.jpg");background-repeat:no-repeat;background-position:50% 50%;background-size:cover;}
+.modal--login .modal-header{background-image:url("../images/ballogin.jpg");background-repeat:no-repeat;background-position:50% 50%;background-size:cover;}
 @media (min-width:992px){.modal--login .modal-header{height:90px;}
 }
 .modal--login .modal-header .close{width:33px;height:33px;padding:0;line-height:33px;border-radius:50%;background-color:#31404b;color:#fff;opacity:1;margin:0;text-shadow:none;position:absolute;top:0;right:0;-webkit-transform:translate(50%, -50%);transform:translate(50%, -50%);-webkit-transition:all 0.3s ease;transition:all 0.3s ease;}

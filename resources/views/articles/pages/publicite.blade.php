@@ -63,64 +63,10 @@
                         <div class="row">
                             <!--Tooltips-->
                             <!--===================================================-->
-                            <div class="col-lg-6">
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Formulation du Publicité :</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        
-                                        <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Description : </label>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" name="description" type="text" placeholder="Titre" data-parsley-range="[4, 10]" data-parsley-group="order" data-parsley-required />
-                                        </div>
-                                    </div>
-    </br></br>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Emplacement Pub N° : </label>
-                                        <div class="col-sm-6">
-                                        <select class="form-control" name="numpub">
-                                              
-                                                <option selected>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                              
-                                            </select>
-                                        </div>
-                                    </div>
-    </br></br>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label"> Contenu : </label>
-                                        <div class="col-sm-6">
-                                        <textarea id="demo-textarea-input" rows="3" class="form-control" name="contenu" placeholder="Contenue..."></textarea>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                    </br></br>
-                                        <div class="col-md-12">
-                                        </br>
-                                                    <input type="file" class="form-control" id="images" name="photos" onchange="preview_images();" />
-                                        </div>
-                                    </div>
-                                    <div class="row" id="image_preview"></div>                                    
-                                    </div>
-                                </div>
-                                
-                                <div class="panel">
-                                                        <button class="btn btn-block btn-success">
-                                                            Ajouter Publicité
-                                                        </button>
-                                </div>
-                                
-                            </div>
-                            <!--===================================================-->
-                            <!--POPOVERS-->
-                            <!--===================================================-->
-                            <div class="col-lg-6">
+
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Liste de Publicité</h3>
@@ -133,7 +79,8 @@
                                        <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Num Pub</th>
+                                                    <th>Emplacement du Pub</th>
+                                                    <th>Aperçue</th>
                                                     <th>Titre</th>
                                                     <th>Statut</th>
                                                     <th>Action</th>
@@ -145,6 +92,13 @@
                         @foreach($pub as $pubs)
                                                 <tr>
                                                     <td>Pub N°: {{$pubs->numpub}}</td>
+                                                    
+                                                    <td>
+                                                        <div class="media-object"> 
+                                                            <img src="../../app/photos/{{$pubs->url}}" alt="" class="img-rounded img-sm"> 
+                                                        </div>
+                                                    </td>
+                                                    
                                                     <td>{{$pubs->description}}</td>
 
                                                     @if($pubs->statut == 0)
@@ -162,12 +116,75 @@
                                             
                                         </table>
                         {{ $pub->links() }}
-                                       <!--====================================================================-->
+                                       <!--==================================Fin table de la publicite==================================-->
 
 
                                     </div>
+
+
+
+
+
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Ajouter Publicité :</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        
+                                        <div class="form-group">
+                                        <label class="col-sm-3 control-label"> Description : </label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" name="description" type="text" placeholder="Titre" data-parsley-range="[4, 10]" data-parsley-group="order" data-parsley-required />
+                                        </div>
+                                    </div>
+                                    </br></br>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Emplacement Pub N° : </label>
+                                        <div class="col-sm-6">
+                                        <select class="form-control" name="numpub">
+                                              
+                                                <option selected>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                              
+                                            </select>
+                                        </div>
+                                    </div>
+                                    </br></br>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"> Contenu : </label>
+                                        <div class="col-sm-6">
+                                        <textarea id="demo-textarea-input" rows="3" class="form-control" name="contenu" placeholder="Contenue..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-md-9">
+                                            </br>
+                                            <input type="file" class="form-control" id="images" name="photos" onchange="preview_images();"/>
+                                            <div class="row" id="image_preview"></div>                                    
+                                    </div>
+                                    </div>
+
+
                                 </div>
 
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-block btn-success">
+                                                Ajouter Publicité
+                                            </button>
+                                        </div>
+                                    </div>
+                            <!--===================================================-->
+                            <!--POPOVERS-->
+                            <!--===================================================-->
+                     
                             </div>
                         </div>
 

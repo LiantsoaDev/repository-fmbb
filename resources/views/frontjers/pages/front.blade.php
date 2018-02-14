@@ -5,23 +5,16 @@
  <!-- ================================================DEBUT PUB 1================================================ -->                      
     @foreach($pub1url as $url)
       <div class="posts__item posts__item--category-1">
-        <a href="#" class="posts__link-wrapper">
+        <a href="" class="posts__link-wrapper">
           <figure class="posts__thumb">
       
             <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
-          @foreach($pub1 as $pubs1)
-          <div class="posts__inner">
-            <div class="posts__cat">
-            
-            </div>
-            
-          </div>
-          @endforeach
+        
         </a>
       </div>
-      @endforeach
+    @endforeach
 
       @foreach($pub1url as $url)
       <div class="posts__item posts__item--category-1">
@@ -31,15 +24,7 @@
             <img src="../../app/photos/{{$url->url}}" style="height:280px" alt="">
 
           </figure>
-          @foreach($pub1 as $pubs1)
-          <div class="posts__inner">
-            <div class="posts__cat">
-            
-            </div>
-            
-            
-          </div>
-          @endforeach
+        
         </a>
       </div>
       @endforeach
@@ -153,7 +138,7 @@
                   </figure>
                   <div class="posts__inner card__content">
                     <a href="#" class="posts__cta"></a>
-                    <time datetime="2016-08-23" class="posts__date">August 23rd, 2016</time>
+                    
                     <h6 class="posts__title"><a href="{{ route('articles',$art4->id) }}">{{str_limit($art4->titre, $limit = 20, $end = '...')}}</a></h6>
                     <div class="posts__excerpt">
                     {{str_limit($art4->contenu, $limit = 36, $end = '...')}}
@@ -170,8 +155,8 @@
                     </div>
                     <ul class="post__meta meta">
                       <li class="meta__item meta__item--views">2369</li>
-                      <li class="meta__item meta__item--likes"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
-                      <li class="meta__item meta__item--comments"><a href="#">18</a></li>
+                      <li class="meta__item meta__item--likes" data-toggle="modal" data-target="#modal-login"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
+                      <li class="meta__item meta__item--comments" data-toggle="modal" data-target="#modal-login"><a href="#">18</a></li>
                     </ul>
                   </footer>
                 </div>
@@ -279,8 +264,8 @@
                           </div>
                           <ul class="post__meta meta">
                             <li class="meta__item meta__item--views">2369</li>
-                            <li class="meta__item meta__item--likes"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
-                            <li class="meta__item meta__item--comments"><a href="#">18</a></li>
+                            <li class="meta__item meta__item--likes" data-toggle="modal" data-target="#modal-login"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
+                            <li class="meta__item meta__item--comments" data-toggle="modal" data-target="#modal-login"><a href="#">18</a></li>
                           </ul>
                         </footer>
                       </div>
@@ -459,7 +444,7 @@
             <!-- Widget: Social Buttons -->
             <aside class="widget widget--sidebar widget-social">
 
-              <a href="" class="btn-social-counter btn-social-counter--fb" target="_blank">
+              <a href="https://www.facebook.com/madagascarbasketball/" class="btn-social-counter btn-social-counter--fb" target="_blank">
                 <div class="btn-social-counter__icon">
                   <i class="fa fa-facebook"></i>
                 </div>

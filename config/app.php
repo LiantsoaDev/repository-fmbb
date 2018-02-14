@@ -181,7 +181,8 @@ return [
 
         App\Providers\DynamicClassname::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
-
+        //pour réseau sociaux
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -235,6 +236,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         
         'Html' => Collective\Html\HtmlFacade::class,
+
+        //pour réseau sociaux
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

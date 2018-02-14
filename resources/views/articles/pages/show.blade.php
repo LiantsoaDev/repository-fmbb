@@ -38,8 +38,8 @@
 
 
     <div class="userWidget-1">
-        <div class="avatar bg-primary">
-            <div class="name osLight"> <h2 class="alert-heading">{{$article->titre}}</h2> </div>
+        <div class="title" >
+        <p><h2 class="alert-heading">{{$article->titre}}</h2> </p>
         </div>
         <div class="title"> <p>{{$article->contenu}}.</p> </div>
         
@@ -103,10 +103,6 @@
 </div>
 
 
-
-
-
-
                                 </div>
                                 </div>
                                 <!--===================================================-->
@@ -116,6 +112,54 @@
                     </div>
                     <!--===================================================-->
                     <!--End page content-->
+
+
+
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"> Commentaires </h3>
+                            </div>
+                            <div class="panel-body">
+                            @foreach($coms as $commentaire)
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a>
+                                        <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="http://placehold.it/64x64/39CCCC/ffffff">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                    <a class="btn btn-warning" href="{{ route('deletecomment',$commentaire->id) }}">Supprimer</a>
+                                        <h4 class="media-heading">{{$commentaire->name}}</h4>
+                                        {{$commentaire->comment}}
+                                    <!--    
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="http://placehold.it/64x64/39CCCC/ffffff">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Nested media heading</h4>
+                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                            </div>
+                                        </div>
+                                    -->    
+
+                                    </div>
+
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
                 </section>
                 <!--===================================================-->
 @include('articles.footer')
