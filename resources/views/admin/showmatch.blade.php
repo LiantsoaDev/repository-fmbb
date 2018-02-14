@@ -185,7 +185,7 @@
                                                                     <td class="center">{{$rang[$r]->v}}</td>
                                                                     <td class="center">{{$rang[$r]->d}}</td>
                                                                     <td class="center">{{$rang[$r]->points}}</td>
-                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
+                                                                    <td class="text-center">{!! $rang[$r]->position !!}</i></td>
                                                                 </tr>
                                                             @endfor
                                                                 

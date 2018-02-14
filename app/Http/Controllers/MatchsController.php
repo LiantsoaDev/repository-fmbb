@@ -46,7 +46,7 @@ class MatchsController extends Controller
     public function showallmatchsbyEvent(Request $request , $phase='phase de groupe')
     {
         $brute = $this->match->getMatchsbyEvents( $request->session()->get('idevent') , $phase );
-        
+
         if( !empty($phase) )
             $brute->encours = $phase;
 

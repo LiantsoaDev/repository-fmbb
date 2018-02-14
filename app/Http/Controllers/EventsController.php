@@ -35,24 +35,28 @@ class EventsController extends Controller
         $resultdb = $event->getalleventpertype();
         foreach ($resultdb as $result)
         {
-                $tableau[] =  Event::publishedEvent($result);
+                $resultatdb = $result->get();
+                for ($i=0; $i < count($resultatdb); $i++) { 
+                     $type = $resultatdb[$i]['typevenement'];
+                 } 
+                 $tableau[] =  $event->activePublishedEvent($result,$type);
+                
         }
+        
         $Championnat = $tableau[0];
         $Coupe = $tableau[1];
         $Ligue = $tableau[2];
-
         //comparaison des dates
         for($i=0; $i<count($tableau); $i++)
         {
-            for($a=0; $a<count($tableau[$a]); $a++ )
+            for($a=0; $a<count($tableau[$i]); $a++ )
             {
                  $tableau[$i][$a]->statut = $event->scopeStatutEvent($tableau[$i][$a]->startday, $tableau[$i][$a]->endday);
                  $tableau[$i][$a]->progression = $event->scopePourcentageProgress($tableau[$i][$a]->statut, $tableau[$i][$a]->startday, $tableau[$i][$a]->endday);
              }
         }
-        
-
-    	return view('admin.showpageevent',compact('Championnat','Coupe','Ligue'));
+       
+        return view('admin.showpageevent',compact('Championnat','Coupe','Ligue'));
     }
 
     /**

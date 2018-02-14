@@ -35,7 +35,7 @@ class Match extends Model
                 -> select('matchs.idmatch','matchs.idevent','matchs.idpoint','calendriers.datematch','calendriers.heurematch','calendriers.lieumatch','poules.libellepoule','matchs.statut','matchs.phase','matchs.equipe_id1 as equipeA','matchs.equipe_id2 as equipeB')
                 ->join('calendriers','calendriers.idcalendrier','=','matchs.idcalendrier')
                 ->join('poules','poules.idpoule','=','matchs.idpoule')
-                ->where(['matchs.idevent' => $idevent ] , ['matchs.phase' , $phase ])->get();
+                ->where('matchs.idevent',$idevent )->where('matchs.phase' , $phase )->get();
     }  
 
     /**
@@ -61,13 +61,4 @@ class Match extends Model
 
     }
 
-    /**
-    * Fonction signaler fin de match avec dernier quart-temps
-    * @param integer idmatch
-    * @return null
-    */
-    public function finDeMatch(EquipeController $instance, $idmatch)
-    {
-        dd($instance);
-    }
 }

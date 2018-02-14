@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Event;
 use App\Equipe;
 use App\Poule;
@@ -74,14 +75,25 @@ class CalendriersController extends Controller
         $information = $instancematch->showallmatchsbyEvent( $request );
         // verification poule
         //$color = $this->gestionColor($information->encours);
-
+        //gets listes des matchs sur Phase de groupe
         foreach ( $information as $info ) {
             if( !is_null($info->idpoint) )
                 $info->notification = $this->notificationScoreMatch($info->idmatch);
             else
                 $info->notification = "";
         }
-    	return view('admin.calendrier',compact('information','color'));
+        //gets listes des matchs sur Quart de final
+        $getmatchsQuarts = $instancematch->showallmatchsbyEvent($request, 'quart de final');
+        //gets listes des matchs sur Demi final
+        $getmatchsDemi = $instancematch->showallmatchsbyEvent($request, 'demi final');
+        //gets listes des matchs sur final
+        $getmatchsfinal = $instancematch->showallmatchsbyEvent($request, 'final');
+        //listes des poules dans une competition ou evenement 
+        $getpoules = $this->poule->listesequipesbypouleEvent($id);
+        foreach ($getpoules as $values) {
+            $poules[] = $values->libellepoule;
+        }
+    	return view('admin.calendrier',compact('information','getmatchsQuarts','getmatchsDemi','getmatchsfinal','color','poules'));
     }
 
     /**
@@ -194,8 +206,7 @@ class CalendriersController extends Controller
             //fonction verfication poule
             $poule = new PoulesController();
             $verification = $poule->verificationpouleequipe( $request );
-
-            if( $verification )
+            if( $verification || $request->post('phase') != 'phase de groupe' )
             {
                 //insertion rencontre : calendrier + match 
                if( $this->insertionrencontre( $request, $verification) )
@@ -265,6 +276,24 @@ class CalendriersController extends Controller
       }  
       else
             return back()->with('error','La date ou l\'heure n\'est pas valide. Le match n\'a pas été reporté ! ');
+    }
+
+    /**
+    * fonction Ajax permet de charger les resultats d'une poule
+    * @param string $poule 
+    * @return Array Poule
+    */
+    public function chargementResultatPoule(Request $request, $poule)
+    {
+        $results = [];
+        $instanceObj = new MatchsController();
+        $getallmatchsbyEvent = $instanceObj->showallmatchsbyEvent($request, 'phase de groupe');
+        for ($i=0; $i < count($getallmatchsbyEvent) ; $i++) { 
+            if( $getallmatchsbyEvent[$i]->libellepoule == $poule )
+                $results[] = $getallmatchsbyEvent[$i];
+        }
+
+        return view('admin.ajax-poule',compact('results'));
     }
 
 }

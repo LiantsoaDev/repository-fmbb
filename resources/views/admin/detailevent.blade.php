@@ -23,7 +23,7 @@
                                     <div class="clearfix"> </div>
                                 </div>
                             </div>
-					
+
 					<div class="col-md-4">
                                 <div class="panel">
                                     <div class="panel-body">
@@ -48,6 +48,9 @@
                                                             </a> 
                                                             <a href="{{route('event.showupdate',$event[0]->id)}}" class="btn btn-info btn-sm" {{$disabled}}> 
                                                             <i class="fa fa-repeat pad-rgt-5"></i> Reporter 
+                                                            </a> 
+                                                             <a href="javascript:history.back()" class="btn btn-info btn-sm" {{$disabled}}> 
+                                                            <i class="fa fa-reply pad-rgt-5"></i> Retour 
                                                             </a> 
                                                         </div>
                                                     </div>

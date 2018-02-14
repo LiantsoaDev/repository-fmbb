@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Point;
 use App\Resultat;
 use App\Match;
+use Session;
 
 class ClassementsController extends Controller
 {
@@ -139,14 +140,14 @@ class ClassementsController extends Controller
     }
     /** 
     * fonction affichage des positionnements par Poule
-    * @param null
-    * @return null
+    * @param integer idpoule
+    * @return Collection Object Resultat
     */
     public function positionnementsClassement($idpoule)
     {
     	$classement_poule = $this->result->getResultatByPoule($idpoule);
-        //$this->variationPoistionnement($classement_poule);
-        return $classement_poule;
+        $positionnements = $this->gestionDesRangs($classement_poule);
+        return $positionnements;
     }
 
     /**
@@ -171,22 +172,51 @@ class ClassementsController extends Controller
     }
 
     /**
-    * fonction de positionnement de classement 
-    * @param Array $classement
-    * @return array 
+    * fonction changement de position Classement 
+    * @param Array $classement_poule
+    * @return Array $flash_position
     */
-    public function variationPoistionnement(Request $request, $classement)
+    public function gestionDesRangs($rangsObject)
     {
-        foreach ($classement as $key => $value)
+        //dd(\Session::all());
+        if( !is_null($rangsObject) )
         {
-            $prime[] = array($value->sigle , $value->points);
-        }
-        
-        if( !is_null($prime) ){
-            $request->session()->flash('flash_position',$prime);
-            return true;
+            foreach ($rangsObject as $key => $value)
+            {
+               $prime[] = array('id' => $value->idequipe, 'points'=>$value->points);
+            }
+            $rangs = json_decode(json_encode($rangsObject),true);
+
+            if( \Session::has('flash_position') )
+            {
+                $getters = \Session::get('flash_position');
+                for( $r=0; $r<count($rangs); $r++ )
+                {
+                    if( $rangs[$r]['idequipe'] != $getters[$r]['id'] )
+                    {
+                        $ancien = $rang[$r]['points'] ;
+                        if( (intval($ancien) + 3) == $getters[$r]['points'] )
+                            $rangs[$r]['position'] = '<i class="fa fa-caret-up text-success fa-2x">'; //up
+                        if( (intval($ancien) + 1) == $getters[$r]['points'])  
+                            $rangs[$r]['position'] = '<i class="fa fa-caret-down text-success fa-2x">'; //down
+                        else
+                             $rangs[$r]['position'] = '<i class="fa fa-caret-up text-success fa-2x">'; //up
+                    }
+                    else
+                        $rangs[$r]['position'] = '<i class="fa fa-caret-up text-success fa-2x">'; //up
+                }
+                \Session::forget('flash_position');
+            }
+            else
+            {
+                for( $c=0; $c<count($rangs); $c++ ) {
+                    $rangs[$c]['position'] = '<i class="fa fa-caret-up text-success fa-2x">';
+                }
+                \Session::put('flash_position',$prime);
+            }
         }
 
+        return json_decode(json_encode($rangs),false);
     }
 
 }

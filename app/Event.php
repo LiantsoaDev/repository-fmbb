@@ -16,11 +16,11 @@ class Event extends Model
     * @return Collection Object Event
     */
 
-    public function scopePublishedEvent($query)
+    public function activePublishedEvent($query,$type)
     {
     	 $start = Carbon::now()->startOfYear();
     	 $end = Carbon::now()->endOfYear();
-    	 return $query->whereBetween('startday',[$start,$end])->orderBy('startday','desc')->get();
+    	 return $query->whereBetween('startday',[$start,$end])->where('typevenement',$type)->orderBy('startday','desc')->get();
     }
 
     /** 

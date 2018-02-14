@@ -62,7 +62,7 @@ class Resultat extends Model
     public function getResultatByPoule($idpoule)
     {
         return DB::table('resultats')
-                ->select('equipes.sigle','equipes.sexe','equipes.logourl','resultats.v','resultats.d','resultats.points','resultats.scoreencaisse','resultats.scorecumule','resultats.differencepoint','poules.libellepoule')
+                ->select('equipes.idequipe','equipes.sigle','equipes.sexe','equipes.logourl','resultats.v','resultats.d','resultats.points','resultats.scoreencaisse','resultats.scorecumule','resultats.differencepoint','poules.libellepoule')
                 ->join('equipes','equipes.idequipe','=','resultats.idequipe')
                 ->join('poules','poules.idpoule','=','resultats.pouleid')
                 ->where('resultats.pouleid',$idpoule)->orderBy('points','desc')->orderBy('differencepoint','desc')->get();

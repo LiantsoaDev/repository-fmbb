@@ -56,11 +56,13 @@ Route::prefix('admin')->group(function () {
     Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
 
     Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
-    Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+'); 
+    Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+')->middleware('sessionidevent'); 
     Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
     Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
     Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
     Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
+
+    Route::get('poules/{poule}',['as' => 'poules', 'uses' => 'CalendriersController@chargementResultatPoule']);
 
     /*-------------------------------------- Backoffice articles JERSAM ---------------------------------------------------------------------------- */
 
