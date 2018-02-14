@@ -71,7 +71,7 @@
                                                                      <a href="{{route('event.detail',$chmps->id)}}" class="btn btn-primary btn-labeled fa fa-eye">Voir Détail</a>
                                                                 </td>
                                                                 <td>
-                                                                     <a href="{{route('admin.calendrier',$chmps->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Calendrier</a>
+                                                                     <a href="{{route('admin.calendrier',$chmps->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Matchs</a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{route('event.showupdate',$chmps->id)}}" class="btn btn-default btn-labeled fa fa-pencil">Modifier</a>
@@ -90,72 +90,62 @@
                                                 </div>
                                                 <div id="demo-lft-tab-2" class="tab-pane fade">
                                                     <!--Hover Rows-->
+                                                    @if(is_null($Coupe))
+                                                        <div class="alert alert-danger" role="alert">
+                                                          <h4 class="alert-heading">Notification!</h4>
+                                                          <p>Aucun événement de type <code>COUPE</code>n'a été inséré ou assigné dans la base de donnée cette saison !<br>Commencer d'abord par insérer une compétition de type Coupe. Merci ! </p>
+                                                        </div>
+                                                    @else
                                                     <!--===================================================-->
                                                     <table class="table table-hover table-vcenter">
                                                         <thead>
                                                             <tr>
-                                                                <th>Invoice</th>
-                                                                <th>Name</th>
-                                                                <th class="text-center">Value</th>
-                                                                <th class="hidden-xs">Delivery date</th>
-                                                                <th>Status</th>
+                                                                <th class="hidden-xs">Logo Coupe</th>
+                                                                <th>Coupe</th>
+                                                                <th>Date de début</th>
+                                                                <th>Date fin</th>
+                                                                <th>Statut</th>
+                                                                <th>Détails</th>
+                                                                <th>Calendrier</th>
+                                                                <th>Modification</th>
+                                                                <th class="hidden-xs">Progression</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @php
+                                                                $tab = ['primary','success','info','warning','danger'];
+                                                            @endphp
+
+                                                            @foreach($Coupe as $cup)
                                                             <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Desktop</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 4,234k</small>
+                                                                <td class="hidden-xs">
+                                                                    <div class="media-object center"> <img src="../images/{{$cup->urlogoevent}}" alt="" class="img-rounded img-sm"> </div>
                                                                 </td>
-                                                                <td class="text-center">$250</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
+                                                                <td>{{ $cup->libellevent }}</td>
+                                                                <td>{{ date('d M Y',strtotime($cup->startday)) }}</td>
+                                                                <td>{{ date('d M Y',strtotime($cup->endday)) }}</td>
                                                                 <td>
-                                                                    <div class="label label-table label-info">On Process</div>
+                                                                    <div class="label label-table label-{{$tab[rand(0,4)]}}"> {{ $cup->statut }} </div>
+                                                                </td>
+                                                                <td>
+                                                                     <a href="{{route('event.detail',$cup->id)}}" class="btn btn-primary btn-labeled fa fa-eye">Voir Détail</a>
+                                                                </td>
+                                                                <td>
+                                                                     <a href="{{route('admin.calendrier',$cup->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Matchs</a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{route('event.showupdate',$cup->id)}}" class="btn btn-default btn-labeled fa fa-pencil">Modifier</a>
+                                                                </td>
+                                                                <td class="hidden-xs">
+                                                                    <div class="progress progress-striped progress-sm">
+                                                                        <div class="progress-bar progress-bar-primary" style="width: {{$cup->progression}}%;"></div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Laptop</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 3,876k</small>
-                                                                </td>
-                                                                <td class="text-center">$350</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-danger">Cancelled</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Tablet</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 45,678k</small>
-                                                                </td>
-                                                                <td class="text-center">$325</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-success">Shipped</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order #53451</td>
-                                                                <td>
-                                                                    <span class="text-semibold">Smartphone</span>
-                                                                    <br>
-                                                                    <small class="text-muted">Last 7 days : 34,553k</small>
-                                                                </td>
-                                                                <td class="text-center">$250</td>
-                                                                <td class="hidden-xs">2012/04/25</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                            </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
+                                                    @endif
                                                 </div>
                                                 <!--===================================================-->
                                                 <!--End Hover Rows-->
@@ -165,180 +155,48 @@
                                                     <table class="table table-hover table-vcenter">
                                                         <thead>
                                                             <tr>
-                                                                <th class="hidden-xs">&nbsp;</th>
-                                                                <th>User ID</th>
-                                                                <th>Date</th>
-                                                                <th>Amount</th>
-                                                                <th>Status</th>
-                                                                <th class="hidden-xs">Download</th>
+                                                                <th class="hidden-xs">Logo Ligue</th>
+                                                                <th>ligue</th>
+                                                                <th>Date de début</th>
+                                                                <th>Date fin</th>
+                                                                <th>Statut</th>
+                                                                <th>Détails</th>
+                                                                <th>Calendrier</th>
+                                                                <th>Modification</th>
+                                                                <th class="hidden-xs">Progression</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @php
+                                                                $tab = ['primary','success','info','warning','danger'];
+                                                            @endphp
+                                                            @foreach($Ligue as $league)
                                                             <tr>
                                                                 <td class="hidden-xs">
-                                                                    <div class="checkbox">
-                                                                        <label class="form-checkbox form-icon active">
-                                                                        <input type="checkbox">
-                                                                        </label>
-                                                                    </div>
+                                                                    <div class="media-object center"> <img src="../images/{{$league->urlogoevent}}" alt="" class="img-rounded img-sm"> </div>
                                                                 </td>
-                                                                <td> Semantha Armstrong </td>
-                                                                <td>3 Jan, 2013</td>
-                                                                <td>$239.85</td>
+                                                                <td>{{ $league->libellevent }}</td>
+                                                                <td>{{ date('d M Y',strtotime($league->startday)) }}</td>
+                                                                <td>{{ date('d M Y',strtotime($league->endday)) }}</td>
                                                                 <td>
-                                                                    <div class="label label-table label-info">Block</div>
+                                                                    <div class="label label-table label-{{$tab[rand(0,4)]}}"> {{ $league->statut }} </div>
+                                                                </td>
+                                                                <td>
+                                                                     <a href="{{route('event.detail',$league->id)}}" class="btn btn-primary btn-labeled fa fa-eye">Voir Détail</a>
+                                                                </td>
+                                                                <td>
+                                                                     <a href="{{route('admin.calendrier',$league->id)}}" class="btn btn-success btn-labeled fa fa-calendar">Matchs</a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{route('event.showupdate',$league->id)}}" class="btn btn-default btn-labeled fa fa-pencil">Modifier</a>
                                                                 </td>
                                                                 <td class="hidden-xs">
-                                                                    <!--Split Buttons Dropdown--> 
-                                                                    <!--===================================================-->
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button class="btn btn-danger">Download</button>
-                                                                        <button class="btn btn-danger dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button"> 
-                                                                        <i class="dropdown-caret fa fa-caret-down"></i> 
-                                                                        </button>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><a href="#">Action</a> </li>
-                                                                            <li><a href="#">Another action</a> </li>
-                                                                            <li><a href="#">Something else here</a> </li>
-                                                                            <li class="divider"></li>
-                                                                            <li><a href="#">Separated link</a> </li>
-                                                                        </ul>
+                                                                    <div class="progress progress-striped progress-sm">
+                                                                        <div class="progress-bar progress-bar-primary" style="width: {{$league->progression}}%;"></div>
                                                                     </div>
-                                                                    <!--===================================================-->
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">
-                                                                    <div class="checkbox">
-                                                                        <label class="form-checkbox form-icon active">
-                                                                        <input type="checkbox">
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                                <td> Jonathan Smith </td>
-                                                                <td>3 Jan, 2013</td>
-                                                                <td>$239.85</td>
-                                                                <td>
-                                                                    <div class="label label-table label-danger">On Hold</div>
-                                                                </td>
-                                                                <td class="hidden-xs">
-                                                                    <!--Split Buttons Dropdown--> 
-                                                                    <!--===================================================-->
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button class="btn btn-danger">Download</button>
-                                                                        <button class="btn btn-danger dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button"> 
-                                                                        <i class="dropdown-caret fa fa-caret-down"></i> 
-                                                                        </button>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><a href="#">Action</a> </li>
-                                                                            <li><a href="#">Another action</a> </li>
-                                                                            <li><a href="#">Something else here</a> </li>
-                                                                            <li class="divider"></li>
-                                                                            <li><a href="#">Separated link</a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!--===================================================-->
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">
-                                                                    <div class="checkbox">
-                                                                        <label class="form-checkbox form-icon active">
-                                                                        <input type="checkbox">
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                                <td> Jacob Armstrong </td>
-                                                                <td>3 Jan, 2013</td>
-                                                                <td>$1395.85</td>
-                                                                <td>
-                                                                    <div class="label label-table label-success">Approved</div>
-                                                                </td>
-                                                                <td class="hidden-xs">
-                                                                    <!--Split Buttons Dropdown--> 
-                                                                    <!--===================================================-->
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button class="btn btn-danger">Download</button>
-                                                                        <button class="btn btn-danger dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button"> 
-                                                                        <i class="dropdown-caret fa fa-caret-down"></i> 
-                                                                        </button>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><a href="#">Action</a> </li>
-                                                                            <li><a href="#">Another action</a> </li>
-                                                                            <li><a href="#">Something else here</a> </li>
-                                                                            <li class="divider"></li>
-                                                                            <li><a href="#">Separated link</a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!--===================================================-->
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">
-                                                                    <div class="checkbox">
-                                                                        <label class="form-checkbox form-icon active">
-                                                                        <input type="checkbox">
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                                <td> Sandra Smith </td>
-                                                                <td>3 Jan, 2013</td>
-                                                                <td>$125.85</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td class="hidden-xs">
-                                                                    <!--Split Buttons Dropdown--> 
-                                                                    <!--===================================================-->
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button class="btn btn-danger">Download</button>
-                                                                        <button class="btn btn-danger dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button"> 
-                                                                        <i class="dropdown-caret fa fa-caret-down"></i> 
-                                                                        </button>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><a href="#">Action</a> </li>
-                                                                            <li><a href="#">Another action</a> </li>
-                                                                            <li><a href="#">Something else here</a> </li>
-                                                                            <li class="divider"></li>
-                                                                            <li><a href="#">Separated link</a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!--===================================================-->
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="hidden-xs">
-                                                                    <div class="checkbox">
-                                                                        <label class="form-checkbox form-icon active">
-                                                                        <input type="checkbox">
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                                <td> Sandra </td>
-                                                                <td>3 Jan, 2013</td>
-                                                                <td>$239.85</td>
-                                                                <td>
-                                                                    <div class="label label-table label-warning">Pending</div>
-                                                                </td>
-                                                                <td class="hidden-xs">
-                                                                    <!--Split Buttons Dropdown--> 
-                                                                    <!--===================================================-->
-                                                                    <div class="btn-group btn-group-xs">
-                                                                        <button class="btn btn-danger">Download</button>
-                                                                        <button class="btn btn-danger dropdown-toggle dropdown-toggle-icon" data-toggle="dropdown" type="button"> 
-                                                                        <i class="dropdown-caret fa fa-caret-down"></i> 
-                                                                        </button>
-                                                                        <ul class="dropdown-menu">
-                                                                            <li><a href="#">Action</a> </li>
-                                                                            <li><a href="#">Another action</a> </li>
-                                                                            <li><a href="#">Something else here</a> </li>
-                                                                            <li class="divider"></li>
-                                                                            <li><a href="#">Separated link</a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!--===================================================-->
-                                                                </td>
-                                                            </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                     <!--===================================================--> 

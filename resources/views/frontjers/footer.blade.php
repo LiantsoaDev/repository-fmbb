@@ -12,7 +12,11 @@
     
                   <!-- Footer Logo -->
                   <div class="footer-logo">
+<<<<<<< HEAD
                     <a href="index.html"><img src="../../app/photos/logofmbb.png" srcset="../../app/photos/logofmbb.png" alt="Alchemists" class="footer-logo__img"></a>
+=======
+                    <a href="index.html"><img src="../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="footer-logo__img"></a>
+>>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
                   </div>
                   <!-- Footer Logo / End -->
     
@@ -30,14 +34,14 @@
                       <div class="widget-contact-info__body info-block">
                         <div class="info-block__item">
                           <svg role="img" class="df-icon df-icon--basketball">
-                            <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
+                            <use xlink:href="../front/assets/images/icons-basket.svg#basketball"/>
                           </svg>
                           <h6 class="info-block__heading">Contactez-nous</h6>
 
                         </div>
                         <div class="info-block__item">
                           <svg role="img" class="df-icon df-icon--jersey">
-                            <use xlink:href="../../front/assets/images/icons-basket.svg#jersey"/>
+                            <use xlink:href="../front/assets/images/icons-basket.svg#jersey"/>
                           </svg>
 
                         </div>
@@ -324,20 +328,25 @@ jQuery(document).ready(function($) {
 
   </script>
 
+<<<<<<< HEAD
 
 
   <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../front/assets/js/core-min.js"></script>
+=======
+  <script src="../front/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../front/assets/js/core-min.js"></script>
+>>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
   
   <!-- Vendor JS -->
-  <script src="../../front/assets/vendor/twitter/jquery.twitter.js"></script>
+  <script src="../front/assets/vendor/twitter/jquery.twitter.js"></script>
   
   
   <!-- Template JS -->
-  <script src="../../front/assets/js/init.js"></script>
-  <script src="../../front/assets/js/custom.js"></script>
+  <script src="../front/assets/js/init.js"></script>
+  <script src="../front/assets/js/custom.js"></script>
 
-  <script src="../../front/assets/js/jquery.jscroll.js"></script>
+  <script src="../front/assets/js/jquery.jscroll.js"></script>
   
 
 

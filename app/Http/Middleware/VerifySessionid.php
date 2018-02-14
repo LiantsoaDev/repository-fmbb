@@ -17,6 +17,7 @@ class VerifySessionid
     {
         if( $request->session()->get('_previous.url') == route('show.event') ){
             $request->attributes->add(['reference' => true ]);
+            $request->session()->put('matchIndependant',true);
             return $next($request);
         }
         elseif($request->session()->has('idevent')){

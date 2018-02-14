@@ -5,7 +5,7 @@
                      <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
                                     <div class="avatar bg-dark">
-                                        <img src="../../images/{{ $result->equipe1->LOGOURL }}" alt="avatar">
+                                        <img src="../images/{{ $result->equipe1->LOGOURL }}" alt="avatar">
                                         <div class="name osLight"> {{ $result->equipe1->SIGLE }} </div>
                                         <div class="col-sm-3 pull-right"><h1> {{$result->equipe1->score}} </h1></div>
                                     </div>
@@ -23,7 +23,7 @@
                             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="userWidget-1">
                                     <div class="avatar bg-dark">
-                                        <img src="../../images/{{ $result->equipe2->LOGOURL }}" alt="avatar">
+                                        <img src="../images/{{ $result->equipe2->LOGOURL }}" alt="avatar">
                                         <div class="name osLight"> {{ $result->equipe2->SIGLE }} </div>
                                         <div class="col-sm-3 pull-right"><h1> {{ $result->equipe2->score }} </h1></div>
                                     </div>
@@ -43,7 +43,7 @@
                              <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Retour sur page :</h3>
+                                        <h3 class="panel-title">Retour sur page : </h3>
                                     </div>
                                     <div class="panel-body">
                                         <!--Buttons with label-->
@@ -55,8 +55,9 @@
                                     </div>
                                 </div>
                             </div>
-        </div>
 
+
+        </div>
         @foreach($result->boucle as $bcl)
         <div class="row">
             <div class="col-xs-8">
@@ -66,7 +67,7 @@
                                     <div class="panel-body">
                                        <div class="col-xs-5">
                                             <div class="col-xs-6">
-                                                <div class="media-object center"> <img src="../../images/{{ $bcl->equipe1->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
+                                                <div class="media-object center"> <img src="../images/{{ $bcl->equipe1->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
                                             </div>
                                              <div class="col-xs-6">
                                                 <div class="col-sm-3 pull-right"><h1>{{ $bcl->equipe1->score }}</h1></div>
@@ -88,7 +89,7 @@
                                                         <h1>{{ $bcl->equipe2->score }}</h1>
                                                     </div>
                                              <div class="col-xs-6">
-                                                <div class="media-object pull-right"> <img src="../../images/{{ $bcl->equipe2->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
+                                                <div class="media-object pull-right"> <img src="../images/{{ $bcl->equipe2->logo }}" width="80px" height="80px" alt="" class="img-circle"> </div>
                                             </div>
                                       </div>
                                     </div><!-- end panel-body-->
@@ -140,7 +141,7 @@
             <div class="col-lg-8">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Classement des équipes <small><code>Poule {{$rang[0]->libellepoule}}</code></small></h3>
+                                        <h3 class="panel-title">Monthly Statistics <small> based on the User Activities </small></h3>
                                     </div>
                                     <div class="panel-body pad-no">
                                         <!--Default Accordion--> 
@@ -151,11 +152,11 @@
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title"> 
                                                         <a data-parent="#statistics" data-toggle="collapse"> 
-                                                        <i class="fa fa-calendar"></i> Classements </a> 
+                                                        <i class="fa fa-calendar"></i> Age Group </a> 
                                                     </h4>
                                                 </div>
                                                 <!--Accordion content-->
-                                                <div class="panel-collapse collapse in">
+                                                 <div class="panel-collapse collapse in">
                                                     <div class="panel-body pad-no">
                                                         <table class="table mar-no bg-light-gray">
                                                             <thead>
@@ -185,7 +186,7 @@
                                                                     <td class="center">{{$rang[$r]->v}}</td>
                                                                     <td class="center">{{$rang[$r]->d}}</td>
                                                                     <td class="center">{{$rang[$r]->points}}</td>
-                                                                    <td class="text-center">{!! $rang[$r]->position !!}</i></td>
+                                                                    <td class="text-center"><i class="fa fa-caret-up text-success fa-2x"></i></td>
                                                                 </tr>
                                                             @endfor
                                                                 

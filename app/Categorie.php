@@ -41,4 +41,15 @@ class Categorie extends Model
             return self::whereIn('id',$arrayIn)->get();
         }
     }
+
+    /**
+    * fonction getcategorie by idcategorie
+    * @param integer idcategorie
+    * @return Collection Object Categorie
+    */
+    public function getcategoriebyid($idcategorie)
+    {
+        if( !is_null($idcategorie) )
+            return self::find($idcategorie)->first();
+    }
 }
