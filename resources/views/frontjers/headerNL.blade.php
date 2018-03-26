@@ -14,9 +14,9 @@
 
   <!-- Favicons
   ================================================== -->
-  <link rel="shortcut icon" href="../../front/assets/images/favicons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="120x120" href="../../front/assets/images/favicons/favicon-120.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="../../front/assets/images/favicons/favicon-152.png">
+  <link rel="shortcut icon" href="../front/assets/images/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="120x120" href="../front/assets/images/favicons/favicon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../front/assets/images/favicons/favicon-152.png">
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -39,19 +39,13 @@
   <link href="../../front/assets/vendor/slick/slick.css" rel="stylesheet">
 
   <!-- Template CSS-->
-  <link href="../../front/assets/css/content.css" rel="stylesheet">
+  <!--<link href="../front/assets/css/content.css" rel="stylesheet">-->
   <link href="../../front/assets/css/components.css" rel="stylesheet">
   <link href="../../front/assets/css/style.css" rel="stylesheet">
 
   <!-- Custom CSS-->
   <link href="../../front/assets/css/custom.css" rel="stylesheet">
-
-
   <style>
-    
-    
-    .hero-unit__content--left-center{text-align:center;}
-    
 
 
 
@@ -67,38 +61,7 @@
     }
 
 
-    /*pour l'affichage du publicité*/
 
-    #myCarousel .nav a small {
-    display:block;
-}
-#myCarousel .nav {
-	background:#eee;
-}
-#myCarousel .nav a {
-    border-radius:0px;
-}
-
-
-/*afficher slide de l'article*/
-.hide-bullets {
-    list-style:none;
-    margin-left: -40px;
-    margin-top:20px;
-}
-
-.thumbnail {
-    padding: 0;
-}
-
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
-    width: 100%;
-}
-#slider-thumbs {
-    height: 565px;
-    overflow-y: scroll;
-    white-space: nowrap;
-}
   </style>
 
 </head>
@@ -132,8 +95,14 @@
   
           <!-- Account Navigation -->
           <ul class="nav-account">
-            <li class="nav-account__item"><a href="#" data-toggle="modal" data-target="#modal-login-register">Votre compte</a></li>
-            <li class="nav-account__item nav-account__item--logout"><a href="#">Deconnection</a></li>
+            @if(Auth::check())
+            <li class="nav-account__item nav-account__item--logout"><a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Deconnection</a></li>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @else
+            <li class="nav-account__item"><a href="#" data-toggle="modal" data-target="#modal-login-register">Se connecter</a></li>
+            @endif
           </ul>
           <!-- Account Navigation / End -->
   
@@ -153,15 +122,14 @@
           </div>
           <!-- Header Search Form / End -->
           <ul class="info-block info-block--header">
-          
             <li class="info-block__item info-block__item--contact-secondary">
               <svg role="img" class="df-icon df-icon--basketball">
-                <use xlink:href="../../front/assets/images/icons-basket.svg#basketball"/>
+                <use xlink:href="../front/assets/images/icons-basket.svg#basketball"/>
               </svg>
               <h6 class="info-block__heading">Contactez-nous</h6>
-              <a class="info-block__link" href="mailto:info@alchemists.com">info@alchemists.com</a>
+              <a class="info-block__link" href="mailto:info@alchemists.com"></a>
             </li>
-          
+
           </ul>
         </div>
       </div>
@@ -173,7 +141,7 @@
           <div class="header__primary-inner">
             <!-- Header Logo -->
             <div class="header-logo">
-              <a href="index.html"><img src="../../app/photos/logofmbb.png" alt="fmbblogo" style="width:180px;height:180px;" srcset="../../app/photos/logofmbb.png" class="header-logo__img"></a>
+              <a href="index.html"><img src="../../app/photos/logofmbb.png" alt="fmbb" style="width:180px;height:180px;" srcset="../../app/photos/logofmbb.png" class="header-logo__img"></a>
             </div>
             <!-- Header Logo / End -->
   
@@ -184,88 +152,27 @@
                   
                 </li>
                 <li class=""><a href="#">Classements</a>
-                    <ul class="main-nav__sub">
-                      <li class="main-nav__title">Features</li>
-                      <li><a href="features-shortcodes.html">Shortcodes</a></li>
-                      <li><a href="features-typography.html">Typography</a></li>
-                      <li><a href="features-widgets-blog.html">Widgets - Blog</a></li>
-                      <li><a href="features-widgets-shop.html">Widgets - Shop</a></li>
-                      <li><a href="features-widgets-sports.html">Widgets - Sports</a></li>
-                      <li><a href="features-404.html">404 Error Page</a></li>
-                      <li><a href="features-search-results.html">Search Results</a></li>
-                      <li><a href="page-contacts.html">Contact Us</a></li>
-                    </ul>
                   
+                   
+                   
                 </li>
                 <li class=""><a href="#">Calendrier</a>
-                  <ul class="main-nav__sub">
-                    <li><a href="team-overview.html">Overview</a></li>
-                    <li><a href="team-roster-2.html">Roster</a>
-                      <ul class="main-nav__sub-2">
-                        <li><a href="team-roster-1.html">Roster - 1</a></li>
-                        <li><a href="team-roster-2.html">Roster - 2</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="team-standings.html">Standings</a></li>
-                    <li><a href="team-last-results.html">Latest Results</a></li>
-                    <li><a href="team-schedule.html">Schedule</a></li>
-                    <li><a href="team-gallery.html">Gallery</a>
-                      <ul class="main-nav__sub-2">
-                        <li><a href="team-gallery-album.html">Single Album</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="player-overview.html">Player Pages</a>
-                      <ul class="main-nav__sub-2">
-                        <li><a href="player-overview.html">Overview</a></li>
-                        <li><a href="player-stats.html">Full Statistics</a></li>
-                        <li><a href="player-bio.html">Biography</a></li>
-                        <li><a href="player-news.html">Related News</a></li>
-                        <li><a href="player-gallery.html">Gallery</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+                  
                 </li>
-                <li class=""><a href="#">Nouveaux</a>
-                  <ul class="main-nav__sub">
-                    <li><a href="blog-1.html">News - version 1</a></li>
-                    <li><a href="blog-2.html">News - version 2</a></li>
-                    <li><a href="blog-3.html">News - version 3</a></li>
-                    <li><a href="blog-4.html">News - version 4</a></li>
-                    <li><a href="#">Post</a>
-                      <ul class="main-nav__sub-2">
-                        <li><a href="blog-post-1.html">Single Post - version 1</a></li>
-                        <li><a href="blog-post-2.html">Single Post - version 2</a></li>
-                        <li><a href="blog-post-3.html">Single Post - version 3</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+                <li class=""><a href="#">Nouveauté</a>
+                  
                 </li>
                 <li class=""><a href="shop-grid.html">Saison</a>
-                  <ul class="main-nav__sub">
-                    <li><a href="shop-grid.html">Shop - Grid</a></li>
-                    <li><a href="shop-list.html">Shop - List</a></li>
-                    <li><a href="shop-fullwidth.html">Shop - Full Width</a></li>
-                    <li><a href="shop-product.html">Single Product</a></li>
-                    <li><a href="shop-cart.html">Shopping Cart</a></li>
-                    <li><a href="shop-checkout.html">Checkout</a></li>
-                    <li><a href="shop-wishlist.html">Wishlist</a></li>
-                    <li><a href="shop-login.html">Login</a></li>
-                    <li><a href="shop-account.html">Account</a></li>
-                  </ul>
+                  
                 </li>
               </ul>
   
               <!-- Social Links -->
               <ul class="social-links social-links--inline social-links--main-nav">
                 <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                  <a href="https://www.facebook.com/madagascarbasketball/" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
                 </li>
-                <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li class="social-links__item">
-                  <a href="#" class="social-links__link" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus"></i></a>
-                </li>
+                
               </ul>
               <!-- Social Links / End -->
   
@@ -289,7 +196,7 @@
       <div class="pushy-panel__inner">
         <header class="pushy-panel__header">
           <div class="pushy-panel__logo">
-            <a href="index.html"><img src="../../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists"></a>
+            <a href="index.html"><img src="../../app/photos/logofmbb.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists"></a>
           </div>
         </header>
         <div class="pushy-panel__content">
@@ -312,7 +219,7 @@
                   <footer class="posts__footer card__footer">
                     <div class="post-author">
                       <figure class="post-author__avatar">
-                        <img src="../../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+                        <img src="../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
                       </figure>
                       <div class="post-author__info">
                         <h4 class="post-author__name">James Spiegel</h4>
@@ -385,7 +292,7 @@
           <aside class="widget widget--side-panel widget-banner">
             <div class="widget__content">
               <figure class="widget-banner__img">
-                <a href="#"><img src="../../front/assets/images/samples/banner.jpg" alt="Banner"></a>
+                <a href="#"><img src="../front/assets/images/samples/banner.jpg" alt="Banner"></a>
               </figure>
             </div>
           </aside>
@@ -397,9 +304,5 @@
     </aside>
     <!-- Pushy Panel / End -->
     
-  
 
-    <!-- Hero Unit
-    ================================================== -->
-  
     

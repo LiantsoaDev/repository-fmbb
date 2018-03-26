@@ -1,5 +1,5 @@
  <!-- Messages -->
-             @if(Session::has('success')) 
+ @if(Session::has('success')) 
                         <!-- Alert layout example -->
                         <div class="alert alert-success media fade in">
                             <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>

@@ -10,15 +10,15 @@
                 <div class="col-xs-12">
                     <div class="lock-box">
                         <div class="main">
-                            <h3>S'il vous plait Log In, ou <a href="#">Sign Up</a></h3>
-                            <div class="row">
+                            <h3>S'il vous plait Log In,<a href="#"></a></h3>
+                           <!-- <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="login-or">
                                 <hr class="hr-or">
                                 <span class="span-or">ou</span>

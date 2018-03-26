@@ -12,6 +12,8 @@
         <div class="panel-body">
         <!--Dismissible popover-->
         <a href="{{ route('admin.addmatch') }}" class="btn btn-md btn-warning add-popover" data-original-title="Bootstrap Popover" data-content="Ajout d\'un nouveau match de basketball dans le système" data-placement="top" data-trigger="focus" data-toggle="popover">Ajouter un match</a>
+        <a href="javascript:history.back()" class="btn btn-warning btn-rounded btn-labeled fa fa-reply pull-right">Retour</a>
+        <a href="{{route('show.event')}}" class="btn btn-primary btn-rounded btn-labeled fa fa-home pull-right">Listes évenements</a>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         </div>
     </div>
@@ -111,20 +113,6 @@
 
              </div><!-- panel -->   
 	</div><!-- col-md-8 -->
-<div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Retour sur page :</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <!--Buttons with label-->
-                                        <!--===================================================-->
-                                        <a href="{{route('show.event')}}" class="btn btn-primary btn-rounded btn-labeled fa fa-home">Listes évenements</a>
-                                         <a href="javascript:history.back()" class="btn btn-warning btn-rounded btn-labeled fa fa-reply">Retour</a>
-                                        <!--===================================================-->
-                                    </div>
-                                </div>
-</div>
  <div class="col-md-4 sticky-top">
         <div class="panel">
             <div class="panel-heading">

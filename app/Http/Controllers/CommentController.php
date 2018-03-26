@@ -67,7 +67,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeReply(Request $request, $id)
+    public function storeReply(Request $request)
     {
         
         $this->validate($request, array(
@@ -85,8 +85,8 @@ class CommentController extends Controller
         $comment->comment = $request->comment;
         $comment->approved = true;
         $comment->article()->associate($article);
-        //$comment->reply = $request->post('repl');
-        $comment->reply = $id;
+        $comment->reply = $request->post('repl');
+       // $comment->reply = $id;
         $comment->save();
 
         return redirect()->route('articles',$article->id);

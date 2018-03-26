@@ -4,25 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Administrateur;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function indcreate()
     {
         return view('registration.createreg');
     }
@@ -33,7 +21,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   /* public function store(Request $request)
     {
         // Valide la form
         $this->validate(request(),[
@@ -50,49 +38,58 @@ class RegisterController extends Controller
                 //redirection vers la page d'accueil
             return redirect()->home();
     }
+*/
+use RegistersUsers;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+/**
+ * Where to redirect users after registration.
+ *
+ * @var string
+ */
+protected $redirectTo = '/admin/index';
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+/**
+ * Create a new controller instance.
+ *
+ * @return void
+ */
+public function __construct()
+{
+    $this->middleware('guest');
+}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+/**
+ * Get a validator for an incoming registration request.
+ *
+ * @param  array  $data
+ * @return \Illuminate\Contracts\Validation\Validator
+ */
+protected function validator(array $data)
+{
+    return Validator::make($data, [
+            'nom'=>'required',
+            'prenom'=>'required',
+            'email'=>'required',
+            'password'=>'required|confirmed',
+            'contact'=>'required'
+    ]);
+}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+/**
+ * Create a new user instance after a valid registration.
+ *
+ * @param  array  $data
+ * @return \App\User
+ */
+protected function create()
+{
+    return Administrateur::create([
+        'nom'=>'required',
+        'prenom'=>'required',
+        'email'=>'required',
+        'password'=>'required|confirmed',
+        'contact'=>'required',
+        'roles_id'=>'2'
+    ]);
+}
 }

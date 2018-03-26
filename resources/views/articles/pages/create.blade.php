@@ -27,12 +27,6 @@
                     </div>
                     <div class="panel-body">
 
-
-
-
-
-
-
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
@@ -43,7 +37,7 @@
                         </div>
                     @endif
 
-            <form class="form-horizontal form-bordered" action="{{ route('store') }}" id="wizard-validate" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal form-bordered" action="{{ route('store') }}" id="wizard-validate" method="POST" enctype="multipart/form-data">
 
             <input type="hidden" value="{!!csrf_token()!!}" name="_token" />
 

@@ -9,7 +9,7 @@
                         <a href="index.html" class="navbar-brand">
                             <i class="fa fa-cube brand-icon"></i>
                             <div class="brand-title">
-                                <span class="brand-text">Obama</span>
+                                <span class="brand-text">FMBB</span>
                             </div>
                         </a>
                     </div>

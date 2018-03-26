@@ -4,7 +4,7 @@
 * @param $url_css string : lien du fichier en local 
 * format : lib/bootstrap (bootstrap.css)
 */
-const LINK  = "http://localhost:8888/fmbb-repository/fmbb/public/";
+const LINK  = "http://localhost:8000";
 if ( ! function_exists('helper_css'))
 {
     function helper_css($url_css)
@@ -115,5 +115,34 @@ if( ! function_exists('array_doublon') )
     	} 
     	return $r_valeur;
 	} 
+
+	/**
+	* fonction verifier si un Object est vide
+	* @param Object 
+	* @return boolean true or false
+	*/
+	if( ! function_exists('array_is_empty') )
+	{
+		function array_is_empty($object)
+		{
+			if( count($object) == 0 )
+				return true;
+			elseif( count($object) != 0 )
+			{
+				for ($i=0; $i < count($object) ; $i++) { 
+					if( !isset($object[$i]) )
+						return true;
+					else{
+						if( is_array($object[$i]) || is_object($object[$i]) )
+							return false;
+						else
+							return true;
+					}
+				}
+			}
+
+		}
+	}
+
 
 }

@@ -58,7 +58,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="registration"> Déjà avoir un compte! <a href="{{ route('login') }}"> <span class="text-primary"> Login ici </span> </a> </div>
+                <div class="registration"> Déjà eu un compte! <a href="{{ route('login') }}"> <span class="text-primary"> Login ici </span> </a> </div>
             </div>
             <!--===================================================-->
             <!-- END REGISTRATION FORM -->

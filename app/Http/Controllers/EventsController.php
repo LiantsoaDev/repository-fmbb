@@ -31,6 +31,8 @@ class EventsController extends Controller
     {
         $tableau = [];
         $event = new Event();
+        //listes de tous les equipes
+        $allteams = $this->equipe->allteamsby('sexe','Homme');
         //listes des Events selon 3 OPTIONS 
         $resultdb = $event->getalleventpertype();
         foreach ($resultdb as $result)
@@ -56,7 +58,7 @@ class EventsController extends Controller
              }
         }
        
-        return view('admin.showpageevent',compact('Championnat','Coupe','Ligue'));
+        return view('admin.showpageevent',compact('Championnat','Coupe','Ligue','allteams'));
     }
 
     /**
@@ -204,7 +206,7 @@ class EventsController extends Controller
         //compter le nombre de poule
         $nbrepoule = count($request->all()) - 1;
         $alphabet = range('A','Z');
-        if( $nbrepoule > 1 )
+        if( $nbrepoule >= 1 )
         {
             for( $i=0; $i<$nbrepoule ; $i++ )
             {

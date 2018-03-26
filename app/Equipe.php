@@ -25,6 +25,19 @@ class Equipe extends Model
     		return null;
     }
 
+    /**
+    * fonction listes de tous les equipes de basketball categorie Homme
+    * @param string $type_categorie, string $responce_categorie
+    * @return Collection Object 
+    */
+    public function allteamsby($type_categorie=null, $responce_categorie=null)
+    {
+        if( !is_null($type_categorie) || !is_null($responce_categorie) )
+            return self::where($type_categorie,$responce_categorie)->get();
+        else
+            return self::all();
+    }
+
     /** 
     * fonction findequipe 
     * @param integer idequipe

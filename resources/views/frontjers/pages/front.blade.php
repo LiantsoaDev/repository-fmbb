@@ -147,16 +147,16 @@
                   <footer class="posts__footer card__footer">
                     <div class="post-author">
                       <figure class="post-author__avatar">
-                        <img src="../front/assets/images/samples/avatar-1.jpg" alt="Post Author Avatar">
+
                       </figure>
                       <div class="post-author__info">
-                        <h4 class="post-author__name">James Spiegel</h4>
+                        <h4 class="post-author__name"></h4>
                       </div>
                     </div>
                     <ul class="post__meta meta">
                       <li class="meta__item meta__item--views">2369</li>
-                      <li class="meta__item meta__item--likes" data-toggle="modal" data-target="#modal-login"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
-                      <li class="meta__item meta__item--comments" data-toggle="modal" data-target="#modal-login"><a href="#">18</a></li>
+                      <li class="meta__item meta__item--likes" data-toggle="modal" data-target=""><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
+                      <li class="meta__item meta__item--comments" data-toggle="modal" data-target=""><a href="#">18</a></li>
                     </ul>
                   </footer>
                 </div>
@@ -238,11 +238,7 @@
                       <figure class="posts__thumb">
 
                                       
-<<<<<<< HEAD
                               <img src="../../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
-=======
-                                          <img src="../app/photos/{{$articles->urlimage}}" style="height:300px" alt="...">
->>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
                                       
                       
                       </figure>
@@ -260,16 +256,16 @@
                         <footer class="posts__footer card__footer">
                           <div class="post-author">
                             <figure class="post-author__avatar">
-                              <img src="../front/assets/images/samples/avatar-2.jpg" alt="Post Author Avatar">
+  
                             </figure>
                             <div class="post-author__info">
-                              <h4 class="post-author__name">Jessica Hoops</h4>
+                              <h4 class="post-author__name"></h4>
                             </div>
                           </div>
                           <ul class="post__meta meta">
                             <li class="meta__item meta__item--views">2369</li>
-                            <li class="meta__item meta__item--likes" data-toggle="modal" data-target="#modal-login"><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
-                            <li class="meta__item meta__item--comments" data-toggle="modal" data-target="#modal-login"><a href="#">18</a></li>
+                            <li class="meta__item meta__item--likes" data-toggle="modal" data-target=""><a href="#"><i class="meta-like icon-heart"></i> 530</a></li>
+                            <li class="meta__item meta__item--comments" data-toggle="modal" data-target=""><a href="#">18</a></li>
                           </ul>
                         </footer>
                       </div>
@@ -294,15 +290,15 @@
             <!-- Widget: Standings -->
             <aside class="widget card widget--sidebar widget-standings">
               <div class="widget__title card__header card__header--has-btn">
-                <h4>Playoff Standings</h4>
-                <a href="#" class="btn btn-default btn-outline btn-xs card-header__button">See All Stats</a>
+                <h4>Playoff</h4>
+                <a href="#" class="btn btn-default btn-outline btn-xs card-header__button">Tout voir</a>
               </div>
               <div class="widget__content card__content">
                 <div class="table-responsive">
                   <table class="table table-hover table-standings">
                     <thead>
                       <tr>
-                        <th>Team Positions</th>
+                        <th>Position des équipes</th>
                         <th>W</th>
                         <th>L</th>
                         <th>GB</th>
@@ -316,8 +312,8 @@
                               <img src="../front/assets/images/samples/logos/pirates_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">L.A Pirates</h6>
-                              <span class="team-meta__place">Bebop Institute</span>
+                              <h6 class="team-meta__name">ASCB</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -332,8 +328,8 @@
                               <img src="../front/assets/images/samples/logos/sharks_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Sharks</h6>
-                              <span class="team-meta__place">Marine College</span>
+                              <h6 class="team-meta__name">COSFA</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -348,8 +344,8 @@
                               <img src="../front/assets/images/samples/logos/alchemists_b_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">The Alchemists</h6>
-                              <span class="team-meta__place">Eric Bros School</span>
+                              <h6 class="team-meta__name">ASCUT</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -364,8 +360,8 @@
                               <img src="../front/assets/images/samples/logos/ocean_kings_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Ocean Kings</h6>
-                              <span class="team-meta__place">Bay College</span>
+                              <h6 class="team-meta__name">CHALENGER</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -380,8 +376,8 @@
                               <img src="../front/assets/images/samples/logos/red_wings_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Red Wings</h6>
-                              <span class="team-meta__place">Icarus College</span>
+                              <h6 class="team-meta__name">FANDREFIALA</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -396,8 +392,8 @@
                               <img src="../front/assets/images/samples/logos/lucky_clovers_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Lucky Clovers</h6>
-                              <span class="team-meta__place">St. Patrick’s Institute</span>
+                              <h6 class="team-meta__name">ASCB</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -412,8 +408,8 @@
                               <img src="../front/assets/images/samples/logos/draconians_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Draconians</h6>
-                              <span class="team-meta__place">Draconians</span>
+                              <h6 class="team-meta__name">SBBC</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -428,8 +424,8 @@
                               <img src="../front/assets/images/samples/logos/bloody_wave_shield.png" alt="">
                             </figure>
                             <div class="team-meta__info">
-                              <h6 class="team-meta__name">Bloody Wave</h6>
-                              <span class="team-meta__place">Atlantic School</span>
+                              <h6 class="team-meta__name">AMBOHOOPS</h6>
+                              <span class="team-meta__place"></span>
                             </div>
                           </div>
                         </td>
@@ -457,14 +453,14 @@
                 <span class="btn-social-counter__add-icon"></span>
               </a>
               <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmadagascarbasketball%2F&tabs=timeline&width=378&height=500&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=1486609321428645" width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-              <a href="#" class="btn-social-counter btn-social-counter--rss" target="_blank">
+            <!--  <a href="#" class="btn-social-counter btn-social-counter--rss" target="_blank">
                 <div class="btn-social-counter__icon">
                   <i class="fa fa-rss"></i>
                 </div>
                 <h6 class="btn-social-counter__title">Subscribe to Our RSS</h6>
                 <span class="btn-social-counter__count"><span class="btn-social-counter__count-num">840</span> Subscribers</span>
                 <span class="btn-social-counter__add-icon"></span>
-              </a>
+              </a>-->
             </aside>
             <!-- Widget: Social Buttons / End -->
             
@@ -512,197 +508,7 @@
             
 
             <!-- Widget: Game Result -->
-            <aside class="widget card widget--sidebar widget-game-result">
-              <div class="widget__title card__header card__header--has-btn">
-                <h4>Last Game Results</h4>
-                <a href="#" class="btn btn-default btn-outline btn-xs card-header__button">Expand Stats</a>
-              </div>
-              <div class="widget__content card__content">
-                <!-- Game Score -->
-                <div class="widget-game-result__section">
-                  <div class="widget-game-result__section-inner">
-                    <header class="widget-game-result__header">
-                      <h3 class="widget-game-result__title">Championship Quarter Finals</h3>
-                      <time class="widget-game-result__date" datetime="2016-03-24">Saturday, March 24th, 2016</time>
-                    </header>
             
-                    <div class="widget-game-result__main">
-                      <!-- 1st Team -->
-                      <div class="widget-game-result__team widget-game-result__team--first">
-                        <figure class="widget-game-result__team-logo">
-                          <a href="#"><img src="../front/assets/images/samples/logos/alchemists_last_game_results_small.png" alt=""></a>
-                        </figure>
-                        <div class="widget-game-result__team-info">
-                          <h5 class="widget-game-result__team-name">Alchemists</h5>
-                          <div class="widget-game-result__team-desc">Elric Bros School</div>
-                        </div>
-                      </div>
-                      <!-- 1st Team / End -->
-            
-                      <div class="widget-game-result__score-wrap">
-                        <div class="widget-game-result__score">
-                          <span class="widget-game-result__score-result widget-game-result__score-result--winner">107</span> <span class="widget-game-result__score-dash">-</span> <span class="widget-game-result__score-result widget-game-result__score-result--loser">102</span>
-                        </div>
-                        <div class="widget-game-result__score-label">Final Score</div>
-                      </div>
-            
-                      <!-- 2nd Team -->
-                      <div class="widget-game-result__team widget-game-result__team--second">
-                        <figure class="widget-game-result__team-logo">
-                          <a href="#"><img src="../front/assets/images/samples/logos/sharks_last_game_results_small.png" alt=""></a>
-                        </figure>
-                        <div class="widget-game-result__team-info">
-                          <h5 class="widget-game-result__team-name">Sharks</h5>
-                          <div class="widget-game-result__team-desc">Marine College</div>
-                        </div>
-                      </div>
-                      <!-- 2nd Team / End -->
-                    </div>
-                  </div>
-                </div>
-                <!-- Game Score / End -->
-            
-                <!-- Scoreboard -->
-                <div class="widget-game-result__section">
-                  <div class="widget-game-result__table-stats">
-                    <div class="table-responsive">
-                      <table class="table table__cell-center table-thead-color">
-                        <thead>
-                          <tr>
-                            <th>Scoreboard</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>T</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>Alchemists</th>
-                            <td>30</td>
-                            <td>31</td>
-                            <td>22</td>
-                            <td>24</td>
-                            <td>107</td>
-                          </tr>
-                          <tr>
-                            <th>Sharks</th>
-                            <td>22</td>
-                            <td>34</td>
-                            <td>20</td>
-                            <td>26</td>
-                            <td>102</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <!-- Scoreboard / End -->
-            
-                <!-- Game Statistics -->
-                <div class="widget-game-result__section">
-                  <header class="widget-game-result__subheader card__subheader card__subheader--sm card__subheader--nomargins">
-                    <h5 class="widget-game-result__subtitle">Game Statistics</h5>
-                  </header>
-                  <div class="widget-game-result__section-inner">
-                    <!-- Progress: Assists -->
-                    <div class="progress-double-wrapper">
-                      <h6 class="progress-title">Assists</h6>
-                      <div class="progress-inner-holder">
-                        <div class="progress__digit progress__digit--left">22</div>
-                        <div class="progress__double">
-                          <div class="progress">
-                            <div class="progress__bar progress__bar-width-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress__bar progress__bar--info progress__bar-width-80" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="progress__digit progress__digit--right progress__digit--highlight">36</div>
-                      </div>
-                    </div>
-                    <!-- Progress: Assists / End -->
-            
-                    <!-- Progress: Rebounds -->
-                    <div class="progress-double-wrapper">
-                      <h6 class="progress-title">Rebounds</h6>
-                      <div class="progress-inner-holder">
-                        <div class="progress__digit progress__digit--left progress__digit--highlight">35</div>
-                        <div class="progress__double">
-                          <div class="progress">
-                            <div class="progress__bar progress__bar-width-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress__bar progress__bar--info progress__bar-width-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="progress__digit progress__digit--right">18</div>
-                      </div>
-                    </div>
-                    <!-- Progress: Rebounds / End -->
-            
-                    <!-- Progress: Steals -->
-                    <div class="progress-double-wrapper">
-                      <h6 class="progress-title">Steals</h6>
-                      <div class="progress-inner-holder">
-                        <div class="progress__digit progress__digit--left">14</div>
-                        <div class="progress__double">
-                          <div class="progress">
-                            <div class="progress__bar progress__bar-width-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <div class="progress">
-                            <div class="progress__bar progress__bar--info progress__bar-width-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="progress__digit progress__digit--right progress__digit--highlight">24</div>
-                      </div>
-                    </div>
-                    <!-- Progress: Steals / End -->
-                  </div>
-                </div>
-                <!-- Game Statistics / End -->
-            
-                <!-- Game MVP -->
-                <div class="widget-game-result__section">
-                  <header class="widget-game-result__subheader card__subheader card__subheader--sm card__subheader--nomargins">
-                    <h5 class="widget-game-result__subtitle">Game MVP</h5>
-                  </header>
-                  <div class="widget-game-result__section-inner">
-                    <div class="player-details">
-                      <div class="player-details__info">
-                        <figure class="player-details__photo">
-                          <a href="#"><img src="../front/assets/images/samples/stats_player_02.jpg" alt=""></a>
-                        </figure>
-                        <div class="player-details__info-holder">
-                          <h5 class="player-details__name"><a href="#">Mark Stevens</a></h5>
-                          <span class="player-details__position">1st Power Forward</span>
-                        </div>
-                      </div>
-                      <div class="player-details__stats">
-                        <div class="player-details__circular circular">
-                          <div class="circular__bar" data-percent="80">
-                            <span class="circular__percents">36<small>Pts</small></span>
-                          </div>
-                        </div>
-                        <div class="player-details__circular circular">
-                          <div class="circular__bar" data-percent="60">
-                            <span class="circular__percents">18<small>Reb</small></span>
-                          </div>
-                        </div>
-                        <div class="player-details__circular circular">
-                          <div class="circular__bar" data-percent="70">
-                            <span class="circular__percents">29<small>Ast</small></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Game MVP / End -->
-              </div>
-            </aside>
             <!-- Widget: Game Result / End -->
             
 
@@ -791,7 +597,7 @@
             <!-- Widget: Match Announcement -->
             <aside class="widget widget--sidebar card widget-preview">
               <div class="widget__title card__header">
-                <h4>Top Next Match</h4>
+                <h4>Prochain Match</h4>
               </div>
               <div class="widget__content card__content">
             
@@ -799,7 +605,7 @@
                 <div class="match-preview">
                   <section class="match-preview__body">
                     <header class="match-preview__header">
-                      <h3 class="match-preview__title">Championship Quarter Finals</h3>
+                      <h3 class="match-preview__title">Championnat quart de finale</h3>
                       <time class="match-preview__date" datetime="2017-05-17">Saturday, May 17th, 2017</time>
                     </header>
                     <div class="match-preview__content">
@@ -807,10 +613,10 @@
                       <!-- 1st Team -->
                       <div class="match-preview__team match-preview__team--first">
                         <figure class="match-preview__team-logo">
-                          <img src="../front/assets/images/samples/logo-alchemists--sm.png" alt="">
+                          <img src="../images/ascut.jpg" alt="">
                         </figure>
-                        <h5 class="match-preview__team-name">Alchemists</h5>
-                        <div class="match-preview__team-info">Elric Bros School</div>
+                        <h5 class="match-preview__team-name">ASCUT</h5>
+                        <div class="match-preview__team-info">Antsiranana</div>
                       </div>
                       <!-- 1st Team / End -->
             
@@ -818,7 +624,7 @@
                         <div class="match-preview__conj">VS</div>
                         <div class="match-preview__match-info">
                           <time class="match-preview__match-time" datetime="2017-05-17 09:00">9:00 PM</time>
-                          <div class="match-preview__match-place">Madison Cube Stadium</div>
+                          <div class="match-preview__match-place">Mahamasina</div>
                         </div>
                       </div>
             
@@ -827,22 +633,22 @@
                         <figure class="match-preview__team-logo">
                           <img src="../front/assets/images/samples/logo-l-clovers--sm.png" alt="">
                         </figure>
-                        <h5 class="match-preview__team-name">Clovers</h5>
-                        <div class="match-preview__team-info">ST Paddy's Institute</div>
+                        <h5 class="match-preview__team-name">COSFA</h5>
+                        <div class="match-preview__team-info">Antananarivo</div>
                       </div>
                       <!-- 2nd Team / End -->
             
                     </div>
                     <div class="match-preview__action">
-                      <a href="#" class="btn btn-default btn-block">Buy Tickets Now</a>
+                      <a href="#" class="btn btn-default btn-block">Acheter du ticket</a>
                     </div>
                   </section>
-                  <section class="match-preview__countdown countdown">
+                <!--  <section class="match-preview__countdown countdown">
                     <h4 class="countdown__title">Game Countdown</h4>
                     <div class="countdown__content">
                       <div class="countdown-counter" data-date="May 12, 2017 12:00:00"></div>
                     </div>
-                  </section>
+                  </section>-->
                 </div>
                 <!-- Match Preview / End -->
             

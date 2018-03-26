@@ -34,56 +34,10 @@
                                                 <li><a href="{{ route('index') }}"><i class="fa fa-caret-right"></i>Articles</a></li>       
                                                 <li><a href="{{ route('publicite') }}"><i class="fa fa-caret-right"></i>Publicités</a></li>
                                                 <li><a href="{{ route('fond') }}"><i class="fa fa-caret-right"></i>Fonds du site</a></li>
+                                                <li><a href="{{ route('show.event') }}"><i class="fa fa-caret-right"></i>Matchs</a></li>
                                             </ul>
                                         </li>
                                         <!--Category name-->
-                                        <li class="list-header">Compositions</li>
-                                        <!--Menu list item-->
-                                        <li>
-                                            <a href="">
-                                            <i class="fa fa-calendar"></i>
-                                            <span class="menu-title">
-                                            Calendrier
-                                            </span>
-                                            </a>
-                                        </li>
-                                        <!--Menu list item-->
-                                        <li>
-                                            <a href="">
-                                            <i class="fa fa-flag"></i>
-                                            <span class="menu-title">
-                                               Competition
-                                            
-                                            </span>
-                                            </a>
-                                        </li>
-                                        <!--Menu list item-->
-                                        <li>
-                                            <a href="">
-                                            <i class="fa fa-newspaper-o"></i>
-                                            <span class="menu-title">Resultat</span>
-                                            <i class="arrow"></i>
-                                            </a>
-                                            <!--Submenu-->
-                                            <ul class="collapse">
-                                                <li><a href=""><i class="fa fa-caret-right"></i> Inbox </a></li>
-                                                <li><a href=""><i class="fa fa-caret-right"></i> Compose </a></li>
-                                                <li><a href=""><i class="fa fa-caret-right"></i> Mail View </a></li>
-                                            </ul>
-                                        </li>
-                                        <!--Menu list item-->
-                                        <li>
-                                            <a href="">
-                                            <i class="fa fa-bar-chart-o"></i>
-                                            <span class="menu-title">
-                                            Statistique
-                                            
-                                            </span>
-                                            </a>
-                                            <!--Submenu-->
-                                           
-                                        </li>
-                                        <!--Menu list item-->
                                         
                                     </ul>
                                     <!--Widget-->

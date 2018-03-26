@@ -13,7 +13,7 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+       /* Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email');
@@ -22,7 +22,7 @@ class CreateCommentsTable extends Migration
             $table->integer('article_id');
             $table->timestamps();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-        });
+        });*/
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        //Schema::dropIfExists('comments');
     }
 }

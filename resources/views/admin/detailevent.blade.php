@@ -9,7 +9,7 @@
                                 <div class="userWidget-1">
                                     @foreach($event as $ev)
                                         <div class="avatar bg-{{ $color[rand('0','5')] }}">
-                                            <img src="{{LINK}}images/{{$ev->urlogoevent}}" alt="avatar">
+                                            <img src="../../images/{{$ev->urlogoevent}}" alt="avatar">
                                             <div class="name osLight"> {{$ev->libellevent}} </div>
                                         </div>
                                     <div class="title"> {{ $ev->lieu }} </div>
@@ -108,7 +108,7 @@
                                                             <tr>
                                                                 <td class="hidden-xs">{{$b+1}}</td>
                                                                 <td>
-                                                                	<div class="media-object center"> <img src="{{LINK}}images/{{$result[$a][$b]->LOGOURL}}" alt="" class="img-rounded img-sm"> </div>
+                                                                	<div class="media-object center"> <img src="../../images/{{$result[$a][$b]->LOGOURL}}" alt="" class="img-rounded img-sm"> </div>
                                                                 </td>
                                                                 <td>{!!$result[$a][$b]->NAME!!}</td>
                                                                 <td><b>{{$result[$a][$b]->SIGLE}}<b></td>

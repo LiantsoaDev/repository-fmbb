@@ -3,8 +3,7 @@
  
     
 
-    <!-- Content
-    ================================================== -->
+    <!-- =============================================Content================================================== -->
     <div class="site-content">
       <div class="container">
 
@@ -28,7 +27,7 @@
                                             
                                         
 
- <!-- ===============================================SLIDER============================================= -->
+      <!-- ===============================================SLIDER============================================= -->
       
               <!-- Team Roster: Slider -->
               <div class="team-roster team-roster--slider">
@@ -78,7 +77,7 @@
               </div>
           <!-- Team Roster: Slider / End -->
     
- <!-- ===============================================FIN SLIDER============================================= -->
+      <!-- ===============================================FIN SLIDER============================================= -->
 
 
 
@@ -129,61 +128,61 @@
 
 
                                    <!-- Post Comments -->
-            <div class="post-comments card card--lg">
-              <header class="post-commments__header card__header">
-                <h4>Commentaires ({{ count($coms) }})</h4>
-              </header>
-              <div class="post-comments__content card__content">
-            
-                <ul class="comments">
-              @foreach($coms as $comments)
+                                    <div class="post-comments card card--lg">
+                                      <header class="post-commments__header card__header">
+                                        <h4>Commentaires ({{ count($coms) }})</h4>
+                                      </header>
+                                      <div class="post-comments__content card__content">
+                                    
+                                        <ul class="comments">
+                                      @foreach($coms as $comments)
 
-                  <li class="comments__item">
-                    <div class="comments__inner">
-                      <header class="comment__header">
-                        <div class="comment__author">
-                          <figure class="comment__author-avatar">
-                            <img src="{{"https://www.gravatar.com/avatar/" . md5(strtolower(trim($comments->email))) . "?s=50&d=mm"}}" alt="">
-                          </figure>
-                          <div class="comment__author-info">
-                            <h5 class="comment__author-name">{{ $comments->name }}</h5>
-                            <time class="comment__post-date" datetime="2016-08-23">2 hours ago</time>
-                          </div>
-                        </div>
-                        <div class="comment__reply">
-                          <a href="" class="comment__reply-link btn btn-link btn-xs" data-toggle="modal" data-target="#modal-reply">Répondre</a>
-                        </div>
-                      </header>
-                      <div class="comment__body">
-                        {{ $comments->comment }}
-                      </div>
-                    </div>
-                  @foreach($affimage as $aff)
-                    <ul class="comments--children">
-                      <li class="comments__item">
-                        <div class="comments__inner">
-                          <header class="comment__header">
-                            <div class="comment__author">
-                              <figure class="comment__author-avatar">
-                                <img src="../../front/assets/images/samples/avatar-7.jpg" alt="">
-                              </figure>
-                              <div class="comment__author-info">
-                                <h5 class="comment__author-name">{{$aff->name}}</h5>
-                                <time class="comment__post-date" datetime="2016-08-23">3 hours ago</time>
-                              </div>
-                            </div>
-                            <div class="comment__reply">
-                              <a href="#" class="comment__reply-link btn btn-link btn-xs">Reply</a>
-                            </div>
-                          </header>
-                          <div class="comment__body">
-                          {{$aff->comment}}
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  @endforeach
-                  </li>
+                                          <li class="comments__item">
+                                            <div class="comments__inner">
+                                              <header class="comment__header">
+                                                <div class="comment__author">
+                                                  <figure class="comment__author-avatar">
+                                                    <img src="{{"https://www.gravatar.com/avatar/" . md5(strtolower(trim($comments->email))) . "?s=50&d=mm"}}" alt="">
+                                                  </figure>
+                                                  <div class="comment__author-info">
+                                                    <h5 class="comment__author-name">{{ $comments->name }}</h5>
+                                                    <time class="comment__post-date" datetime="2016-08-23">2 hours ago</time>
+                                                  </div>
+                                                </div>
+                                                <div class="comment__reply">
+                                                  <a href="" class="comment__reply-link btn btn-link btn-xs" data-toggle="modal" data-target="#modal-reply">Répondre</a>
+                                                </div>
+                                              </header>
+                                              <div class="comment__body">
+                                                {{ $comments->comment }}
+                                              </div>
+                                            </div>
+                                          @foreach($affimage as $aff)
+                                            <ul class="comments--children">
+                                              <li class="comments__item">
+                                                <div class="comments__inner">
+                                                  <header class="comment__header">
+                                                    <div class="comment__author">
+                                                      <figure class="comment__author-avatar">
+                                                        <img src="../../front/assets/images/samples/avatar-7.jpg" alt="">
+                                                      </figure>
+                                                      <div class="comment__author-info">
+                                                        <h5 class="comment__author-name">{{$aff->name}}</h5>
+                                                        <time class="comment__post-date" datetime="2016-08-23">3 hours ago</time>
+                                                      </div>
+                                                    </div>
+                                                    <div class="comment__reply">
+                                                      <a href="#" class="comment__reply-link btn btn-link btn-xs">Reply</a>
+                                                    </div>
+                                                  </header>
+                                                  <div class="comment__body">
+                                                  {{$aff->comment}} 
+                                                  </div>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                          @endforeach
+                                          </li>
 
 
 
@@ -194,29 +193,29 @@
         <div class="modal fade" id="modal-reply" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg modal--login" role="document">
             <div class="modal-body">
-            <form action="{{route('reply', $comments->id)}}"  method="POST" class="comment-form">
+            <form action="{{route('reply')}}"  method="POST" class="comment-form">
 
                 <input type="hidden" value="{!!csrf_token()!!}" name="_token" />
                 <input type="hidden" value="{!!$article->id!!}" name="ref" />
-               <!-- <input type="hidden" value="{!!$comments->id!!}" name="repl" />-->
+                <input type="hidden" value="{!!$comments->id!!}" name="repl" />
                    
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label" for="name">Nom</label>
-                        <input type="text" id="name" value="Votre nom ici ..." name="name" class="form-control">
+                        <input type="text" value="Votre nom ici ..." name="name" class="form-control">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label" for="email">Email</label>
-                        <input type="email" id="email" value="Votre email ici ..." name="email" class="form-control">
+                        <input type="email" value="Votre email ici ..." name="email" class="form-control">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="comment">VotreRéponse</label>
-                    <textarea name="comment" value="Votre Commentaire ici ..." id="comment" rows="7" class="form-control"></textarea>
+                    <textarea name="comment" value="Votre Commentaire ici ..." rows="7" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-default btn-block btn-lg">Répondre</button>
@@ -290,19 +289,19 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label" for="name">Nom</label>
-                        <input type="text" id="name" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label" for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control">
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="comment">Votre Commentaire</label>
-                    <textarea name="comment" id="comment" rows="7" class="form-control"></textarea>
+                    <textarea name="comment" rows="7" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-default btn-block btn-lg">Poster le Commentaire</button>

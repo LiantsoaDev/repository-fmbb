@@ -12,11 +12,7 @@
     
                   <!-- Footer Logo -->
                   <div class="footer-logo">
-<<<<<<< HEAD
                     <a href="index.html"><img src="../../app/photos/logofmbb.png" srcset="../../app/photos/logofmbb.png" alt="Alchemists" class="footer-logo__img"></a>
-=======
-                    <a href="index.html"><img src="../front/assets/images/logo.png" srcset="../../front/assets/images/logo@2x.png 2x" alt="Alchemists" class="footer-logo__img"></a>
->>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
                   </div>
                   <!-- Footer Logo / End -->
     
@@ -26,10 +22,10 @@
                 <div class="footer-col-inner">
                   <!-- Widget: Contact Info -->
                   <div class="widget widget--footer widget-contact-info">
-                    <h4 class="widget__title">Contact Info</h4>
+                    <h4 class="widget__title">Info</h4>
                     <div class="widget__content">
                       <div class="widget-contact-info__desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisi nel elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <p>La Fédération Malagasy de basketBall reste à côté des jeunes inspiré, passionné, attiré par le sports.</p>
                       </div>
                       <div class="widget-contact-info__body info-block">
                         <div class="info-block__item">
@@ -40,9 +36,7 @@
 
                         </div>
                         <div class="info-block__item">
-                          <svg role="img" class="df-icon df-icon--jersey">
-                            <use xlink:href="../front/assets/images/icons-basket.svg#jersey"/>
-                          </svg>
+                          
 
                         </div>
                         <div class="info-block__item info-block__item--nopadding">
@@ -73,21 +67,21 @@
                           <div class="posts__cat">
                             <span class="label posts__cat-label">Injuries</span>
                           </div>
-                          <h6 class="posts__title"><a href="#">Mark Johnson has a Tibia Fracture and is gonna be out</a></h6>
+                          <h6 class="posts__title"><a href="#">FMBB- IBF Madagascar</a></h6>
                           <time datetime="2017-08-23" class="posts__date">August 23rd, 2017</time>
                         </li>
                         <li class="posts__item posts__item--category-1">
                           <div class="posts__cat">
                             <span class="label posts__cat-label">The Team</span>
                           </div>
-                          <h6 class="posts__title"><a href="#">Jay Rorks is only 24 points away from breaking the record</a></h6>
+                          <h6 class="posts__title"><a href="#">RÉSULTATS TOURNOI "Ady omby d'Ambohimanarina 2.0"</a></h6>
                           <time datetime="2017-08-22" class="posts__date">August 22nd, 2017</time>
                         </li>
                         <li class="posts__item posts__item--category-1">
                           <div class="posts__cat">
                             <span class="label posts__cat-label">The Team</span>
                           </div>
-                          <h6 class="posts__title"><a href="#">The new eco friendly stadium won a Leafy Award in 2017</a></h6>
+                          <h6 class="posts__title"><a href="#">Nanolotra fampitaovana manana fenitra iraisam-pirenena..</a></h6>
                           <time datetime="2017-08-21" class="posts__date">August 21st, 2017</time>
                         </li>
                       </ul>
@@ -146,21 +140,43 @@
               <div class="modal-account__item">
     
                 <!-- Register Form -->
-                <form action="#" class="modal-form">
+                <form action="{{ route('register') }}" class="modal-form @if(count($errors) > 0) error @endif">
+                {{ csrf_field()}}
                   <h5>Inscrivez maintenant!</h5>
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Entrer adress email...">
+                  <div class="form-group {{ $errors->has('name') ? 'error' : '' }}">
+                    <input type="text" class="form-control" placeholder="Entrer votre nom..." name="name" required>
+                    @if($errors->has('name'))
+                        <div class="ui pointing red basic label">
+                            {{ $errors->first('name') }}
+                        </div>
+                    @endif
+                  </div>
+                  <div class="form-group {{ $errors->has('email') ? 'error' : '' }}">
+                    <input type="email" name="email" class="form-control" placeholder="Entrer votre email..." required >
+                    @if($errors->has('email'))
+                        <div class="ui pointing red basic label">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
+                  </div>
+                  <div class="form-group {{ $errors->has('password') ? 'error' : '' }}">
+                    <input type="password" class="form-control" name="password" placeholder="Entrer votre mot de passe..." required >
+                    @if($errors->has('password'))
+                        <div class="ui pointing red basic label">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe...">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Confirmer les mots de passe...">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmer les mots de passe..." required >
                   </div>
                   <div class="form-group form-group--submit">
                     <a href="shop-account.html" class="btn btn-primary btn-block">Creer compte</a>
                   </div>
                   <div class="modal-form--note"></div>
+                  
+             
+
                 </form>
                 <!-- Register Form / End -->
     
@@ -168,33 +184,44 @@
               <div class="modal-account__item">
     
                 <!-- Login Form -->
-                <form action="#" class="modal-form">
+                <form action="{{ route('login') }}" method="POST" class="modal-form @if(count($errors) > 0) error @endif">
+                {{ csrf_field()}}
                   <h5>Login Avec votre Compte</h5>
-                  <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter votre address email...">
+                  <div class="form-group {{ $errors->has('email') ? 'error' : '' }}">
+                    <input type="email" class="form-control" name="email" placeholder="Enter votre address email..." required>
+                    @if($errors->has('email'))
+                        <div class="ui pointing red basic label">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe...">
+                  <div class="form-group {{ $errors->has('password') ? 'error' : '' }}">
+                    <input type="password" name="password" class="form-control" placeholder="Entrer votre mot de passe..." required>
+                    @if($errors->has('password'))
+                        <div class="ui pointing red basic label">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                   </div>
                   <div class="form-group form-group--pass-reminder">
                     <label class="checkbox checkbox-inline">
-                      <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Se souvenir de moi
+                      <input type="checkbox" id="inlineCheckbox1" name="remember" value="option1" checked> Se souvenir de moi
                       <span class="checkbox-indicator"></span>
                     </label>
                     <a href="">Mot de passe oublié?</a>
                   </div>
                   <div class="form-group form-group--submit">
-                    <a href="shop-account.html" class="btn btn-primary-inverse btn-block">Login</a>
+                    <button type="submit" class="btn btn-primary-inverse btn-block">Login</button>
                   </div>
                   <div class="modal-form--social">
                     <h5>Login avec les profiles sociales:</h5>
                     <ul class="social-links social-links--btn text-center">
                       <li class="social-links__item">
-                        <a href="#" class="social-links__link social-links__link--lg social-links__link--fb"><i class="fa fa-facebook"></i></a>
+                        <a href="{{ route('facebook') }}" class="social-links__link social-links__link--lg social-links__link--fb"><i class="fa fa-facebook"></i></a>
                       </li>
-                      <!--<li class="social-links__item">
-                        <a href="#" class="social-links__link social-links__link--lg social-links__link--twitter"><i class="fa fa-twitter"></i></a>
-                      </li>-->
+                      <li class="social-links__item">
+                        <a href="{{ route('twitter') }}" class="social-links__link social-links__link--lg social-links__link--twitter"><i class="fa fa-twitter"></i></a>
+                      </li>
                       <li class="social-links__item">
                         <a href="{{ route('google') }}" class="social-links__link social-links__link--lg social-links__link--gplus"><i class="fa fa-google-plus"></i></a>
                       </li>
@@ -236,7 +263,7 @@
                   </div>
                   <div class="form-group form-group--pass-reminder">
                     <label class="checkbox checkbox-inline">
-                      <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Se souvenir de moi
+                      <input type="checkbox" value="option1" checked> Se souvenir de moi
                       <span class="checkbox-indicator"></span>
                     </label>
                     <a href="">Mot de passe oublié?</a>
@@ -250,9 +277,9 @@
                       <li class="social-links__item">
                         <a href="#" class="social-links__link social-links__link--lg social-links__link--fb"><i class="fa fa-facebook"></i></a>
                       </li>
-                      <!--<li class="social-links__item">
+                      <li class="social-links__item">
                         <a href="#" class="social-links__link social-links__link--lg social-links__link--twitter"><i class="fa fa-twitter"></i></a>
-                      </li>-->
+                      </li>
                       <li class="social-links__item">
                         <a href="{{ route('google') }}" class="social-links__link social-links__link--lg social-links__link--gplus"><i class="fa fa-google-plus"></i></a>
                       </li>
@@ -328,25 +355,20 @@ jQuery(document).ready(function($) {
 
   </script>
 
-<<<<<<< HEAD
 
 
   <script src="../../front/assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../front/assets/js/core-min.js"></script>
-=======
-  <script src="../front/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../front/assets/js/core-min.js"></script>
->>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
   
   <!-- Vendor JS -->
-  <script src="../front/assets/vendor/twitter/jquery.twitter.js"></script>
+  <script src="../../front/assets/vendor/twitter/jquery.twitter.js"></script>
   
   
   <!-- Template JS -->
-  <script src="../front/assets/js/init.js"></script>
-  <script src="../front/assets/js/custom.js"></script>
+  <script src="../../front/assets/js/init.js"></script>
+  <script src="../../front/assets/js/custom.js"></script>
 
-  <script src="../front/assets/js/jquery.jscroll.js"></script>
+  <script src="../../front/assets/js/jquery.jscroll.js"></script>
   
 
 

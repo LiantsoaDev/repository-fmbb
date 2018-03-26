@@ -1,4 +1,4 @@
- <div class="panel" id="txtHint">
+<div class="panel" id="txtHint">
              <div class="panel-heading">
                  <h3 class="panel-title"> <b>Poule</b> </h3>
              </div>

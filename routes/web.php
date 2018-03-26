@@ -18,8 +18,8 @@
 Route::prefix('authent')->group(function(){
 
     Route::get('/login',array('as'=>'login','uses'=>'SessionsController@create'));
-    Route::get('/registration',array('as'=>'registration','uses'=>'RegisterController@create'));
-    Route::post('/registrer',array('as'=>'registrer','uses'=>'RegisterController@store'));
+    Route::get('/registration',array('as'=>'registration','uses'=>'RegisterController@indcreate'));
+    Route::post('/registrer',array('as'=>'registrer','uses'=>'RegisterController@create'));
     Route::get('/logout',array('as'=>'logout','uses'=>'SessionsController@destroy'));
 
 });
@@ -40,33 +40,33 @@ Route::prefix('articles')->group(function(){
 
 Route::prefix('admin')->group(function () {
 
-    Route::get('listes-evenements',['as' => 'show.event', 'uses' => 'EventsController@showevents']);
-    Route::get('ajout-evenement',['as' => 'add.event', 'uses' => 'EventsController@addevents']);
-    Route::get('insertion-equipe',['as' => 'add.team', 'uses' => 'EventsController@addteams']);
-    Route::post('formaddevents',['as' => 'method.addevent', 'uses' => 'EventsController@ajoutevenement']);
-    Route::post('formaddteams',['as' => 'method.addteam', 'uses' => 'EventsController@ajoutequipevent']);
-    Route::get('update-event/{id}',['as' => 'event.showupdate', 'uses' => 'EventsController@showupdate'])->where('id','[0-9]+')->middleware('verifyid');
-    Route::post('form-update',['as' => 'form.update.event', 'uses' => 'EventsController@formupdatevent']);
-    Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
-    Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
-
-    Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch'])->middleware('verifyequipe');
-
-    Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
-    Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
-
-    Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
-    Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+')->middleware('sessionidevent'); 
-    Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
-    Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
-    Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
-    Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
-
-    Route::get('poules/{poule}',['as' => 'poules', 'uses' => 'CalendriersController@chargementResultatPoule']);
+        Route::get('listes-evenements',['as' => 'show.event', 'uses' => 'EventsController@showevents']);
+        Route::get('ajout-evenement',['as' => 'add.event', 'uses' => 'EventsController@addevents']);
+        Route::get('insertion-equipe',['as' => 'add.team', 'uses' => 'EventsController@addteams']);
+        Route::post('formaddevents',['as' => 'method.addevent', 'uses' => 'EventsController@ajoutevenement']);
+        Route::post('formaddteams',['as' => 'method.addteam', 'uses' => 'EventsController@ajoutequipevent']);
+        Route::get('update-event/{id}',['as' => 'event.showupdate', 'uses' => 'EventsController@showupdate'])->where('id','[0-9]+')->middleware('verifyid');
+        Route::post('form-update',['as' => 'form.update.event', 'uses' => 'EventsController@formupdatevent']);
+        Route::get('detail-event/{id}',['as' => 'event.detail', 'uses' => 'EventsController@detailevent'])->where('id','[0-9]+')->middleware('verifyid');
+        Route::get('suspendre/{id}',['as' => 'event.suspend', 'uses' => 'EventsController@suspendre'])->where('id','[0-9]+')->middleware('verifyid');
+    
+        Route::post('getnewmatch',['as' => 'new.match', 'uses' => 'CalendriersController@insertnewmatch'])->middleware('verifyequipe');
+    
+        Route::post('multiple',['as' => 'js.teams', 'uses' => 'EventsController@multiples']);
+        Route::get('error',['as' => 'error.errorpage', 'uses' => function(){ return view('error.errorpage'); }]);
+    
+        Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
+        Route::get('update-match/{id}',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch'])->where('id','[0-9]+')->middleware('sessionidevent'); 
+        Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');   
+        Route::post('reporting-match',['as' => 'route.report', 'uses' => 'CalendriersController@reportingmatch']); 
+        Route::get('match-declencheur/{id}',['as' => 'admin.declencheur', 'uses' => 'MatchsController@declencheurMatch'])->where('id','[0-9]+');
+        Route::post('match-start', ['as' => 'match.start' , 'uses' => 'MatchsController@setScore']);
+    
+        Route::get('poules/{poule}',['as' => 'poules', 'uses' => 'CalendriersController@chargementResultatPoule']);
 
     /*-------------------------------------- Backoffice articles JERSAM ---------------------------------------------------------------------------- */
 
-     Route::get('/index',array('as'=>'index','uses'=>'ArticlesController@index')); 
+        Route::get('/index',array('as'=>'index','uses'=>'ArticlesController@index')); 
         Route::get('/show/{id}',array('as'=>'show','uses'=>'ArticlesController@show'));
         Route::get('/create',array('as'=>'create','uses'=>'ArticlesController@create'));
         Route::post('/store',array('as'=>'store','uses'=>'ArticlesController@store'));
@@ -104,7 +104,7 @@ Route::prefix('admin')->group(function () {
 
         //publier Images de fond
         Route::get('/publier/{id}', array('as'=>'publier','uses'=>'ImagePubController@publication'));
-<<<<<<< HEAD
+
 
 /*-------------------------------------------------------------------------*/
 
@@ -139,8 +139,8 @@ Route::prefix('admin')->group(function () {
     Route::get('calendrier/{id}',['as' => 'admin.calendrier', 'uses' => 'CalendriersController@showcalendrier'])->where('id','[0-9]+')->middleware('verifyid'); 
     Route::get('update-match',['as' => 'admin.show-update-match', 'uses' => 'CalendriersController@showupdatematch']); 
     Route::get('addnewmatch',['as' => 'admin.addmatch', 'uses' => 'CalendriersController@addnewmatch' ])->middleware('verifysessionid');    
-=======
->>>>>>> 2ac770b773b599f0c2225959b199d0a2e9eaa6e6
+
+
         
 });
 
@@ -164,7 +164,7 @@ Route::prefix('front')->group(function(){
 
         /*----------------------------------------------------google Authent------------------------------------------------*/
 
-        Route::get('/login/google', array('as'=>'google','uses'=>'Auth\LoginController@redirectToProvide'));
+       // Route::get('/login/google', array('as'=>'google','uses'=>'Auth\LoginController@redirectToProvide'));
         Route::get('/login/google/callback', array('as'=>'googleback','uses'=>'Auth\LoginController@handleProviderCallbac'));
 
         /*---------------------------------------------Fin google Authent--------------------------------------------------*/
@@ -173,14 +173,30 @@ Route::prefix('front')->group(function(){
                 /*----------------------------------------------------Commentaires------------------------------------------------*/
 
                 Route::post('/comment', array('as'=>'commenter','uses'=>'CommentController@store'));
-                Route::post('/reply/{id}', array('as'=>'reply','uses'=>'CommentController@storeReply'));
+                Route::post('/reply', array('as'=>'reply','uses'=>'CommentController@storeReply'));
                 // Route::get('/comment/', array('as'=>'googleback','uses'=>'Auth\LoginController@handleProviderCallbac'));
         
                 /*---------------------------------------------Fin Commentaires--------------------------------------------------*/
-       
+               /* Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
+                Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
+                */
+                Route::get('login/google', array('as'=>'google','uses'=>'Auth\SocialController@redirectgoog'));
+                Route::get('login/facebook', array('as'=>'facebook','uses'=>'Auth\SocialController@redirect'));
+                Route::get('login/twitter', array('as'=>'twitter','uses'=>'Auth\SocialController@redirecttwit'));
+
+                Route::get('login/facebook/callback', array('as'=>'facebook/callback','uses'=>'Auth\SocialController@callback'));
+                Route::get('login/google/callback', array('as'=>'google/callback','uses'=>'Auth\SocialController@callback'));
+                Route::get('login/twitter/callback', array('as'=>'twitter/callback','uses'=>'Auth\SocialController@callback'));
+                Auth::routes();
     });
 
 /**----------------------------------------------Fin Front-end jersam--------------------------------------------------*/
 
 
+/*Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
+Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
+*/
 
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

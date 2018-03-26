@@ -197,11 +197,11 @@ class FrontController extends Controller
         $images = Image::where('id',$article->images_id)->get();
         $images2 = Image::where('id',$article->images_id)->first();
         $coms = Comment::where('article_id',$article->id)->paginate(5);
-        
+       
            $artout = DB::table('articles')->join('images','articles.images_id','=','images.id')->select('articles.*', 'images.urlimage')->where('articles.statut',true)->where('articles.archive',false)->orderBy('created_at', 'asc')->get();
 
-           $commentaire = DB::table('articles')->join('comments','articles.id','=','comments.article_id')->select('comments.*')->where('comments.article_id','$article->id')->orderBy('created_at', 'desc')->get();
-           
+           $commentaire[] = DB::table('articles')->join('comments','articles.id','=','comments.article_id')->select('comments.*')->where('comments.article_id','$article->id')->orderBy('created_at', 'desc')->get();
+           //dd($article->id);
           /*  foreach($images2 as $img)
             {
                 $affimage =  explode('|',$img->urlimage);
@@ -211,10 +211,9 @@ class FrontController extends Controller
             foreach($coms as $comment)
             {
                 $affimage = DB::table('comments')->join('replies','comments.id','=','replies.reply')->select('replies.*')->where('replies.reply','$comment->id')->orderBy('created_at', 'desc')->get();
-                   
             }
 
-//ici pour recuperer le 1er image de l'article
+            //ici pour recuperer le 1er image de l'article
             foreach($images as $url)
             {
                 
@@ -224,9 +223,7 @@ class FrontController extends Controller
                 $trop = $url->urlimage;
             }
             
-//Fin ici pour recuperer le 1er image de l'article
-
-      
+            //Fin ici pour recuperer le 1er image de l'article
 
         return view('frontjers.pages.articleshow',compact('coms', 'commentaire','fond2','fond1','article','images','images2','id','artout','conter','trop','affimage'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

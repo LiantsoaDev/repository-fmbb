@@ -186,7 +186,7 @@ class ClassementsController extends Controller
                $prime[] = array('id' => $value->idequipe, 'points'=>$value->points);
             }
             $rangs = json_decode(json_encode($rangsObject),true);
-
+          
             if( \Session::has('flash_position') )
             {
                 $getters = \Session::get('flash_position');
